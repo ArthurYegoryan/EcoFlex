@@ -1,0 +1,16 @@
+.error-modal-body {
+    display: flex;
+}
+
+.error-modal-body-image-div {
+    width: 30px;
+}
+
+.error-modal-body-image-div > img {
+    width: 100%;
+}
+
+.error-modal-body-image-div {
+    margin-right: 20px;
+    margin-top: 20px;
+}

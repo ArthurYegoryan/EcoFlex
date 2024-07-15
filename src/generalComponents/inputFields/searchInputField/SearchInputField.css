@@ -1,0 +1,17 @@
+.search-input-label {
+    color: blue;
+    margin-bottom: 100px;
+}
+
+.search-input-field {
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.search-input-reset-btn {
+    margin-left: 5px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}

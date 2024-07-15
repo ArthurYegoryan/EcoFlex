@@ -1,0 +1,20 @@
+.login-form {
+    position: relative;
+    margin-top: 40px;
+    margin-left: 40px;
+    height: 260px;
+}
+
+.login-button {
+    position: absolute;
+    bottom: 10px;
+}
+
+.login-error-message {
+    color: rgb(255, 87, 87);
+    font-size: 14px;
+}
+
+.login-error-message-div {
+    width: 200px;
+}

@@ -1,0 +1,6 @@
+.user-section {
+    display: flex;
+    position: absolute;
+    right: 0;
+    margin: 10px;
+}
