@@ -2,8 +2,9 @@
     "loginSection": {
         "username": "Username",
         "password": "Password",
+        "login": "Login",
         "forgotPassword": "Forgot password?",
-        "login": "Login"
+        "recover": "Recover"
     },
     "errors": {
         "emptyUsernameError": "Enter the username",

@@ -2,8 +2,9 @@
     "loginSection": {
         "username": "Մուտքանուն",
         "password": "Գաղտնաբառ",
+        "login": "Մուտք գործել",
         "forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
-        "login": "Մուտք գործել"
+        "recover": "Վերականգնել"
     },
     "errors": {
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",

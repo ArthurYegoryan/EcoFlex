@@ -49,7 +49,7 @@ const LoginForm = () => {
 
                 const { token, id, firstName, role, message } = response.data;
 
-                if (response.data.message === "Success") {
+                if (message === "Success") {
                     localStorage.setItem("token", token);
                     localStorage.setItem("user_id", id);
                     localStorage.setItem("username", firstName);
