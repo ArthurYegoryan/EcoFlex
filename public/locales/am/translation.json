@@ -1,4 +1,17 @@
 {
+    "loginSection": {
+        "username": "Մուտքանուն",
+        "password": "Գաղտնաբառ",
+        "forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
+        "login": "Մուտք գործել"
+    },
+    "errors": {
+        "emptyUsernameError": "Մուտքագրեք մուտքանունը",
+        "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
+        "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ"
+    },
+    
+
     "questions": {
         "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել"
     },

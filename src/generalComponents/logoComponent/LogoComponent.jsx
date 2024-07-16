@@ -8,7 +8,7 @@ const LogoComponent = ({
         <div className={`logo ${className}`}
              style={{width: width}}
         >
-            <img src={process.env.PUBLIC_URL + 'img/logo.svg'} alt="Logo" />
+            <img src={process.env.PUBLIC_URL + 'favicon.ico'} alt="Logo" />
         </div>
     );
 };

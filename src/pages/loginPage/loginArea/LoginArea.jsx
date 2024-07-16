@@ -5,7 +5,9 @@ import LoginContent from './loginContent/LoginContent';
 const LoginArea = () => {
     return (
         <div className="login-area">
-            <Logo />
+            <div className='logo-div'>
+                <Logo />
+            </div>            
             <LoginContent />
         </div>
     );

@@ -91,30 +91,36 @@ const LoginForm = () => {
     return (
         <>
             <form action="" className="login-form">
-                <TextInput label={t("userSection.username")}
+                <TextInput label={t("loginSection.username")}
                         size='normal'
+                        width='250px'
                         onChangeHandler={onChangeUsernameHandler}
                         existsError={emptyUsernameError}
-                        errorText={t("userSection.emptyUsernameError")} />
-                <TextInput label={t("userSection.password")}
+                        errorText={t("errors.emptyUsernameError")} />
+                <TextInput label={t("loginSection.password")}
                         onChangeHandler={onChangePasswordHandler}
-                        size='normal'
-                        height='56px'
+                        size="normal"
+                        height="56px"
+                        width='250px'
                         isPassword={true}
                         existsError={emptyPasswordError}
-                        errorText={t("userSection.emptyPasswordError")}
-                        marginTop="15px" />
+                        errorText={t("errors.emptyPasswordError")}
+                        marginTop="15px"
+                        passwordBgColor="rgb(235, 235, 235)" />
                 <ForgotPassword />
                 {wrongUsernamePasswordError &&
                     <div className="login-error-message-div">
-                        <label className="login-error-message">{t("userSection.wrongUsernamePassword")}</label>
+                        <label className="login-error-message">{t("errors.wrongUsernamePassword")}</label>
                     </div>                    
                 }
                 <div className="login-button">
                     <Button type="submit" 
-                        label="Login" 
-                        backgroundColor='rgb(103, 103, 255)'
-                        width="220px"
+                        label={t("loginSection.login")}
+                        backgroundColor="#E1E100"
+                        color="black"
+                        width='250px'
+                        height="40px"
+                        borderRadius="0 25px 25px 25px"
                         onClickHandler={onClickHandler}
                     />
                 </div>

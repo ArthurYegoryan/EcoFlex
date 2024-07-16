@@ -1,9 +1,8 @@
-import './Logo.css';
 import LogoComponent from "../../../../generalComponents/logoComponent/LogoComponent";
 
 const Logo = () => {
     return (
-        <LogoComponent className="login" />
+        <LogoComponent width='250px' />
     );
 };
 

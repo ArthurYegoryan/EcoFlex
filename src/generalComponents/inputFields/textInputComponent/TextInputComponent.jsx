@@ -22,7 +22,8 @@ export default function TextInput({
     existsError,
     errorText,
     width = "25ch",
-    height = "40px"
+    height = "40px",
+    passwordBgColor = "white"
 }) {
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -55,7 +56,7 @@ export default function TextInput({
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', marginTop: marginTop }}>
                     <FormControl sx={{ width: {width} }} variant="outlined" size={size} onChange={onChangeHandler}>
                         <InputLabel htmlFor="outlined-adornment-password " sx={{ 
-                            backgroundColor: "white", 
+                            backgroundColor: passwordBgColor, 
                             paddingRight: "5px",
                         }}>
                             {label}

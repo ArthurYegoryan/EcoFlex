@@ -16,9 +16,9 @@ export default function ButtonComponent({
     marginTop,
     marginRight,
     marginBottom,
+    borderRadius,
     onClickHandler,
-    isDisabled = false,
-    onMouseEnterHandler
+    isDisabled = false
 }) {
     return (
         <Stack direction="row" 
@@ -40,7 +40,8 @@ export default function ButtonComponent({
                         width: width,
                         height: height,
                         backgroundColor: backgroundColor,
-                        color: color                        
+                        color: color,
+                        borderRadius: borderRadius
                     }}
                     onClick={onClickHandler}
             >

@@ -1,4 +1,16 @@
 {
+    "loginSection": {
+        "username": "Имя пользователя",
+        "password": "Пароль",
+        "forgotPassword": "Забыли пароль?",
+        "login": "Входить"
+    },
+    "errors": {
+        "emptyUsernameError": "Введите имя пользователя",
+        "emptyPasswordError": "Введите пароль",
+        "wrongUsernamePassword": "Неверное имя пользователя или пароль"
+    },
+
     "questions": {
         "doYouWantDelete": "Вы хотите удалить"
     },

@@ -1,3 +1,8 @@
 .login-area {
     margin: auto;
 }
+
+.logo-div {
+    display: flex;
+    justify-content: center;
+}
