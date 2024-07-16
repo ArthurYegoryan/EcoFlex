@@ -11,9 +11,20 @@ export const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        
+        editID: (state, id) => {
+            state.id = id;
+        },
+        editUsername: (state, username) => {
+            state.username = username;
+        },
+        editRole: (state, role) => {
+            state.role = role;
+        },
+        editToken: (state, token) => {
+            state.token = token;
+        }
     }
 });
 
-// export const { editID, editUsername, editRole, editBank, editToken } = authSlice.actions;
+export const { editID, editUsername, editRole, editToken } = authSlice.actions;
 export default authSlice.reducer;

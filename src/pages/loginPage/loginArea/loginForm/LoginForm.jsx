@@ -4,12 +4,12 @@ import TextInput from '../../../../generalComponents/inputFields/textInputCompon
 import Button from "../../../../generalComponents/buttons/Button";
 import ModalComponent from '../../../../generalComponents/modalComponent/ModalComponent';
 import ErrorModalBody from '../../../../generalComponents/modalComponent/errorModalBody/ErrorModalBody';
-import getUserInfo from '../../../../api/getUserInfo';
+import postUserInfo from '../../../../api/postUserInfo';
 import { urls } from '../../../../constants/urls/urls';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { editID, editRole, editUsername, editBank, editToken } from '../../../../redux/slices/authorization/authSlice';
+import { editID, editRole, editUsername, editToken } from '../../../../redux/slices/authSlice';
 import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {
@@ -17,7 +17,7 @@ const LoginForm = () => {
     const { t } = useTranslation();
 
     const [ loginParams, setLoginParams ] = useState({
-        username: "",
+        login: "",
         password: ""
     });
     const [ emptyUsernameError, setEmptyUsernameError ] = useState(false);
@@ -28,7 +28,7 @@ const LoginForm = () => {
     const onChangeUsernameHandler = (evt) => {
         setLoginParams({
             ...loginParams,
-            username: evt.target.value
+            login: evt.target.value
         });
     }
 
@@ -42,26 +42,27 @@ const LoginForm = () => {
     const makeCallForUserData = () => {
         try {
             const loadUserData = async () => {
-                const response = await getUserInfo(
-                    urls.GET_USER_INFO_URL, 
+                const response = await postUserInfo(
+                    urls.POST_USER_INFO_URL, 
                     loginParams
                 );
 
-                if (response.message === "success") {
-                    localStorage.setItem("token", response.token);
-                    localStorage.setItem("user_id", response.userInfo.id);
-                    localStorage.setItem("username", response.userInfo.username);
-                    localStorage.setItem("role", response.userInfo.role);
-                    localStorage.setItem("bank", response.userInfo.bank);
+                const { token, id, firstName, role, message } = response.data;
 
-                    // dispatch(editID(response.userInfo.id));
-                    // dispatch(editUsername(response.userInfo.username));
-                    // dispatch(editRole(response.userInfo.role));
-                    // dispatch(editBank(response.userInfo.bank));
-                    // dispatch(editToken(response.token));
+                if (response.data.message === "Success") {
+                    localStorage.setItem("token", token);
+                    localStorage.setItem("user_id", id);
+                    localStorage.setItem("username", firstName);
+                    localStorage.setItem("role", role);
 
-                    <Navigate to="/terminals" />;
-                } else if (response.message === "wrong username or password") {
+                    dispatch(editID(id));
+                    dispatch(editUsername(firstName));
+                    dispatch(editRole(role));
+                    dispatch(editToken(token));
+
+                    console.log("Mtanq");
+                    // <Navigate to="/terminals" />;
+                } else if (message === "wrong username or password") {
                     setWrongUsernamePasswordError(true);
                 } else {
                     throw new Error("Connection error!");
@@ -80,8 +81,8 @@ const LoginForm = () => {
         setEmptyPasswordError(false);
         setWrongUsernamePasswordError(false);
 
-        if (!loginParams.username.length || !loginParams.password.length) {
-            if (!loginParams.username.length) setEmptyUsernameError(true);
+        if (!loginParams.login.length || !loginParams.password.length) {
+            if (!loginParams.login.length) setEmptyUsernameError(true);
             if (!loginParams.password.length) setEmptyPasswordError(true);
         } else {
             makeCallForUserData();

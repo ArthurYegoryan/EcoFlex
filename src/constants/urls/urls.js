@@ -1,6 +1,7 @@
+const URL = process.env.REACT_APP_API_URL;
+
 export const urls = {
     GET_TOKEN_URL: "",
-    GET_USER_INFO_URL: "https://fakestoreapi.com/users/1",
     GET_USERS_URL: "",
     GET_TERMINALS_BY_PAGE_URL: "",
     GET_TRANSACTIONS_BY_PAGE_URL: "",
@@ -12,6 +13,7 @@ export const urls = {
     GET_TRANSACTION_TYPES_URL: "",
     GET_LANGUAGES_URL: "",
     GET_ROLES_URL: "",
+    POST_USER_INFO_URL: `${URL}Users/login`,
     POST_NEW_TERMINAL_URL: "",
     POST_NEW_USER_URL: "",
     POST_NEW_BANK_URL: "",
