@@ -6,14 +6,16 @@ import ModalComponent from '../../../../generalComponents/modalComponent/ModalCo
 import ErrorModalBody from '../../../../generalComponents/modalComponent/errorModalBody/ErrorModalBody';
 import { postUserInfo } from '../../../../api/postUserInfo';
 import { urls } from '../../../../constants/urls/urls';
+import { paths } from '../../../../constants/paths/paths';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { editID, editRole, editUsername, editToken } from '../../../../redux/slices/authSlice';
 import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { t } = useTranslation();
 
     const [ loginParams, setLoginParams ] = useState({
@@ -47,7 +49,8 @@ const LoginForm = () => {
                     loginParams
                 );
 
-                const { token, id, firstName, role, message } = response.data;
+                const { token, id, firstName, role } = response.data.data;
+                const { message } = response.data;
 
                 if (message === "Success") {
                     localStorage.setItem("token", token);
@@ -60,8 +63,7 @@ const LoginForm = () => {
                     dispatch(editRole(role));
                     dispatch(editToken(token));
 
-                    console.log("Mtanq");
-                    // <Navigate to="/terminals" />;
+                    navigate(paths.FUEL_TYPES);
                 } else if (message === "wrong username or password") {
                     setWrongUsernamePasswordError(true);
                 } else {

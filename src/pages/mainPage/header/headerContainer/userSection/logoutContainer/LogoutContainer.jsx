@@ -1,18 +1,21 @@
 import "./LogoutContainer.css";
 import Button from "../../../../../../generalComponents/buttons/Button";
-// import { editToken } from "../../../../../../redux/slices/authSlice";
-import { Navigate } from "react-router-dom";
+import { editToken } from "../../../../../../redux/slices/authSlice";
+import { paths } from "../../../../../../constants/paths/paths";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 const LogoutContainer = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { t } = useTranslation();
 
     const onClickHandler = () => {
         localStorage.clear();
-        // dispatch(editToken(""));
-        <Navigate to="/login" />
+        dispatch(editToken(""));
+
+        navigate(paths.LOGIN);
     };
 
     return (
