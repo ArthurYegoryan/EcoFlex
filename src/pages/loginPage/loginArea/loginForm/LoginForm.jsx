@@ -121,6 +121,7 @@ const LoginForm = () => {
                         width='250px'
                         height="40px"
                         borderRadius="0 25px 25px 25px"
+                        fontSize="15px"
                         onClickHandler={onClickHandler}
                     />
                 </div>

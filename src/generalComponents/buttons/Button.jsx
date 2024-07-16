@@ -17,6 +17,7 @@ export default function ButtonComponent({
     marginRight,
     marginBottom,
     borderRadius,
+    fontSize,
     onClickHandler,
     isDisabled = false
 }) {
@@ -41,7 +42,8 @@ export default function ButtonComponent({
                         height: height,
                         backgroundColor: backgroundColor,
                         color: color,
-                        borderRadius: borderRadius
+                        borderRadius: borderRadius,
+                        fontSize: fontSize
                     }}
                     onClick={onClickHandler}
             >
