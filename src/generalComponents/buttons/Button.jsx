@@ -10,6 +10,8 @@ export default function ButtonComponent({
     size = "small",
     backgroundColor = "blue",
     color = "white",
+    hoverColor,
+    activeColor,
     width,
     height,
     marginLeft,
@@ -43,7 +45,13 @@ export default function ButtonComponent({
                         backgroundColor: backgroundColor,
                         color: color,
                         borderRadius: borderRadius,
-                        fontSize: fontSize
+                        fontSize: fontSize,
+                        '&:hover': {
+                            backgroundColor: hoverColor,
+                        },
+                        '&:active': {
+                            backgroundColor: activeColor,
+                        }
                     }}
                     onClick={onClickHandler}
             >

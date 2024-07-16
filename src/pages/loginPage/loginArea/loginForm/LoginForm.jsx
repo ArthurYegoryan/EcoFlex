@@ -4,7 +4,7 @@ import TextInput from '../../../../generalComponents/inputFields/textInputCompon
 import Button from "../../../../generalComponents/buttons/Button";
 import ModalComponent from '../../../../generalComponents/modalComponent/ModalComponent';
 import ErrorModalBody from '../../../../generalComponents/modalComponent/errorModalBody/ErrorModalBody';
-import postUserInfo from '../../../../api/postUserInfo';
+import { postUserInfo } from '../../../../api/postUserInfo';
 import { urls } from '../../../../constants/urls/urls';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -119,6 +119,7 @@ const LoginForm = () => {
                         label={t("loginSection.login")}
                         backgroundColor="#E1E100"
                         color="black"
+                        hoverColor="#E1C700"
                         width='250px'
                         height="40px"
                         borderRadius="0 25px 25px 25px"
