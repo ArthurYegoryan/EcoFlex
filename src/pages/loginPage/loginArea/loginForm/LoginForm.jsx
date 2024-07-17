@@ -4,6 +4,7 @@ import TextInput from '../../../../generalComponents/inputFields/textInputCompon
 import Button from "../../../../generalComponents/buttons/Button";
 import ModalComponent from '../../../../generalComponents/modalComponent/ModalComponent';
 import ErrorModalBody from '../../../../generalComponents/modalComponent/errorModalBody/ErrorModalBody';
+import Loader from '../../../../generalComponents/loaders/Loader';
 import { postUserInfo } from '../../../../api/postUserInfo';
 import { urls } from '../../../../constants/urls/urls';
 import { paths } from '../../../../constants/paths/paths';
@@ -25,7 +26,8 @@ const LoginForm = () => {
     const [ emptyUsernameError, setEmptyUsernameError ] = useState(false);
     const [ emptyPasswordError, setEmptyPasswordError ] = useState(false);
     const [ wrongUsernamePasswordError, setWrongUsernamePasswordError ] = useState(false);
-    const [ openCloseModal, setOpenCloseModal ] = useState(false);
+    const [ isLoading, setIsLoading ] = useState(false);
+    const [ openCloseErrorModal, setOpenCloseErrorModal ] = useState(false);
 
     const onChangeUsernameHandler = (evt) => {
         setLoginParams({
@@ -44,10 +46,14 @@ const LoginForm = () => {
     const makeCallForUserData = () => {
         try {
             const loadUserData = async () => {
+                setIsLoading(true);
+
                 const response = await postUserInfo(
                     urls.POST_USER_INFO_URL, 
                     loginParams
                 );
+
+                setIsLoading(false);
 
                 const { token, id, firstName, role } = response.data.data;
                 const { message } = response.data;
@@ -72,7 +78,7 @@ const LoginForm = () => {
             }
             loadUserData();
         } catch(err) {
-            setOpenCloseModal(true);
+            setOpenCloseErrorModal(true);
         }
     }
 
@@ -116,6 +122,12 @@ const LoginForm = () => {
                         <label className="login-error-message">{t("errors.wrongUsernamePassword")}</label>
                     </div>                    
                 }
+                {isLoading &&
+                    <Loader position="absolute" 
+                            height="200px" 
+                            width="200px"
+                            top="20%" />
+                }
                 <div className="login-button">
                     <Button type="submit" 
                         label={t("loginSection.login")}
@@ -130,9 +142,9 @@ const LoginForm = () => {
                     />
                 </div>
             </form>
-            {openCloseModal &&
-                <ModalComponent onCloseHandler={() => setOpenCloseModal(false)} 
-                                isOpen={openCloseModal} 
+            {openCloseErrorModal &&
+                <ModalComponent onCloseHandler={() => setOpenCloseErrorModal(false)} 
+                                isOpen={openCloseErrorModal} 
                                 title="Connection error!"
                                 body={<ErrorModalBody />}
                                 bgcolor="red"
