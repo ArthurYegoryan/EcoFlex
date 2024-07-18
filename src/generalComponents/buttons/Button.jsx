@@ -10,7 +10,7 @@ export default function ButtonComponent({
     size = "small",
     backgroundColor = "#E1E100",
     color = "black",
-    hoverColor,
+    hoverColor = "#E1C700",
     activeColor,
     width,
     height,
