@@ -131,8 +131,6 @@ const LoginForm = () => {
                 <div className="login-button">
                     <Button type="submit" 
                         label={t("loginSection.login")}
-                        backgroundColor="#E1E100"
-                        color="black"
                         hoverColor="#E1C700"
                         width='250px'
                         height="40px"

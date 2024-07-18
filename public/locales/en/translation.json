@@ -1,4 +1,12 @@
 {
+    "nav": {
+        "fuelTypes": "Fuel types",
+        "stationGroups": "Station groups",
+        "fuelPrices": "Fuel prices",
+        "dispensers": "Dispensers",
+        "users": "Users",
+        "transactions": "Transactions"
+    },
     "loginSection": {
         "username": "Username",
         "password": "Password",
@@ -12,18 +20,15 @@
         "wrongUsernamePassword": "Incorrect username or password"
     },
 
+
+
+
     "questions": {
         "doYouWantDelete": "Do yow want to delete"
     },
     "operations": {
         "delete": "Delete",
         "cancel": "Cancel"
-    },
-    "nav": {
-        "terminals": "Terminals",
-        "transactions": "Transactions",
-        "users": "Users",
-        "banks": "Banks"
     },
     "terminalsSection": {
         "serialNumber": "Serial number",

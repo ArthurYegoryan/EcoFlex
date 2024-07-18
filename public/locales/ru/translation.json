@@ -1,4 +1,12 @@
 {
+    "nav": {
+        "fuelTypes": "Виды топлива",
+        "stationGroups": "Группы станций",
+        "fuelPrices": "Цены на топливо",
+        "dispensers": "Дозаторы",
+        "users": "Пользователи",
+        "transactions": "Операции"
+    },
     "loginSection": {
         "username": "Имя пользователя",
         "password": "Пароль",
@@ -12,18 +20,15 @@
         "wrongUsernamePassword": "Неверное имя пользователя или пароль"
     },
 
+
+
+
     "questions": {
         "doYouWantDelete": "Вы хотите удалить"
     },
     "operations": {
         "delete": "Удалить",
         "cancel": "Отменить"
-    },
-    "nav": {
-        "terminals": "Терминалы",
-        "transactions": "Транзакции",
-        "users": "Пользователи",
-        "banks": "Банки"
     },
     "terminalsSection": {
         "serialNumber": "Серийный номер",

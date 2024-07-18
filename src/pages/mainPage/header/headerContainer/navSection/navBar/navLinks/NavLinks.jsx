@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
-import LinkComponent from "../../../../../../../generalComponents/links/LinkComponent";
 import "./NavLinks.css";
+import LinkComponent from "../../../../../../../generalComponents/links/LinkComponent";
+import { paths } from "../../../../../../../constants/paths/paths";
+import { useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
 
 const NavLinks = () => {
@@ -10,27 +11,24 @@ const NavLinks = () => {
     return (
         <nav className="nav-links">
             <ul className="nav-ul">
-                <LinkComponent routePath="/terminals" 
-                               label={t("nav.terminals")} 
-                               imageName="img/terminal" 
-                               imageType=".svg" />
-                <LinkComponent routePath="/transactions" 
-                               label={t("nav.transactions")}
-                               imageName="img/transaction"
-                               imageType=".svg" />
-                {(role === "admin" || role === "bank") &&
-                    <LinkComponent routePath="/users" 
-                                label={t("nav.users")}
-                                imageName="img/users"
-                                imageType=".svg" /> 
-                }
-                {role === "admin" &&
-                    <LinkComponent routePath="/banks" 
-                                label={t("nav.banks")}
-                                imageName="img/bank"
-                                imageType=".svg" />
-                }
-                        
+                {role === "Admin" &&
+                    <LinkComponent routePath={paths.FUEL_TYPES}
+                                   label={t("nav.fuelTypes")} />
+                }                
+                <LinkComponent routePath={paths.STATIONS} 
+                               label={t("nav.stationGroups")} />
+                <LinkComponent routePath={paths.FUEL_PRICES} 
+                               label={t("nav.fuelPrices")} />
+                {role === "Admin" &&
+                    <>
+                        <LinkComponent routePath={paths.DISPENSERS} 
+                                       label={t("nav.dispensers")} />
+                        <LinkComponent routePath={paths.USERS} 
+                                       label={t("nav.users")} />
+                    </>                    
+                }                
+                <LinkComponent routePath={paths.TRANSACTIONS} 
+                               label={t("nav.transactions")} />
             </ul>
         </nav>
     );

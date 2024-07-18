@@ -1,6 +1,5 @@
-import "./LanguageContainer.css";
 import ReactFlagsSelect from "react-flags-select";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
 const LanguageContainer = () => {

@@ -1,4 +1,12 @@
 {
+    "nav": {
+        "fuelTypes": "Վառելիքի տեսակներ",
+        "stationGroups": "Լցակայանների ցանց",
+        "fuelPrices": "Վառելիքի գներ",
+        "dispensers": "Դիսպենսերներ",
+        "users": "Օգտագործողներ",
+        "transactions": "Գործարքներ"
+    },
     "loginSection": {
         "username": "Մուտքանուն",
         "password": "Գաղտնաբառ",
@@ -11,6 +19,9 @@
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
         "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ"
     },
+
+
+
     
 
     "questions": {
@@ -19,12 +30,6 @@
     "operations": {
         "delete": "Ջնջել",
         "cancel": "Չեղարկել"
-    },
-    "nav": {
-        "terminals": "Տերմինալներ",
-        "transactions": "Գործարքներ",
-        "users": "Օգտագործողներ",
-        "banks": "Բանկեր"
     },
     "terminalsSection": {
         "serialNumber": "Սերիական համար",
