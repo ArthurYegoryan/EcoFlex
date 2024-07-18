@@ -1,4 +1,4 @@
-export const HeaderTokenConfig = {
+export const Headers = {
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",

@@ -2,101 +2,63 @@ import React, { useState } from 'react';
 import { Space, Table } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const TableComponent = ({ 
     whichTable, 
     datas,
     setCurrentData,
-    banks,
     onClickEditButton, 
     onClickDeleteButton 
 }) => {
     const role = useSelector((state) => state.auth.role.payload) ?? localStorage.getItem("role");
+    const { t } = useTranslation();
 
-    const terminalsColumns = [
+    const fuelTypesColumns = [
         {
             title: 'ID',
-            width: 10,
             dataIndex: 'id',
             key: 'id',
+            width: "10px",
         },
         {
-            title: 'Terminal ID',
-            width: 14,
-            dataIndex: 'tid',
-            key: 'tid',
+            title: t("fuelTypesTable.yandexId"),
+            dataIndex: 'yandexFuelTypeId',
+            key: 'yandexFuelTypeId',
+            width: "20px",
         },
         {
-            title: 'Merchant ID',
-            dataIndex: 'mid',
-            key: 'mid',
-            width: 14,
+            title: t("fuelTypesTable.fuelName"),
+            dataIndex: 'name',
+            key: 'name',
+            width: "20px",
         },
         {
-            title: 'S/N',
-            dataIndex: 'serial',
-            key: 'serial',
-            width: 14,
+            title: t("fuelTypesTable.adgCode"),
+            dataIndex: 'adgCode',
+            key: 'adgCode',
+            width: "10px",
         },
         {
-            title: 'MCC',
-            dataIndex: 'mcc',
-            key: 'mcc',
-            width: 10,
+            title: t("fuelTypesTable.departmentId"),
+            dataIndex: 'departmentId',
+            key: 'departmentId',
+            width: "10px",
         },
         {
-            title: 'Is Active',
-            dataIndex: 'active',
-            key: 'active',
-            width: 11,
+            title: t("fuelTypesTable.countType"),
+            dataIndex: 'countType',
+            key: 'countType',
+            width: "10px",
         },
         {
-            title: 'POS type',
-            dataIndex: 'pos_type',
-            key: 'pos_type',
-            width: 16,
-        },
-        {
-            title: 'Merchant name',
-            dataIndex: 'merchant_name_in_am',
-            key: 'merchant_name_in_am',
-            width: 25,
-        },
-        {
-            title: 'Merchant TAX number',
-            dataIndex: 'merchant_tax_number',
-            key: 'merchant_tax_number',
-            width: 15,
-        },
-        {
-            title: 'Merchant city',
-            dataIndex: 'merchant_city_in_am',
-            key: 'merchant_city_in_am',
-            width: 13,
-        },
-        {
-            title: 'Merchant address',
-            dataIndex: 'merchant_address_in_am',
-            key: 'merchant_address_in_am',
-            width: 25,
-        },
-        {
-            title: 'Bank',
-            dataIndex: 'bank',
-            key: 'bank',
-            width: 13,
-        },
-        {
-            title: 'Action',
+            title: t("fuelTypesTable.action"),
             key: 'operation',
-            width: 10,
+            width: "10px",
             render: (record) => (
                 <Space size="middle">
-                    <BsFillPencilFill style={{ color: "blue", cursor: "pointer" }} onClick={() => {
-                        (role === "admin" || role === "bank") && onClickEditButton(record);
-                    }} />
-                    <BsFillTrashFill style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                        (role === "admin" || role === "bank") && onClickDeleteButton(record);
+                    <BsFillPencilFill style={{ color: "#E1E100", cursor: "pointer" }} onClick={() => {
+                        onClickEditButton(record);
                     }} />
                 </Space>
             )
@@ -307,28 +269,15 @@ const TableComponent = ({
 
     let columns = [];
 
-    if (whichTable === "users") {
-        columns = usersColumns;
-
-        for (let i = 0; i < datas.length; i++) {
-            data.push({
-                id: datas[i].id,
-                username: datas[i].username,
-                bank: datas[i].bank ? banks[datas[i].bank] : "FPS",
-                email: datas[i].email,
-                is_active: datas[i].is_active,
-                role: datas[i].role
-            });
-        }
-    }
-    else if (whichTable === "terminals") columns = terminalsColumns;
+    if (whichTable === "fuelTypes") columns = fuelTypesColumns;
+    // else if (whichTable === "terminals") columns = terminalsColumns;
     else if (whichTable === "transactions") columns = transactionsColumns;
     else if (whichTable === "banks") columns = banksColumns;
 
     return (
         <Table
             columns={columns}            
-            dataSource={whichTable === "users" ? data : datas}
+            dataSource={datas}
             pagination={false}
             sticky={{
                 offsetHeader: 64,

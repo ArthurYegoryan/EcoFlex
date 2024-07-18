@@ -14,6 +14,14 @@
         "forgotPassword": "Forgot password?",
         "recover": "Recover"
     },
+    "fuelTypesTable": {
+        "yandexId": "Yandex ID",
+        "fuelName": "Fuel name",
+        "adgCode": "ADG code",
+        "departmentId": "Department ID",
+        "countType": "Count type",
+        "action": "Action"
+    },
     "errors": {
         "emptyUsernameError": "Enter the username",
         "emptyPasswordError": "Enter the password",

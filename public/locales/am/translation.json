@@ -14,6 +14,14 @@
         "forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
         "recover": "Վերականգնել"
     },
+    "fuelTypesTable": {
+        "yandexId": "Յանդեքս ID",
+        "fuelName": "Վառելիքի անվանում",
+        "adgCode": "ԱԴԳ կոդ",
+        "departmentId": "Բաժանմունքի ID",
+        "countType": "Չափման միավոր",
+        "action": "Գործողություն"
+    },
     "errors": {
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",

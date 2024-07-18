@@ -14,6 +14,14 @@
         "forgotPassword": "Забыли пароль?",
         "recover": "Восстановить"
     },
+    "fuelTypesTable": {
+        "yandexId": "Яндекс ID",
+        "fuelName": "Название топлива",
+        "adgCode": "АДГ код",
+        "departmentId": "Отдела ID",
+        "countType": "Единица измерения",
+        "action": "Действие"
+    },
     "errors": {
         "emptyUsernameError": "Введите имя пользователя",
         "emptyPasswordError": "Введите пароль",
