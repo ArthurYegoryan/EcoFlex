@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { colors } from '../../constants/styles/colors';
 
 export default function ButtonComponent({
     type = "button",
@@ -8,9 +9,9 @@ export default function ButtonComponent({
     startIcon,
     endIcon,
     size = "small",
-    backgroundColor = "#E1E100",
-    color = "black",
-    hoverColor = "#E1C700",
+    backgroundColor = colors.originalBgColor,
+    color = colors.originalColor,
+    hoverColor = colors.originalHoverColor,
     activeColor,
     width,
     height,

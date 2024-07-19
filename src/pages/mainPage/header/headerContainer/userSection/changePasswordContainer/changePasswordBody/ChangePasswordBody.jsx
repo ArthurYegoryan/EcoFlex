@@ -1,10 +1,11 @@
 import "./ChangePasswordBody.css";
 import TextInput from "../../../../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import Button from "../../../../../../../generalComponents/buttons/Button";
-import changePassword from "../../../../../../../api/changePassword";
-import { urls } from "../../../../../../../constants/urls/urls";
-import { passwordValidation } from "../../../../../../../utils/fieldsValidations/passwordValidation";
 import SuccessModalBody from "../../../../../../../generalComponents/modalComponent/successModalBody/SuccessModalBody";
+import changePassword from "../../../../../../../api/changePassword";
+import { passwordValidation } from "../../../../../../../utils/fieldsValidations/passwordValidation";
+import { urls } from "../../../../../../../constants/urls/urls";
+import { colors } from "../../../../../../../constants/styles/colors";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 // import { editToken } from "../../../../../../../redux/slices/authSlice";
@@ -101,12 +102,16 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
                        }} />
             <div className="change-pass-body-btns">
                 <Button label={t("changeTerminalData.saveBtn")}
-                        backgroundColor="green"
+                        backgroundColor="#008000"
+                        hoverColor={colors.successHoverColor}
+                        color={colors.successCancelColor}
                         marginRight={"10px"}
                         isDisabled={isDisabled}
                         onClickHandler={() => onSaveBtnHandler(passwordsInfos.newPassword)} />
                 <Button label={t("addNewTerminal.cancelBtn")}
-                        backgroundColor="red"
+                        backgroundColor={colors.cancelBgColor}
+                        hoverColor={colors.cancelHoverColor}
+                        color={colors.successCancelColor}
                         onClickHandler={() => onCloseHandler()} />
             </div>
             {openCloseModal &&
