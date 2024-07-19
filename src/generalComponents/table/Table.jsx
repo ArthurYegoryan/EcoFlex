@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { colors } from '../../constants/styles/colors';
+import { colors } from '../../assets/styles/colors';
 import { Space, Table } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import { useSelector } from 'react-redux';
