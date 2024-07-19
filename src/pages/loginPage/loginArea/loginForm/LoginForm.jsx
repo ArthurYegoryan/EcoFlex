@@ -8,6 +8,7 @@ import Loader from '../../../../generalComponents/loaders/Loader';
 import { postUserInfo } from '../../../../api/postUserInfo';
 import { urls } from '../../../../constants/urls/urls';
 import { paths } from '../../../../constants/paths/paths';
+import { colors } from "../../../../constants/styles/colors";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -55,26 +56,27 @@ const LoginForm = () => {
 
                 setIsLoading(false);
 
-                const { token, id, firstName, role } = response.data.data;
-                const { message } = response.data;
+                if (response === 401) setWrongUsernamePasswordError(true);
+                else {
+                    const { token, id, firstName, role } = response.data.data;
+                    const { message } = response.data;
 
-                if (message === "Success") {
-                    localStorage.setItem("token", token);
-                    localStorage.setItem("user_id", id);
-                    localStorage.setItem("username", firstName);
-                    localStorage.setItem("role", role);
+                    if (message === "Success") {
+                        localStorage.setItem("token", token);
+                        localStorage.setItem("user_id", id);
+                        localStorage.setItem("username", firstName);
+                        localStorage.setItem("role", role);
 
-                    dispatch(editID(id));
-                    dispatch(editUsername(firstName));
-                    dispatch(editRole(role));
-                    dispatch(editToken(token));
+                        dispatch(editID(id));
+                        dispatch(editUsername(firstName));
+                        dispatch(editRole(role));
+                        dispatch(editToken(token));
 
-                    navigate(paths.FUEL_TYPES);
-                } else if (message === "wrong username or password") {
-                    setWrongUsernamePasswordError(true);
-                } else {
-                    throw new Error("Connection error!");
-                }                
+                        navigate(paths.FUEL_TYPES);
+                    } else {
+                        throw new Error("Connection error!");
+                    }
+                }
             }
             loadUserData();
         } catch(err) {
@@ -119,7 +121,7 @@ const LoginForm = () => {
                 <ForgotPassword />
                 {wrongUsernamePasswordError &&
                     <div className="login-error-message-div">
-                        <label className="login-error-message">{t("errors.wrongUsernamePassword")}</label>
+                        <label style={{ color: colors.loginFailedColor }} className="login-error-message">{t("errors.wrongUsernamePassword")}</label>
                     </div>                    
                 }
                 {isLoading &&
