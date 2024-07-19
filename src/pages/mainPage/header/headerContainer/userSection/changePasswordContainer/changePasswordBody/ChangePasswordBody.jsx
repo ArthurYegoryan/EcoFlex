@@ -102,7 +102,7 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
                        }} />
             <div className="change-pass-body-btns">
                 <Button label={t("changeTerminalData.saveBtn")}
-                        backgroundColor="#008000"
+                        backgroundColor={colors.successBgColor}
                         hoverColor={colors.successHoverColor}
                         color={colors.successCancelColor}
                         marginRight={"10px"}

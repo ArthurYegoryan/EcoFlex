@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { colors } from '../../constants/styles/colors';
 import { Space, Table } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import { useSelector } from 'react-redux';
@@ -57,7 +58,7 @@ const TableComponent = ({
             width: "10px",
             render: (record) => (
                 <Space size="middle">
-                    <BsFillPencilFill style={{ color: "#E1E100", cursor: "pointer" }} onClick={() => {
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
                         onClickEditButton(record);
                     }} />
                 </Space>
