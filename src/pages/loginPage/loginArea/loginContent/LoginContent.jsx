@@ -1,6 +1,6 @@
 import "./LoginContent.css";
 import LoginForm from "../loginForm/LoginForm";
-import { colors } from "../../../../constants/styles/colors";
+import { colors } from "../../../../assets/styles/colors";
 
 const LoginContent = () => {
     return (

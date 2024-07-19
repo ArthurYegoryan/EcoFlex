@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { colors } from '../../constants/styles/colors';
+import { colors } from '../../assets/styles/colors';
 
 export default function ButtonComponent({
     type = "button",

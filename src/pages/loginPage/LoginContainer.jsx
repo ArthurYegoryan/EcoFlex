@@ -1,6 +1,6 @@
 import './LoginContainer.css';
 import LoginArea from './loginArea/LoginArea';
-import { colors } from '../../constants/styles/colors';
+import { colors } from '../../assets/styles/colors';
 
 const LoginContainer = () => {
     return (

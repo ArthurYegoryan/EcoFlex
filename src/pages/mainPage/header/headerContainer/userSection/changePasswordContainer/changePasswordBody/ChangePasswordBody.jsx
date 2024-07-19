@@ -5,7 +5,7 @@ import SuccessModalBody from "../../../../../../../generalComponents/modalCompon
 import changePassword from "../../../../../../../api/changePassword";
 import { passwordValidation } from "../../../../../../../utils/fieldsValidations/passwordValidation";
 import { urls } from "../../../../../../../constants/urls/urls";
-import { colors } from "../../../../../../../constants/styles/colors";
+import { colors } from "../../../../../../../assets/styles/colors";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 // import { editToken } from "../../../../../../../redux/slices/authSlice";

@@ -280,9 +280,11 @@ const TableComponent = ({
             columns={columns}            
             dataSource={datas}
             pagination={false}
+            size='normal'
             sticky={{
                 offsetHeader: 64,
             }}
+            
         />
     );
 };

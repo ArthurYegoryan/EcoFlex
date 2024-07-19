@@ -1,7 +1,7 @@
 import "./NavBar.css";
 import LogoComponent from "../../../../../../generalComponents/logoComponent/LogoComponent";
 import NavLinks from "./navLinks/NavLinks";
-import { colors } from "../../../../../../constants/styles/colors";
+import { colors } from "../../../../../../assets/styles/colors";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editMenuStatusFalse, editMenuStatusTrue } from "../../../../../../redux/slices/menuSlice";
