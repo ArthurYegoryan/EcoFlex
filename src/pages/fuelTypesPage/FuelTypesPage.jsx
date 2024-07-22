@@ -12,17 +12,25 @@ const FuelTypesPage = () => {
     const [ isLoading, setIsLoading ] = useState(false);
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
+    const [ queryFields, setQueryFields ] = useState({
+        "OrderBy": "Id",
+        "PageSize": 10,
+        "OrderDir": "Asc"
+    })
     const { isMenuOpen } = useSelector((state) => state.menu);
 
     let paginationLeftMarginClassname = "";
     if (isMenuOpen) paginationLeftMarginClassname = "-open-menu";
     else paginationLeftMarginClassname = "-close-menu";
 
+    let queryString = `?OrderBy=${queryFields.OrderBy}&PageIndex=${currentPage}&PageSize=${queryFields.PageSize}&OrderDir=${queryFields.OrderDir}`;
+
     useEffect(() => {
         try {
             const callForFuelTypes = async () => {
                 setIsLoading(true);
-                const response = await getFuelTypes(urls.GET_FUEL_TYPES_URL);
+
+                const response = await getFuelTypes(urls.GET_FUEL_TYPES_URL + queryString);
                 setIsLoading(false);
 
                 const { list, count, page, rowsPerPage } = response.data.data;
@@ -35,14 +43,14 @@ const FuelTypesPage = () => {
         } catch (err) {
             console.log(err);
         }
-    }, []);
+    }, [queryFields, currentPage]);
 
     return (
         <div style={{ minWidth: "900px" }} className="fuel-types-page">
             <div>FuelTypesPage</div>
             <Table whichTable="fuelTypes"
                    datas={fuelTypes} />
-            <Pagination pageCount={pageCount} 
+            <Pagination pageCount={pageCount}
                         setPage={setCurrentPage}
                         leftMargin={paginationLeftMarginClassname} />          
             {isLoading &&

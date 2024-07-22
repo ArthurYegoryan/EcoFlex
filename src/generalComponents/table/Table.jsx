@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { colors } from '../../assets/styles/colors';
 import { Space, Table } from 'antd';
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import { BsFillTrashFill, BsFillPencilFill, BsCCircle } from "react-icons/bs";
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -12,15 +12,16 @@ const TableComponent = ({
     onClickEditButton, 
     onClickDeleteButton 
 }) => {
-    const role = useSelector((state) => state.auth.role.payload) ?? localStorage.getItem("role");
+    // const role = useSelector((state) => state.auth.role.payload) ?? localStorage.getItem("role");
     const { t } = useTranslation();
 
     const fuelTypesColumns = [
         {
-            title: 'ID',
+            title: "ID",
             dataIndex: 'id',
             key: 'id',
             width: "10px",
+            sorter: (a, b) => a.id - b.id
         },
         {
             title: t("fuelTypesTable.yandexId"),
