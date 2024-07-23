@@ -21,14 +21,16 @@
         "departmentId": "Отдела ID",
         "countType": "Единица измерения",
         "action": "Действие",
-        "changeFuelType": {
+        "addChangeFuelType": {
+            "addNewFuelType": "Добавить новый тип топлива",
             "changeFuelTypeData": "Изменить данные о типе топлива",
             "chooseCountType": "Выберите тип подсчета"
         }
     },
     "operations": {
         "save": "Сохранить",
-        "cancel": "Отменить"
+        "cancel": "Отменить",
+        "export": "Экспорт"
     },
     "errors": {
         "emptyUsernameError": "Введите имя пользователя",

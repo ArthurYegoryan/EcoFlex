@@ -21,14 +21,16 @@
         "departmentId": "Department ID",
         "countType": "Count type",
         "action": "Action",
-        "changeFuelType": {
+        "addChangeFuelType": {
+            "addNewFuelType": "Add new fuel type",
             "changeFuelTypeData": "Change fuel type data",
             "chooseCountType": "Choose count type"
         }
     },
     "operations": {
         "save": "Save",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "export": "Export"
     },
     "errors": {
         "emptyUsernameError": "Enter the username",

@@ -1,4 +1,5 @@
 import "./FuelTypesPage.css";
+import SearchSection from "./searchSection/SearchSection";
 import ChangeFueltype from "./changeFuelType/ChangeFuelType";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
@@ -53,7 +54,7 @@ const FuelTypesPage = () => {
 
     return (
         <div style={{ minWidth: "900px" }} className="fuel-types-page">
-            <div>FuelTypesPage</div>
+            <SearchSection />
             <Table whichTable="fuelTypes"
                    datas={fuelTypes}
                    setCurrentData={setChoosenFuelType}
@@ -67,7 +68,7 @@ const FuelTypesPage = () => {
             {isOpenChangeModal &&
                 <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
                                 isOpen={isOpenChangeModal}
-                                title={t("fuelTypesTable.changeFuelType.changeFuelTypeData")}
+                                title={t("fuelTypesTable.addChangeFuelType.changeFuelTypeData")}
                                 body={<ChangeFueltype fuelTypeData={choosenFuelType}
                                                       isFuelTypeChanged={isFuelTypeChanged}
                                                       setIsFuelTypeChanged={setIsFuelTypeChanged}

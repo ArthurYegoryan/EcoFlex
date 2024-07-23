@@ -21,14 +21,16 @@
         "departmentId": "Բաժանմունքի ID",
         "countType": "Չափման միավոր",
         "action": "Գործողություն",
-        "changeFuelType": {
+        "addChangeFuelType": {
+            "addNewFuelType": "Ավելացնել նոր վառելիքի տեսակ",
             "changeFuelTypeData": "Փոփոխել վառելիքի տեսակի տվյալները",
             "chooseCountType": "Ընտրեք չափման միավորը"
         }
     },
     "operations": {
         "save": "Պահպանել",
-        "cancel": "Չեղարկել"
+        "cancel": "Չեղարկել",
+        "export": "Արտահանել"
     },
     "errors": {
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
