@@ -4,7 +4,7 @@ import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
 import Loader from "../../generalComponents/loaders/Loader";
 import ModalComponent from "../../generalComponents/modalComponent/ModalComponent";
-import { getFuelTypes } from "../../api/getFuelTypes";
+import { getData } from "../../api/getData";
 import { urls } from "../../constants/urls/urls";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -37,7 +37,7 @@ const FuelTypesPage = () => {
         try {
             const callForFuelTypes = async () => {
                 setIsLoading(true);
-                const response = await getFuelTypes(urls.FUEL_TYPES_URL + queryString);
+                const response = await getData(urls.FUEL_TYPES_URL + queryString);
                 setIsLoading(false);
 
                 const { list, count, rowsPerPage } = response.data.data;
