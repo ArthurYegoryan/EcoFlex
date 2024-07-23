@@ -20,7 +20,15 @@
         "adgCode": "ADG code",
         "departmentId": "Department ID",
         "countType": "Count type",
-        "action": "Action"
+        "action": "Action",
+        "changeFuelType": {
+            "changeFuelTypeData": "Change fuel type data",
+            "chooseCountType": "Choose count type"
+        }
+    },
+    "operations": {
+        "save": "Save",
+        "cancel": "Cancel"
     },
     "errors": {
         "emptyUsernameError": "Enter the username",
@@ -33,10 +41,6 @@
 
     "questions": {
         "doYouWantDelete": "Do yow want to delete"
-    },
-    "operations": {
-        "delete": "Delete",
-        "cancel": "Cancel"
     },
     "terminalsSection": {
         "serialNumber": "Serial number",

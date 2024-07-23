@@ -20,7 +20,15 @@
         "adgCode": "АДГ код",
         "departmentId": "Отдела ID",
         "countType": "Единица измерения",
-        "action": "Действие"
+        "action": "Действие",
+        "changeFuelType": {
+            "changeFuelTypeData": "Изменить данные о типе топлива",
+            "chooseCountType": "Выберите тип подсчета"
+        }
+    },
+    "operations": {
+        "save": "Сохранить",
+        "cancel": "Отменить"
     },
     "errors": {
         "emptyUsernameError": "Введите имя пользователя",
@@ -33,10 +41,6 @@
 
     "questions": {
         "doYouWantDelete": "Вы хотите удалить"
-    },
-    "operations": {
-        "delete": "Удалить",
-        "cancel": "Отменить"
     },
     "terminalsSection": {
         "serialNumber": "Серийный номер",

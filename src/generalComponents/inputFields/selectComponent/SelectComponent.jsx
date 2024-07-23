@@ -14,9 +14,9 @@ export default function SelectComponent({
     firstRowValue,
     chooseData, 
     // chooseDataValue,
-    fields, 
-    changeFieldName, 
-    setField, 
+    // fields, 
+    // changeFieldName, 
+    // setField, 
     width,
     marginTop,
     marginLeft,
@@ -27,10 +27,10 @@ export default function SelectComponent({
     const [ value, setValue ] = React.useState(defaultValue ?? "");
     
     const handleChange = (event) => {
-        onChooseHandler && onChooseHandler(event.target.value);
+        onChooseHandler && onChooseHandler(event);   // onChooseHandler(event.target.value)
         setValue(event.target.value);
-        fields ? setField({ ...fields, [changeFieldName]: event.target.value }) 
-               : setField(value);
+        // fields ? setField({ ...fields, [changeFieldName]: event.target.value }) 
+        //        : setField(value);
     };
 
     return (

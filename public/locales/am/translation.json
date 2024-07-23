@@ -20,7 +20,15 @@
         "adgCode": "ԱԴԳ կոդ",
         "departmentId": "Բաժանմունքի ID",
         "countType": "Չափման միավոր",
-        "action": "Գործողություն"
+        "action": "Գործողություն",
+        "changeFuelType": {
+            "changeFuelTypeData": "Փոփոխել վառելիքի տեսակի տվյալները",
+            "chooseCountType": "Ընտրեք չափման միավորը"
+        }
+    },
+    "operations": {
+        "save": "Պահպանել",
+        "cancel": "Չեղարկել"
     },
     "errors": {
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
@@ -34,10 +42,6 @@
 
     "questions": {
         "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել"
-    },
-    "operations": {
-        "delete": "Ջնջել",
-        "cancel": "Չեղարկել"
     },
     "terminalsSection": {
         "serialNumber": "Սերիական համար",

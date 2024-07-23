@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { colors } from '../../assets/styles/colors';
 import { Space, Table } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill, BsCCircle } from "react-icons/bs";
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 const TableComponent = ({ 
@@ -12,7 +11,6 @@ const TableComponent = ({
     onClickEditButton, 
     onClickDeleteButton 
 }) => {
-    // const role = useSelector((state) => state.auth.role.payload) ?? localStorage.getItem("role");
     const { t } = useTranslation();
 
     const fuelTypesColumns = [
@@ -21,13 +19,16 @@ const TableComponent = ({
             dataIndex: 'id',
             key: 'id',
             width: "10px",
-            sorter: (a, b) => a.id - b.id
+            sorter: {
+                compare: (a, b) => a.id - b.id,
+            }
         },
         {
             title: t("fuelTypesTable.yandexId"),
             dataIndex: 'yandexFuelTypeId',
             key: 'yandexFuelTypeId',
             width: "20px",
+            sorter: (a, b) => a.yandexFuelTypeId.localeCompare(b.yandexFuelTypeId)
         },
         {
             title: t("fuelTypesTable.fuelName"),
@@ -60,6 +61,7 @@ const TableComponent = ({
             render: (record) => (
                 <Space size="middle">
                     <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
                         onClickEditButton(record);
                     }} />
                 </Space>
@@ -281,6 +283,7 @@ const TableComponent = ({
             columns={columns}            
             dataSource={datas}
             pagination={false}
+            // bordered={true}
             size='normal'
             sticky={{
                 offsetHeader: 64,
