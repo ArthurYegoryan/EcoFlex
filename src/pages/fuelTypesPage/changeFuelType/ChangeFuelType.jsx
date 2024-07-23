@@ -7,6 +7,7 @@ import { changeData } from "../../../api/changeData";
 import { urls } from "../../../constants/urls/urls";
 import { colors } from "../../../assets/styles/colors";
 import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
+import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -31,7 +32,7 @@ const ChangeFueltype = ({
         if (isChangedAnyData(fuelTypeData, changedFuelTypeData)) {
             try {
                 setIsLoading(true);
-                const response = await changeData(urls.FUEL_TYPES_URL, changedFuelTypeData);
+                const response = await changeData(urls.FUEL_TYPES_URL, autoFillWithDefaultData(fuelTypeData, changedFuelTypeData));
                 setIsLoading(false);
     
                 if (response.data.message === "Success") {
