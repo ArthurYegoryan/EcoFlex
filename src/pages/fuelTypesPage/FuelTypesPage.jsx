@@ -54,7 +54,8 @@ const FuelTypesPage = () => {
 
     return (
         <div style={{ minWidth: "900px" }} className="fuel-types-page">
-            <SearchSection />
+            <SearchSection isFuelTypeChanged={isFuelTypeChanged}
+                           setIsFuelTypeChanged={setIsFuelTypeChanged} />
             <Table whichTable="fuelTypes"
                    datas={fuelTypes}
                    setCurrentData={setChoosenFuelType}
