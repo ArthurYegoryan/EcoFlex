@@ -8,6 +8,7 @@ import { urls } from "../../../constants/urls/urls";
 import { colors } from "../../../assets/styles/colors";
 import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
 import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
+import { onlyNumbersValidation } from "../../../utils/fieldsValidations/onlyNumbersValidation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -26,26 +27,47 @@ const ChangeFueltype = ({
         departmentId: fuelTypeData.departmentId
     });
     const [ isLoading, setIsLoading ] = useState(false);
+    const [ invalidAdgCodeError, setInvalidAdgCodeError ] = useState(false);
     const { t } = useTranslation();
 
+    const resetPrevValidations = () => {
+        setInvalidAdgCodeError(false);
+    };
+
+    const checkFieldsValidations = ({ adgCode }) => {
+        let existsError = false;
+
+        if (!onlyNumbersValidation(adgCode)) {
+            existsError = true;
+            setInvalidAdgCodeError(true);
+        }
+
+        return existsError;
+    }
+
     const onSaveHandler = async () => {
-        if (isChangedAnyData(fuelTypeData, changedFuelTypeData)) {
-            try {
-                setIsLoading(true);
-                const response = await changeData(urls.FUEL_TYPES_URL, autoFillWithDefaultData(fuelTypeData, changedFuelTypeData));
-                setIsLoading(false);
-    
-                if (response.data.message === "Success") {
-                    setIsFuelTypeChanged(!isFuelTypeChanged);
-                    onCloseHandler();
+        resetPrevValidations();
+        const autoFilledChangedFuelTypeData = autoFillWithDefaultData(fuelTypeData, changedFuelTypeData);
+
+        if (!checkFieldsValidations(autoFilledChangedFuelTypeData)) {
+            if (isChangedAnyData(fuelTypeData, autoFilledChangedFuelTypeData)) {
+                try {
+                    setIsLoading(true);
+                    const response = await changeData(urls.FUEL_TYPES_URL, autoFilledChangedFuelTypeData);
+                    setIsLoading(false);
+        
+                    if (response.data.message === "Success") {
+                        setIsFuelTypeChanged(!isFuelTypeChanged);
+                        onCloseHandler();
+                    }
+                } catch (err) {
+                    console.log(err);
                 }
-            } catch (err) {
-                console.log(err);
             }
-        }
-        else {
-            onCloseHandler();
-        }
+            else {
+                onCloseHandler();
+            }
+        }        
     }
 
     return (
@@ -61,6 +83,8 @@ const ChangeFueltype = ({
                                 defaultValue={fuelTypeData.adgCode}
                                 marginTop={"25px"}
                                 width="473px"
+                                existsError={invalidAdgCodeError}
+                                errorText={t("errors.onlyNumbersError")}
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
                                     ...changedFuelTypeData,
                                     adgCode: evt.target.value
