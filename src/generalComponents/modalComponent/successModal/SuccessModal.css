@@ -1,20 +1,23 @@
 .success-modal-content {
-    top: 10%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    /* top: 10%;
     left: 35%;
-    position: absolute;
+    position: absolute; */
 }
 .success-modal-circle {
     stroke-dasharray: 1194;
     stroke-dashoffset: 1194;
-    animation: dc 1s ease-in-out;
+    animation: dc 1.5s ease-in-out;
     animation-fill-mode: forwards;
 }
 .success-modal-tick {
     stroke-dasharray: 350;
     stroke-dashoffset: 350;
-    animation: dt 0.8s ease-out;
+    animation: dt 1.3s ease-out;
     animation-fill-mode: forwards;
-    animation-delay: 0.95s;
+    animation-delay: 1.45s;
 }
 @keyframes dc {
     from {

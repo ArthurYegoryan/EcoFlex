@@ -3,6 +3,7 @@ import TextInputComponent from "../../../../generalComponents/inputFields/textIn
 import SelectComponent from "../../../../generalComponents/inputFields/selectComponent/SelectComponent";
 import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
+import SuccessModal from "../../../../generalComponents/modalComponent/successModal/SuccessModal";
 import { addData } from "../../../../api/addData";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
@@ -27,6 +28,7 @@ const AddNewFueltype = ({
         departmentId: ""
     });
     const [ isLoading, setIsLoading ] = useState(false);
+    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const [ showFuelNameErrorLabel, setShowFuelNameErrorLabel ] = useState(false);
     const [ showYandexFuelTypeIdErrorLabel, setShowYandexFuelTypeIdErrorLabel ] = useState(false);
     const [ emptyFuelNameError, setEmptyFuelNameError ] = useState(false);
@@ -111,7 +113,10 @@ const AddNewFueltype = ({
                     
                 } else if (response.data.message === "Success") {
                     setIsFuelTypeChanged(!isFuelTypeChanged);
-                    onCloseHandler();
+                    setShowSuccessAnimation(true);
+                    setTimeout(() => {
+                        onCloseHandler();
+                    }, 2500);
                 }
             } catch (err) {
                 console.log(err);
@@ -171,6 +176,9 @@ const AddNewFueltype = ({
                                 ...newFuelTypeData,
                                 countType: evt.target.value === "Ltr" ? "L" : evt.target.value
                             })}} />
+            {showSuccessAnimation &&
+                <SuccessModal />
+            }
             {showFuelNameErrorLabel &&
                 <p className="add-new-fuel-type-error-text">{t("errors.fuelTypeExistsError")}</p>
             }

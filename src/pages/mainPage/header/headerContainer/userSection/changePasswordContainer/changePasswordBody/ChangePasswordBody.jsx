@@ -1,14 +1,14 @@
 import "./ChangePasswordBody.css";
 import TextInput from "../../../../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import Button from "../../../../../../../generalComponents/buttons/Button";
-import SuccessModalBody from "../../../../../../../generalComponents/modalComponent/successModalBody/SuccessModalBody";
+import SuccessModal from "../../../../../../../generalComponents/modalComponent/successModal/SuccessModal";
 import changePassword from "../../../../../../../api/changePassword";
 import { passwordValidation } from "../../../../../../../utils/fieldsValidations/passwordValidation";
 import { urls } from "../../../../../../../constants/urls/urls";
 import { colors } from "../../../../../../../assets/styles/colors";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
-// import { editToken } from "../../../../../../../redux/slices/authSlice";
+import { editToken } from "../../../../../../../redux/slices/authSlice";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
@@ -43,7 +43,7 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
                     setOldPassError(true);
                 } else if (response.message === "expired token") {
                     localStorage.clear();
-                    // dispatch(editToken(""));
+                    dispatch(editToken(""));
             
                     <Navigate to="/login" />;
                 } else {
@@ -53,6 +53,7 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
             changeUserPass();
         } catch(err) {
             // setOpenCloseModal(true);
+            console.log(err);
         }
     }
 
@@ -115,7 +116,7 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
                         onClickHandler={() => onCloseHandler()} />
             </div>
             {openCloseModal &&
-                <SuccessModalBody />
+                <SuccessModal />
             }
         </div>
     );
