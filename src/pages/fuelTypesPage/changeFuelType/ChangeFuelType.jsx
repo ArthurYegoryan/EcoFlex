@@ -3,13 +3,18 @@ import TextInputComponent from "../../../generalComponents/inputFields/textInput
 import SelectComponent from "../../../generalComponents/inputFields/selectComponent/SelectComponent";
 import Button from "../../../generalComponents/buttons/Button";
 import Loader from "../../../generalComponents/loaders/Loader";
+import SuccessModal from "../../../generalComponents/modalComponent/successModal/SuccessModal";
 import { changeData } from "../../../api/changeData";
 import { urls } from "../../../constants/urls/urls";
+import { paths } from "../../../constants/paths/paths";
 import { colors } from "../../../assets/styles/colors";
 import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
 import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
 import { onlyNumbersValidation } from "../../../utils/fieldsValidations/onlyNumbersValidation";
+import { editToken } from "../../../redux/slices/authSlice";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const ChangeFueltype = ({ 
@@ -27,11 +32,18 @@ const ChangeFueltype = ({
         departmentId: fuelTypeData.departmentId
     });
     const [ isLoading, setIsLoading ] = useState(false);
+    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    const [ showFuelNameErrorLabel, setShowFuelNameErrorLabel ] = useState(false);
+    const [ showYandexFuelTypeIdErrorLabel, setShowYandexFuelTypeIdErrorLabel ] = useState(false);
     const [ invalidAdgCodeError, setInvalidAdgCodeError ] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { t } = useTranslation();
 
     const resetPrevValidations = () => {
         setInvalidAdgCodeError(false);
+        setShowFuelNameErrorLabel(false);
+        setShowYandexFuelTypeIdErrorLabel(false);
     };
 
     const checkFieldsValidations = ({ adgCode }) => {
@@ -56,9 +68,22 @@ const ChangeFueltype = ({
                     const response = await changeData(urls.FUEL_TYPES_URL, autoFilledChangedFuelTypeData);
                     setIsLoading(false);
         
-                    if (response.data.message === "Success") {
+                    if (response.statusCode === 401) {
+                        dispatch(editToken(""));
+                        localStorage.clear();
+    
+                        navigate(paths.LOGIN);
+                    } else if (response.statusCode === 400) {
+                        response.errors.map((err) => {
+                            if (err.param === "Name") setShowFuelNameErrorLabel(true);
+                            if (err.param === "YandexFuelTypeId") setShowYandexFuelTypeIdErrorLabel(true);
+                        });                    
+                    } else if (response.data.message === "Success") {
                         setIsFuelTypeChanged(!isFuelTypeChanged);
-                        onCloseHandler();
+                        setShowSuccessAnimation(true);
+                        setTimeout(() => {
+                            onCloseHandler();
+                        }, 2500);
                     }
                 } catch (err) {
                     console.log(err);
@@ -113,6 +138,15 @@ const ChangeFueltype = ({
                                 ...changedFuelTypeData,
                                 countType: evt.target.value === "Ltr" ? "L" : evt.target.value
                             })}} />
+            {showSuccessAnimation &&
+                <SuccessModal />
+            }
+            {showFuelNameErrorLabel &&
+                <p className="change-fuel-type-error-text">{t("errors.fuelTypeExistsError")}</p>
+            }
+            {showYandexFuelTypeIdErrorLabel &&
+                <p className="change-fuel-type-error-text">{t("errors.yandexFuelTypeIdExistsError")}</p>
+            }
             <div className="change-fuel-type-buttons">
                 <Button label={t("operations.save")}
                         backgroundColor={colors.successBgColor}

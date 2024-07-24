@@ -109,8 +109,7 @@ const AddNewFueltype = ({
                     response.errors.map((err) => {
                         if (err.param === "Name") setShowFuelNameErrorLabel(true);
                         if (err.param === "YandexFuelTypeId") setShowYandexFuelTypeIdErrorLabel(true);
-                    });
-                    
+                    });                    
                 } else if (response.data.message === "Success") {
                     setIsFuelTypeChanged(!isFuelTypeChanged);
                     setShowSuccessAnimation(true);

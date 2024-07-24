@@ -2,3 +2,7 @@
     display: flex;
     margin-top: 25px;
 }
+
+.change-fuel-type-error-text {
+    color: red;
+}
