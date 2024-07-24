@@ -34,9 +34,13 @@
     },
     "errors": {
         "connectionError": "Կապի խնդիր, կրկին փորձեք!",
+        "emptyFieldError": "Լրացրեք դաշտը",
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
-        "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ"
+        "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ",
+        "onlyNumbersError": "Պետք է պարունակի միայն թվանշաններ",
+        "fuelTypeExistsError": "Տվյալ վառելիքի տեսակը գոյություն ունի!",
+        "yandexFuelTypeIdExistsError": "Տվյալ Yandex ID-ն գոյություն ունի!"
     },
 
 

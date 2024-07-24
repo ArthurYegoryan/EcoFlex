@@ -34,9 +34,13 @@
     },
     "errors": {
         "connectionError": "Ошибка подключения, пожалуйста, повторите попытку!",
+        "emptyFieldError": "Заполните поле",
         "emptyUsernameError": "Введите имя пользователя",
         "emptyPasswordError": "Введите пароль",
-        "wrongUsernamePassword": "Неверное имя пользователя или пароль"
+        "wrongUsernamePassword": "Неверное имя пользователя или пароль",
+        "onlyNumbersError": "Должен содержать только цифры",
+        "fuelTypeExistsError": "Данный тип топлива существует!",
+        "yandexFuelTypeIdExistsError": "Данный Yandex ID существует!"
     },
 
 
