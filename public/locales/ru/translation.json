@@ -33,6 +33,7 @@
         "export": "Экспорт"
     },
     "errors": {
+        "connectionError": "Ошибка подключения, пожалуйста, повторите попытку!",
         "emptyUsernameError": "Введите имя пользователя",
         "emptyPasswordError": "Введите пароль",
         "wrongUsernamePassword": "Неверное имя пользователя или пароль"

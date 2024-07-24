@@ -33,6 +33,7 @@
         "export": "Արտահանել"
     },
     "errors": {
+        "connectionError": "Կապի խնդիր, կրկին փորձեք!",
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
         "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ"
