@@ -1,14 +1,13 @@
 import "./ChangePasswordBody.css";
 import TextInput from "../../../../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import Button from "../../../../../../../generalComponents/buttons/Button";
-import SuccessModal from "../../../../../../../generalComponents/modalComponent/successModal/SuccessModal";
-import changePassword from "../../../../../../../api/changePassword";
-import { passwordValidation } from "../../../../../../../utils/fieldsValidations/passwordValidation";
+import changePassword from "../../../../../../../testApis/changePassword";
 import { urls } from "../../../../../../../constants/urls/urls";
-import { colors } from "../../../../../../../assets/styles/colors";
+import { passwordValidations } from "../../../../../../../utils/fieldsValidations/userDataFieldsValidation";
+import SuccessModalBody from "../../../../../../../generalComponents/modalComponent/successModalBody/SuccessModalBody";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
-import { editToken } from "../../../../../../../redux/slices/authSlice";
+import { editToken } from "../../../../../../../redux/slices/authorization/authSlice";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
@@ -53,7 +52,6 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
             changeUserPass();
         } catch(err) {
             // setOpenCloseModal(true);
-            console.log(err);
         }
     }
 
@@ -61,7 +59,7 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
         setOldPassError(false);
         setNewPassError(false);
 
-        passwordValidation(password) ? makeCallForChangePass() : setNewPassError(true);
+        passwordValidations(password) ? makeCallForChangePass() : setNewPassError(true);
     }
 
     return (
@@ -103,20 +101,16 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
                        }} />
             <div className="change-pass-body-btns">
                 <Button label={t("changeTerminalData.saveBtn")}
-                        backgroundColor={colors.successBgColor}
-                        hoverColor={colors.successHoverColor}
-                        color={colors.successCancelColor}
+                        backgroundColor="green"
                         marginRight={"10px"}
                         isDisabled={isDisabled}
                         onClickHandler={() => onSaveBtnHandler(passwordsInfos.newPassword)} />
                 <Button label={t("addNewTerminal.cancelBtn")}
-                        backgroundColor={colors.cancelBgColor}
-                        hoverColor={colors.cancelHoverColor}
-                        color={colors.successCancelColor}
+                        backgroundColor="red"
                         onClickHandler={() => onCloseHandler()} />
             </div>
             {openCloseModal &&
-                <SuccessModal />
+                <SuccessModalBody />
             }
         </div>
     );

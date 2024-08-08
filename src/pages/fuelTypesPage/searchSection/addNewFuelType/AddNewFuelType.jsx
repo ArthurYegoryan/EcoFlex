@@ -3,7 +3,7 @@ import TextInputComponent from "../../../../generalComponents/inputFields/textIn
 import SelectComponent from "../../../../generalComponents/inputFields/selectComponent/SelectComponent";
 import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
-import SuccessModal from "../../../../generalComponents/modalComponent/successModal/SuccessModal";
+import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import { addData } from "../../../../api/addData";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
@@ -176,7 +176,7 @@ const AddNewFueltype = ({
                                 countType: evt.target.value === "Ltr" ? "L" : evt.target.value
                             })}} />
             {showSuccessAnimation &&
-                <SuccessModal />
+                <SuccessAnimation />
             }
             {showFuelNameErrorLabel &&
                 <p className="add-new-fuel-type-error-text">{t("errors.fuelTypeExistsError")}</p>

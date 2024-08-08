@@ -1,27 +1,23 @@
 import "./LogoutContainer.css";
-import Button from "../../../../../../generalComponents/buttons/Button";
-import { editToken } from "../../../../../../redux/slices/authSlice";
 import { paths } from "../../../../../../constants/paths/paths";
+import { editToken } from "../../../../../../redux/slices/authSlice";
+import { Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
 
 const LogoutContainer = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { t } = useTranslation();
 
     const onClickHandler = () => {
         localStorage.clear();
         dispatch(editToken(""));
-
-        navigate(paths.LOGIN);
+        <Navigate to={paths.LOGIN} />
     };
 
     return (
         <div className="logout">
-            <img src={process.env.PUBLIC_URL + "img/logout.svg"} alt="logout" />
-            <Button label={t("userSection.logout")} onClickHandler={onClickHandler} />
+            <img src={process.env.PUBLIC_URL + "img/logout.svg"} 
+                 alt="logout"
+                 onClick={onClickHandler} />
         </div>
     );
 };

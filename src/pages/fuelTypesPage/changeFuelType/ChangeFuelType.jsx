@@ -3,7 +3,7 @@ import TextInputComponent from "../../../generalComponents/inputFields/textInput
 import SelectComponent from "../../../generalComponents/inputFields/selectComponent/SelectComponent";
 import Button from "../../../generalComponents/buttons/Button";
 import Loader from "../../../generalComponents/loaders/Loader";
-import SuccessModal from "../../../generalComponents/modalComponent/successModal/SuccessModal";
+import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
 import { changeData } from "../../../api/changeData";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
@@ -139,7 +139,7 @@ const ChangeFueltype = ({
                                 countType: evt.target.value === "Ltr" ? "L" : evt.target.value
                             })}} />
             {showSuccessAnimation &&
-                <SuccessModal />
+                <SuccessAnimation />
             }
             {showFuelNameErrorLabel &&
                 <p className="change-fuel-type-error-text">{t("errors.fuelTypeExistsError")}</p>

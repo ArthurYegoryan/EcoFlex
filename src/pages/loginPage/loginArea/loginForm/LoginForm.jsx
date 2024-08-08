@@ -7,17 +7,14 @@ import ErrorModalBody from '../../../../generalComponents/modalComponent/errorMo
 import Loader from '../../../../generalComponents/loaders/Loader';
 import { postUserInfo } from '../../../../api/postUserInfo';
 import { urls } from '../../../../constants/urls/urls';
-import { paths } from '../../../../constants/paths/paths';
 import { colors } from "../../../../assets/styles/colors";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { editID, editRole, editUsername, editToken } from '../../../../redux/slices/authSlice';
 import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { t } = useTranslation();
 
     const [ loginParams, setLoginParams ] = useState({
@@ -72,7 +69,7 @@ const LoginForm = () => {
                         dispatch(editRole(role));
                         dispatch(editToken(token));
 
-                        navigate(paths.FUEL_TYPES);
+                        window.location.reload();
                     } else {
                         throw new Error("Connection error!");
                     }

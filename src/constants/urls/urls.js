@@ -7,4 +7,5 @@ export const urls = {
     DOWNLOAD_CSV_URL: `${URL}Files/download-csv`,
 
     FUEL_TYPES_URL: `${URL}FuelTypes`,
+    STATION_GROUPS_URL: `${URL}StationGroups`
 };

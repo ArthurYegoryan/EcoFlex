@@ -1,8 +1,8 @@
 .logout {
-    display: flex;
-    height: 30px;
+    height: 100%;
 }
 
 .logout > img {
-    width: 25px;
+    width: 35px;
+    cursor: pointer;
 }

@@ -1,8 +1,8 @@
-import "./SuccessModal.css";
+import "./SuccessAnimation.css";
 
-const SuccessModal = ({
-    width = "200",
-    height = "200"
+const SuccessAnimation = ({
+    width = "100",
+    height = "100"
 }) => {
     return (
         <div className="success-modal-content">
@@ -10,10 +10,10 @@ const SuccessModal = ({
                 <circle
                     fill="none"
                     stroke="#68E534"
-                    stroke-width="10"
-                    cx="300"
-                    cy="100"
-                    r="90"
+                    stroke-width="8"
+                    cx="350"
+                    cy="50"
+                    r="45"
                     strokeLinecap="round"
                     transform="rotate(-90 200 200)"
                     className="success-modal-circle"
@@ -21,8 +21,8 @@ const SuccessModal = ({
                 <polyline
                     fill="none"
                     stroke="#68E534"
-                    points="50,110 90,140 150,76"
-                    strokeWidth="12"
+                    points="23,55 47,80 77,35"
+                    strokeWidth="10"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="success-modal-tick"
@@ -32,4 +32,4 @@ const SuccessModal = ({
     );
 };
 
-export default SuccessModal;
+export default SuccessAnimation;
