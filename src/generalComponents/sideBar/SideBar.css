@@ -5,6 +5,11 @@
 .ant-layout-sider {
     background-color: #E1E100 !important;
     min-height: 100vh;
+    min-width: 220px !important;
+}
+
+.ant-layout-sider-collapsed {
+    min-width: 80px !important;
 }
 
 .ant-menu-dark {

@@ -62,7 +62,7 @@ const SideBar = () => {
                             key: '3',
                             icon: (
                                 <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                    <img src={process.env.PUBLIC_URL + 'img/price.svg'} alt="Prices" />
+                                    <img src={process.env.PUBLIC_URL + 'img/prices.svg'} alt="Prices" />
                                 </span>
                             ),
                             label: t("nav.fuelPrices"),

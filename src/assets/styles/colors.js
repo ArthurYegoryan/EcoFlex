@@ -9,10 +9,6 @@ export const colors = {
     cancelHoverColor: "#F1807E",      // light red
     successCancelColor: "#FFFFFF",    // white
 
-    /* NavBar */
-    burgerMenuIconBgColor: "#FFFFFF", // white
-    burgerMenuIconColor: "#E1E100",   // yellow
-
     /* Login */
     loginBgColor: "#EBEBEB",          // light grey
     loginFailedColor: "#FF5757",      // 
