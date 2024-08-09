@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { colors } from '../../assets/styles/colors';
 import { Space, Table } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill, BsCCircle } from "react-icons/bs";
@@ -10,7 +9,8 @@ const TableComponent = ({
     setCurrentData,
     onClickEditButton, 
     onClickDeleteButton,
-    fuelTypesfilterHandlers
+    fuelTypesfilterHandlers,
+    stationsGroupFilterHandlers
 }) => {
     const { t } = useTranslation();
 
@@ -48,7 +48,7 @@ const TableComponent = ({
                             fuelTypesfilterHandlers.byYandexId()
                         }}
                     />
-                    &nbsp;&nbsp;{t("fuelTypesTable.yandexId")}
+                    &nbsp;&nbsp;{t("fuelTypes.yandexId")}
                 </span>
             ),
             dataIndex: 'yandexFuelTypeId',
@@ -68,7 +68,7 @@ const TableComponent = ({
                             fuelTypesfilterHandlers.byFuelName()
                         }}
                     />
-                    &nbsp;&nbsp;{t("fuelTypesTable.fuelName")}
+                    &nbsp;&nbsp;{t("fuelTypes.fuelName")}
                 </span>
             ),
             dataIndex: 'name',
@@ -76,13 +76,13 @@ const TableComponent = ({
             width: "20px",
         },
         {
-            title: t("fuelTypesTable.adgCode"),
+            title: t("fuelTypes.adgCode"),
             dataIndex: 'adgCode',
             key: 'adgCode',
             width: "10px",
         },
         {
-            title: t("fuelTypesTable.departmentId"),
+            title: t("fuelTypes.departmentId"),
             dataIndex: 'departmentId',
             key: 'departmentId',
             width: "10px",
@@ -100,7 +100,7 @@ const TableComponent = ({
                             fuelTypesfilterHandlers.byCountType()
                         }}
                     />
-                    &nbsp;&nbsp;{t("fuelTypesTable.countType")}
+                    &nbsp;&nbsp;{t("fuelTypes.countType")}
                 </span>
             ),
             dataIndex: 'countType',
@@ -108,7 +108,7 @@ const TableComponent = ({
             width: "15px",
         },
         {
-            title: t("fuelTypesTable.action"),
+            title: t("fuelTypes.action"),
             key: 'operation',
             width: "10px",
             render: (record) => (
@@ -122,68 +122,100 @@ const TableComponent = ({
         },
     ];
 
-    const transactionsColumns = [
+    const stationsGroupColumns = [
         {
-            title: 'ID',
-            width: 10,
-            dataIndex: 'id',
-            key: 'id',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byId()
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "10px",
         },
         {
-            title: 'RRN',
-            width: 10,
-            dataIndex: 'rrn',
-            key: 'rrn',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "30px",
         },
         {
-            title: 'Terminal ID',
-            dataIndex: 'tid',
-            key: 'tid',
-            width: 10,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "30px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "30px",
         },
         {
-            title: 'Merchant ID',
-            dataIndex: 'mid',
-            key: 'mid',
-            width: 10,
+            title: t("stationsGroup.action"),
+            key: 'operation',
+            width: "10px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                </Space>
+            )
         },
-        
-        {
-            title: 'Amount',
-            dataIndex: 'amount',
-            key: 'amount',
-            width: 10,
-        },
-        {
-            title: 'Date',
-            dataIndex: 'date',
-            key: 'date',
-            width: 20,
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-            key: 'status',
-            width: 10,
-        },
-        {
-            title: 'Trx type',
-            dataIndex: 'trx_type',
-            key: 'trx_type',
-            width: 8,
-        },
-        {
-            title: 'Bank',
-            dataIndex: 'bank',
-            key: 'bank',
-            width: 10,
-        },
-        {
-            title: 'Pay sys',
-            dataIndex: 'payment_system',
-            key: 'payment_system',
-            width: 10,
-        }
     ];
 
     const usersColumns = [
@@ -327,8 +359,8 @@ const TableComponent = ({
     let columns = [];
 
     if (whichTable === "fuelTypes") columns = fuelTypesColumns;
-    // else if (whichTable === "terminals") columns = terminalsColumns;
-    else if (whichTable === "transactions") columns = transactionsColumns;
+    else if (whichTable === "stationsGroup") columns = stationsGroupColumns;
+    // else if (whichTable === "transactions") columns = transactionsColumns;
     else if (whichTable === "banks") columns = banksColumns;
 
     return (

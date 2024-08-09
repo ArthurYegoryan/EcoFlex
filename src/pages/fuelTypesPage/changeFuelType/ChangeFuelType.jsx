@@ -97,14 +97,14 @@ const ChangeFueltype = ({
 
     return (
         <div className="change-fuel-type-fields">
-            <TextInputComponent label={t("fuelTypesTable.fuelName")}
+            <TextInputComponent label={t("fuelTypes.fuelName")}
                                 defaultValue={fuelTypeData.name}
                                 width="473px"
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
                                     ...changedFuelTypeData,
                                     name: evt.target.value
                                 })}} />
-            <TextInputComponent label={t("fuelTypesTable.adgCode")}
+            <TextInputComponent label={t("fuelTypes.adgCode")}
                                 defaultValue={fuelTypeData.adgCode}
                                 marginTop={"25px"}
                                 width="473px"
@@ -114,7 +114,7 @@ const ChangeFueltype = ({
                                     ...changedFuelTypeData,
                                     adgCode: evt.target.value
                                 })}} />
-            <TextInputComponent label={t("fuelTypesTable.departmentId")}
+            <TextInputComponent label={t("fuelTypes.departmentId")}
                                 defaultValue={fuelTypeData.departmentId}
                                 marginTop={"25px"}
                                 width="473px"
@@ -122,7 +122,7 @@ const ChangeFueltype = ({
                                     ...changedFuelTypeData,
                                     departmentId: Number(evt.target.value)
                                 })}} />
-            <TextInputComponent label={t("fuelTypesTable.yandexId")}
+            <TextInputComponent label={t("fuelTypes.yandexId")}
                                 defaultValue={fuelTypeData.yandexFuelTypeId}
                                 marginTop={"25px"}
                                 width="473px"
@@ -130,7 +130,7 @@ const ChangeFueltype = ({
                                     ...changedFuelTypeData,
                                     yandexFuelTypeId: evt.target.value
                                 })}} />
-            <SelectComponent label={t("fuelTypesTable.addChangeFuelType.chooseCountType")}
+            <SelectComponent label={t("fuelTypes.addChangeFuelType.chooseCountType")}
                              chooseData={["Kg", "Ltr"]}
                              defaultValue={fuelTypeData.countType === "L" ? "Ltr" : fuelTypeData.countType}
                              marginTop={"25px"}

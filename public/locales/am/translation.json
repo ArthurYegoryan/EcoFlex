@@ -14,7 +14,7 @@
         "forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
         "recover": "Վերականգնել"
     },
-    "fuelTypesTable": {
+    "fuelTypes": {
         "yandexId": "Յանդեքս ID",
         "fuelName": "Վառելիքի անվանում",
         "adgCode": "ԱԴԳ կոդ",
@@ -26,6 +26,12 @@
             "changeFuelTypeData": "Փոփոխել վառելիքի տեսակի տվյալները",
             "chooseCountType": "Ընտրեք չափման միավորը"
         }
+    },
+    "stationsGroup": {
+        "stationsGroupName": "Լցակայանների ցանցի անուն",
+        "stationsGroupAddress": "Հասցե",
+        "stationsGroupPhoneNumber": "Հեռախոսահամար",
+        "action": "Գործողություն"
     },
     "operations": {
         "save": "Պահպանել",

@@ -33,14 +33,14 @@ const SearchSection = ({
                                     startIcon={<FileDownload />}
                                     marginRight="15px"
                                     onClickHandler={onCliCkExportBtn} />
-                <ButtonComponent label={t("fuelTypesTable.addChangeFuelType.addNewFuelType")}
+                <ButtonComponent label={t("fuelTypes.addChangeFuelType.addNewFuelType")}
                                     startIcon={<Add />}
                                     onClickHandler={() => setIsOpenAddModal(true)} />
             </div>
             {isOpenAddModal &&
                 <ModalComponent onCloseHandler={() => setIsOpenAddModal(false)}
                                 isOpen={isOpenAddModal}
-                                title={t("fuelTypesTable.addChangeFuelType.addNewFuelType")}
+                                title={t("fuelTypes.addChangeFuelType.addNewFuelType")}
                                 body={<AddNewFueltype isFuelTypeChanged={isFuelTypeChanged}
                                                       setIsFuelTypeChanged={setIsFuelTypeChanged}
                                                       onCloseHandler={() => setIsOpenAddModal(false)} />} />

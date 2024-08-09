@@ -7,9 +7,12 @@ import Loader from "../../generalComponents/loaders/Loader";
 import ModalComponent from "../../generalComponents/modalComponent/ModalComponent";
 import { getData } from "../../api/getData";
 import { addNumeration } from "../../utils/helpers/addNumeration";
+import { paths } from "../../constants/paths/paths";
 import { urls } from "../../constants/urls/urls";
+import { editToken } from "../../redux/slices/authSlice";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const FuelTypesPage = () => {
@@ -18,7 +21,7 @@ const FuelTypesPage = () => {
 
     const [ fuelTypes, setFuelTypes ] = useState([]);
     const [ choosenFuelType, setChoosenFuelType ] = useState({});
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [ showLoading, setShowLoading ] = useState(false);
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ queryFields, setQueryFields ] = useState({
@@ -30,6 +33,8 @@ const FuelTypesPage = () => {
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
 
     const { isMenuOpen } = useSelector((state) => state.menu);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { t } = useTranslation();
 
     let paginationLeftMarginClassname = "";
@@ -72,14 +77,23 @@ const FuelTypesPage = () => {
     useEffect(() => {
         try {
             const callForFuelTypes = async () => {
-                setIsLoading(true);
+                setShowLoading(true);
                 const response = await getData(urls.FUEL_TYPES_URL + queryString);
-                setIsLoading(false);
+                setShowLoading(false);
 
-                const { list, count, rowsPerPage } = response.data.data;
+                console.log("Response fuel types: ", response);
+
+                if (response.status === 200) {
+                    const { list, count, rowsPerPage } = response.data.data;
     
-                setFuelTypes(addNumeration(list, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
-                setPageCount(Math.ceil(count/rowsPerPage));
+                    setFuelTypes(addNumeration(list, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
+                    setPageCount(Math.ceil(count/rowsPerPage));
+                } else if (response.status === 401) {
+                    dispatch(editToken(""));
+                    localStorage.clear();
+
+                    navigate(paths.LOGIN)
+                }
             }
             callForFuelTypes();
         } catch (err) {
@@ -101,13 +115,13 @@ const FuelTypesPage = () => {
                             setPage={setCurrentPage}
                             leftMargin={paginationLeftMarginClassname} />
             </div>
-            {isLoading &&
+            {showLoading &&
                 <Loader />
             }
             {isOpenChangeModal &&
                 <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
                                 isOpen={isOpenChangeModal}
-                                title={t("fuelTypesTable.addChangeFuelType.changeFuelTypeData")}
+                                title={t("fuelTypes.addChangeFuelType.changeFuelTypeData")}
                                 body={<ChangeFueltype fuelTypeData={choosenFuelType}
                                                       isFuelTypeChanged={isFuelTypeChanged}
                                                       setIsFuelTypeChanged={setIsFuelTypeChanged}

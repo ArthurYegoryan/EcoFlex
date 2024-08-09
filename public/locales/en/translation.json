@@ -14,7 +14,7 @@
         "forgotPassword": "Forgot password?",
         "recover": "Recover"
     },
-    "fuelTypesTable": {
+    "fuelTypes": {
         "yandexId": "Yandex ID",
         "fuelName": "Fuel name",
         "adgCode": "ADG code",
@@ -26,6 +26,12 @@
             "changeFuelTypeData": "Change fuel type data",
             "chooseCountType": "Choose count type"
         }
+    },
+    "stationsGroup": {
+        "stationsGroupName": "Stations group name",
+        "stationsGroupAddress": "Stations group address",
+        "stationsGroupPhoneNumber": "Stations group phone number",
+        "action": "Action"
     },
     "operations": {
         "save": "Save",

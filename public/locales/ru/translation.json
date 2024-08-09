@@ -14,7 +14,7 @@
         "forgotPassword": "Забыли пароль?",
         "recover": "Восстановить"
     },
-    "fuelTypesTable": {
+    "fuelTypes": {
         "yandexId": "Яндекс ID",
         "fuelName": "Название топлива",
         "adgCode": "АДГ код",
@@ -26,6 +26,12 @@
             "changeFuelTypeData": "Изменить данные о типе топлива",
             "chooseCountType": "Выберите тип подсчета"
         }
+    },
+    "stationsGroup": {
+        "stationsGroupName": "Название сети заправочных станций",
+        "stationsGroupAddress": "Адрес",
+        "stationsGroupPhoneNumber": "Номер телефона",
+        "action": "Действие"
     },
     "operations": {
         "save": "Сохранить",

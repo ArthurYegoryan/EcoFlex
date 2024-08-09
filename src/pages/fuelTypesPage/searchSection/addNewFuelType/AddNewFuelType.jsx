@@ -125,7 +125,7 @@ const AddNewFueltype = ({
 
     return (
         <div className="add-new-fuel-type-fields">
-            <TextInputComponent label={t("fuelTypesTable.fuelName")}
+            <TextInputComponent label={t("fuelTypes.fuelName")}
                                 width="473px"
                                 existsError={emptyFuelNameError}
                                 errorText={t("errors.emptyFieldError")}
@@ -133,7 +133,7 @@ const AddNewFueltype = ({
                                     ...newFuelTypeData,
                                     name: evt.target.value
                                 })}} />
-            <TextInputComponent label={t("fuelTypesTable.adgCode")}
+            <TextInputComponent label={t("fuelTypes.adgCode")}
                                 marginTop={"25px"}
                                 width="473px"
                                 existsError={emptyAdgCodeError || invalidAdgCodeError}
@@ -145,7 +145,7 @@ const AddNewFueltype = ({
                                     ...newFuelTypeData,
                                     adgCode: evt.target.value
                                 })}} />
-            <TextInputComponent label={t("fuelTypesTable.departmentId")}
+            <TextInputComponent label={t("fuelTypes.departmentId")}
                                 marginTop={"25px"}
                                 width="473px"
                                 existsError={emptyDepartmentIdError || invalidDepartmentIdError}
@@ -157,7 +157,7 @@ const AddNewFueltype = ({
                                     ...newFuelTypeData,
                                     departmentId: evt.target.value
                                 })}} />
-            <TextInputComponent label={t("fuelTypesTable.yandexId")}
+            <TextInputComponent label={t("fuelTypes.yandexId")}
                                 marginTop={"25px"}
                                 width="473px"
                                 existsError={emptyYandexFuelTypeIdError}
@@ -166,7 +166,7 @@ const AddNewFueltype = ({
                                     ...newFuelTypeData,
                                     yandexFuelTypeId: evt.target.value
                                 })}} />
-            <SelectComponent label={t("fuelTypesTable.addChangeFuelType.chooseCountType")}
+            <SelectComponent label={t("fuelTypes.addChangeFuelType.chooseCountType")}
                              chooseData={["Kg", "Ltr"]}
                              marginTop={"25px"}
                              existsError={emptyCountTypeError}
