@@ -56,7 +56,7 @@ const SideBar = () => {
                                 </span>
                             ),
                             label: t("nav.stationGroups"),
-                            onClick: () => {navigate(paths.STATIONS)}
+                            onClick: () => {navigate(paths.STATIONS_GROUPS)}
                         },
                         {
                             key: '3',

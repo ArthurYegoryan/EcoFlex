@@ -1,13 +1,15 @@
 import { colors } from '../../assets/styles/colors';
 import { Space, Table } from 'antd';
-import { BsFillTrashFill, BsFillPencilFill, BsCCircle } from "react-icons/bs";
+import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
 
 const TableComponent = ({ 
     whichTable, 
     datas,
     setCurrentData,
-    onClickEditButton, 
+    setCurrentDataName,
+    onClickHref,
+    onClickEditButton,
     onClickDeleteButton,
     fuelTypesfilterHandlers,
     stationsGroupFilterHandlers
@@ -162,6 +164,16 @@ const TableComponent = ({
             dataIndex: 'name',
             key: 'name',
             width: "30px",
+            render: (text) => {
+                return (
+                    <a onClick={() => {
+                        setCurrentDataName(text);
+                        onClickHref(text);
+                    }}>
+                        {text}
+                    </a>
+                );
+            }
         },
         {
             title: (

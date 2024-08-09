@@ -18,8 +18,9 @@ const StationsGroupPage = () => {
     const windowHeight = window.screen.height;
     const pageSize = windowHeight < 950 ? 7 : 10;
 
-    const [ stationsGroup, setStationsGroup ] = useState([]);
+    const [ stationsGroups, setStationsGroups ] = useState([]);
     const [ choosenStationsGroup, setChoosenStationsGroup ] = useState({});
+    const [ choosedStationsGroupName, setChoosedStationsGroupName ] = useState({});
     const [ showLoading, setShowLoading ] = useState(false);
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
@@ -84,7 +85,7 @@ const StationsGroupPage = () => {
             if (response.status === 200) {
                 const { list, count, rowsPerPage } = response.data.data;
 
-                setStationsGroup(addNumeration(list, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
+                setStationsGroups(addNumeration(list, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
                 setPageCount(Math.ceil(count/rowsPerPage));
             } else if (response.status === 401) {
                 dispatch(editToken(""));
@@ -96,11 +97,23 @@ const StationsGroupPage = () => {
         callForStationGroups();
     }, [queryFields, currentPage, isStationGroupChanged]);
 
+    const onClickHrefHandler = (stationGroupName) => {
+        let stationGroupId = 0;
+
+        stationsGroups.map((group) => {
+            if (group.name === stationGroupName) stationGroupId = group.id;
+        });
+
+        navigate(paths.STATIONS_GROUPS + "/" + stationGroupId);
+    };
+
     return (
         <div style={{ minWidth: "900px" }} className="stations-group-page">
             <Table whichTable={"stationsGroup"}
-                    datas={stationsGroup}
+                    datas={stationsGroups}
                     setCurrentData={setChoosenStationsGroup}
+                    setCurrentDataName={setChoosedStationsGroupName}
+                    onClickHref={onClickHrefHandler}
                     onClickEditButton={() => setIsOpenChangeModal(true)}
                     stationsGroupFilterHandlers={filterHandlers} />
             <div className="stations-group-page-pagination">
