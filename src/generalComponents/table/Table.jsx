@@ -9,29 +9,68 @@ const TableComponent = ({
     datas,
     setCurrentData,
     onClickEditButton, 
-    onClickDeleteButton 
+    onClickDeleteButton,
+    fuelTypesfilterHandlers
 }) => {
     const { t } = useTranslation();
 
     const fuelTypesColumns = [
         {
-            title: "ID",
-            dataIndex: 'id',
-            key: 'id',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byId()
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
             width: "10px",
-            sorter: {
-                compare: (a, b) => a.id - b.id,
-            }
         },
         {
-            title: t("fuelTypesTable.yandexId"),
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byYandexId()
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("fuelTypesTable.yandexId")}
+                </span>
+            ),
             dataIndex: 'yandexFuelTypeId',
             key: 'yandexFuelTypeId',
             width: "20px",
-            sorter: (a, b) => a.yandexFuelTypeId.localeCompare(b.yandexFuelTypeId)
         },
         {
-            title: t("fuelTypesTable.fuelName"),
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byFuelName()
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("fuelTypesTable.fuelName")}
+                </span>
+            ),
             dataIndex: 'name',
             key: 'name',
             width: "20px",
@@ -49,10 +88,24 @@ const TableComponent = ({
             width: "10px",
         },
         {
-            title: t("fuelTypesTable.countType"),
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byCountType()
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("fuelTypesTable.countType")}
+                </span>
+            ),
             dataIndex: 'countType',
             key: 'countType',
-            width: "10px",
+            width: "15px",
         },
         {
             title: t("fuelTypesTable.action"),
@@ -283,7 +336,6 @@ const TableComponent = ({
             columns={columns}            
             dataSource={datas}
             pagination={false}
-            // bordered={true}
             size='normal'
             sticky={{
                 offsetHeader: 64,
