@@ -2,12 +2,15 @@
     position: fixed;
     bottom: 3px;
     min-width: 510px;
-    left: 55%;
 }
  
 .pagination-close-menu {
     position: fixed;
     bottom: 3px;
     min-width: 510px;
-    left: 45%;
+}
+
+.pagination-content {
+    display: flex;
+    justify-content: center;
 }

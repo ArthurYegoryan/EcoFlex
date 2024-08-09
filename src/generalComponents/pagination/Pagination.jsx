@@ -14,25 +14,27 @@ export default function PaginationComponent({
 }) {
   return (
     <div className={`pagination${leftMargin}`}>
-      <Stack spacing={2}>
-        <Pagination
-          sx={{
-            "& .MuiPaginationItem-root.Mui-selected": {
-              backgroundColor: colors.originalBgColor
-            }
-          }}
-          count={pageCount}
-          onChange={(e, p) => {
-            setPage(p);
-          }}
-          renderItem={(item) => (
-            <PaginationItem
-              slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-              {...item}
-            />
-          )}
-        />
-      </Stack>
+      <div className="pagination-content">
+        <Stack spacing={2}>
+          <Pagination
+            sx={{
+              "& .MuiPaginationItem-root.Mui-selected": {
+                backgroundColor: colors.originalBgColor
+              }
+            }}
+            count={pageCount}
+            onChange={(e, p) => {
+              setPage(p);
+            }}
+            renderItem={(item) => (
+              <PaginationItem
+                slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                {...item}
+              />
+            )}
+          />
+        </Stack>
+      </div>
     </div>    
   );
 }

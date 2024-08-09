@@ -60,9 +60,11 @@ const FuelTypesPage = () => {
                    datas={fuelTypes}
                    setCurrentData={setChoosenFuelType}
                    onClickEditButton={() => setIsOpenChangeModal(true)} />
-            <Pagination pageCount={pageCount}
-                        setPage={setCurrentPage}
-                        leftMargin={paginationLeftMarginClassname} />          
+            <div className="fuel-types-page-pagination">
+                <Pagination pageCount={pageCount}
+                            setPage={setCurrentPage}
+                            leftMargin={paginationLeftMarginClassname} />
+            </div>
             {isLoading &&
                 <Loader />
             }
