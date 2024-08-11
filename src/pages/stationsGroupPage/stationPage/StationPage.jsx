@@ -1,5 +1,7 @@
 import "./StationPage.css";
+import Table from "../../../generalComponents/table/Table";
 import Pagination from "../../../generalComponents/pagination/Pagination";
+import Loader from "../../../generalComponents/loaders/Loader";
 import { getData } from "../../../api/getData";
 import { addNumeration } from "../../../utils/helpers/addNumeration";
 import { urls } from "../../../constants/urls/urls";
@@ -18,6 +20,7 @@ const StationPage = () => {
     const stationGroupId = Number(url.slice(url.lastIndexOf("/") + 1));
 
     const [ stations, setStations ] = useState([]);
+    const [ choosedStation, setChoosedStation ] = useState({});
     const [ queryFields, setQueryFields ] = useState({
         "OrderBy": "Id",
         "PageSize": pageSize,
@@ -37,19 +40,56 @@ const StationPage = () => {
     let paginationLeftMarginClassname = "";
     if (isMenuOpen) paginationLeftMarginClassname = "-open-menu";
     else paginationLeftMarginClassname = "-close-menu";
-
+    
+    const filterHandlers = {
+        byId: () => {
+            setQueryFields({
+                ...queryFields,
+                "OrderBy": "Id",
+                "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
+            });
+        },
+        byStationsGroupName: () => {
+            setQueryFields({
+                ...queryFields,
+                "OrderBy": "Name",
+                "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
+            });
+        },
+        byStationsGroupAddress: () => {
+            setQueryFields({
+                ...queryFields,
+                "OrderBy": "Address",
+                "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
+            });
+        },
+        byStationsGroupPhoneNumber: () => {
+            setQueryFields({
+                ...queryFields,
+                "OrderBy": "PhoneNumber",
+                "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
+            });
+        }
+    };
+    
     const queryString = `?StationGroupId=${stationGroupId}`;
 
     useEffect(() => {
         const getStations = async () => {
             setShowLoading(true);
             const response = await getData(urls.STATIONS_URL + queryString);
-            setShowLoading(true);
-
-            console.log("Response: ", response);
+            setShowLoading(false);
 
             if (response.status === 200) {
                 const { list, count, rowsPerPage } = response.data.data;
+
+                list.map((item) => {
+                    const itemFuelTypesList = [];
+                    item.fuelTypes.map((itemFuelType) => {
+                        itemFuelTypesList.push(`${itemFuelType.name} (${itemFuelType.countType}) \n`);
+                    });
+                    item.fuelTypes = itemFuelTypesList;
+                });
 
                 setStations(addNumeration(list, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
                 setPageCount(Math.ceil(count/rowsPerPage));
@@ -67,11 +107,19 @@ const StationPage = () => {
         <div>
             Station Page
 
+            <Table whichTable={"stations"}
+                    datas={stations}
+                    setCurrentData={setChoosedStation}
+                    onClickEditButton={() => setIsOpenChangeModal(true)}
+                    stationsFilterHandlers={filterHandlers} />
             <div className="stations-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}
                             leftMargin={paginationLeftMarginClassname} />
             </div>
+            {showLoading &&
+                <Loader />
+            }
         </div>
     );
 };

@@ -20,7 +20,7 @@ const FuelTypesPage = () => {
     const pageSize = windowHeight < 950 ? 7 : 10;
 
     const [ fuelTypes, setFuelTypes ] = useState([]);
-    const [ choosenFuelType, setChoosenFuelType ] = useState({});
+    const [ choosedFuelType, setChoosedFuelType ] = useState({});
     const [ showLoading, setShowLoading ] = useState(false);
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
@@ -107,7 +107,7 @@ const FuelTypesPage = () => {
                            setIsFuelTypeChanged={setIsFuelTypeChanged} />
             <Table whichTable="fuelTypes"
                    datas={fuelTypes}
-                   setCurrentData={setChoosenFuelType}
+                   setCurrentData={setChoosedFuelType}
                    onClickEditButton={() => setIsOpenChangeModal(true)}
                    fuelTypesfilterHandlers={filterHandlers} />
             <div className="fuel-types-page-pagination">
@@ -122,7 +122,7 @@ const FuelTypesPage = () => {
                 <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
                                 isOpen={isOpenChangeModal}
                                 title={t("fuelTypes.addChangeFuelType.changeFuelTypeData")}
-                                body={<ChangeFueltype fuelTypeData={choosenFuelType}
+                                body={<ChangeFueltype fuelTypeData={choosedFuelType}
                                                       isFuelTypeChanged={isFuelTypeChanged}
                                                       setIsFuelTypeChanged={setIsFuelTypeChanged}
                                                       onCloseHandler={() => setIsOpenChangeModal(false)} />} />

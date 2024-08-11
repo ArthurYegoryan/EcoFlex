@@ -33,6 +33,15 @@
         "stationsGroupPhoneNumber": "Номер телефона",
         "action": "Действие"
     },
+    "stations": {
+        "yandexId": "Яндекс ID",
+        "stationName": "Название станции",
+        "stationAddress": "Адрес",
+        "stationPhone": "Номер телефона",
+        "stationTin": "ИНН",
+        "fuelTypes":"Виды топлива",
+        "action": "Действие"
+    },
     "operations": {
         "save": "Сохранить",
         "cancel": "Отменить",

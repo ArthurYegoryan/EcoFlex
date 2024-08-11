@@ -33,6 +33,15 @@
         "stationsGroupPhoneNumber": "Stations group phone number",
         "action": "Action"
     },
+    "stations": {
+        "yandexId": "Yandex ID",
+        "stationName": "Station name",
+        "stationAddress": "Address",
+        "stationPhone": "Phone",
+        "stationTin": "TIN",
+        "fuelTypes":"Fuel types",
+        "action": "Action"
+    },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",
