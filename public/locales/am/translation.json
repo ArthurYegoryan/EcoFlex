@@ -40,12 +40,18 @@
         "stationPhone": "Հեռախոսահամար",
         "stationTin": "ՀՎՀՀ",
         "fuelTypes":"Վառելիքի տեսակներ",
-        "action": "Գործողություն"
+        "action": "Գործողություն",
+        "returnStationsGroupPage": "Վերադառնալ լցակայանների ցանց էջ",
+        "addNewStation": "Ավելացնել նոր լցակայան"
     },
     "operations": {
         "save": "Պահպանել",
         "cancel": "Չեղարկել",
-        "export": "Արտահանել"
+        "export": "Արտահանել",
+        "search": "Որոնում"
+    },
+    "searchSections": {
+        "searchData": "Որոնման տվյալ"
     },
     "errors": {
         "connectionError": "Կապի խնդիր, կրկին փորձեք!",

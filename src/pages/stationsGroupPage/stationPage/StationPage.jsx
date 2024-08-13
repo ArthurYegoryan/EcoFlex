@@ -1,4 +1,5 @@
 import "./StationPage.css";
+import SearchSection from "./searchSection/SearchSection";
 import Table from "../../../generalComponents/table/Table";
 import Pagination from "../../../generalComponents/pagination/Pagination";
 import Loader from "../../../generalComponents/loaders/Loader";
@@ -11,6 +12,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { colors } from "../../../assets/styles/colors";
 
 const StationPage = () => {
     const windowHeight = window.screen.height;
@@ -100,7 +102,8 @@ const StationPage = () => {
                 list.map((item) => {
                     const itemFuelTypesList = [];
                     item.fuelTypes.map((itemFuelType) => {
-                        itemFuelTypesList.push(`${itemFuelType.name} (${itemFuelType.countType}) \n`);
+                        itemFuelTypesList.push(`${itemFuelType.name} (${itemFuelType.countType})`);
+                        itemFuelTypesList.push("\t");
                     });
                     item.fuelTypes = itemFuelTypesList;
                 });
@@ -118,12 +121,24 @@ const StationPage = () => {
     }, [queryFields, currentPage, isStationChanged]);
 
     return (
-        <div style={{ minWidth: "900px" }} className="stations-group-page">
-            Station Page
+        <div style={{ minWidth: "900px" }} className="stations-page">
+            <SearchSection />
+            <p className="stations-back-stations-groups-link"
+                style={{
+                    color: colors.linkColor
+                }}
+                onClick={() => {
+                    navigate(paths.STATIONS_GROUPS)
+                }}
+            >
+                {t("stations.returnStationsGroupPage")}
+            </p>
 
             <Table whichTable={"stations"}
+                    size="small"
                     datas={stations}
                     setCurrentData={setChoosedStation}
+                    
                     onClickEditButton={() => setIsOpenChangeModal(true)}
                     stationsFilterHandlers={filterHandlers} />
             <div className="stations-page-pagination">

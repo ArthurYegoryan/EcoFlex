@@ -1,10 +1,12 @@
 import { colors } from '../../assets/styles/colors';
-import { Space, Table } from 'antd';
+import { Space, Table, Typography } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const TableComponent = ({ 
     whichTable, 
+    size = "normal",
     datas,
     setCurrentData,
     setCurrentDataName,
@@ -16,6 +18,8 @@ const TableComponent = ({
     stationsFilterHandlers,
 }) => {
     const { t } = useTranslation();
+
+    const [ isEllipsisTrue, setIsEllipsisTrue ] = useState(true);
 
     const fuelTypesColumns = [
         {
@@ -270,7 +274,15 @@ const TableComponent = ({
             ),
             dataIndex: 'yandexStationId',
             key: 'yandexStationId',
-            width: "17px",
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
         },
         {
             title: (
@@ -473,11 +485,10 @@ const TableComponent = ({
             columns={columns}            
             dataSource={datas}
             pagination={false}
-            size='normal'
+            size={size}
             sticky={{
                 offsetHeader: 64,
             }}
-            
         />
     );
 };

@@ -40,12 +40,18 @@
         "stationPhone": "Phone",
         "stationTin": "TIN",
         "fuelTypes":"Fuel types",
-        "action": "Action"
+        "action": "Action",
+        "returnStationsGroupPage": "Return stations group page",
+        "addNewStation": "Add new station"
     },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",
-        "export": "Export"
+        "export": "Export",
+        "search": "Search"
+    },
+    "searchSections": {
+        "searchData": "Search data"
     },
     "errors": {
         "connectionError": "Connection error, please try again!",

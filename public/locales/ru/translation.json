@@ -40,12 +40,18 @@
         "stationPhone": "Номер телефона",
         "stationTin": "ИНН",
         "fuelTypes":"Виды топлива",
-        "action": "Действие"
+        "action": "Действие",
+        "returnStationsGroupPage": "Вернуться на страницу сети заправочных станций",
+        "addNewStation": "Добавить новую заправочную станцию"
     },
     "operations": {
         "save": "Сохранить",
         "cancel": "Отменить",
-        "export": "Экспорт"
+        "export": "Экспорт",
+        "search": "Поиск"
+    },
+    "searchSections": {
+        "searchData": "Данные для поиска"
     },
     "errors": {
         "connectionError": "Ошибка подключения, пожалуйста, повторите попытку!",

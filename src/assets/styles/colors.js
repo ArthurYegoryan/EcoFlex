@@ -12,4 +12,7 @@ export const colors = {
     /* Login */
     loginBgColor: "#EBEBEB",          // light grey
     loginFailedColor: "#FF5757",      // 
+
+    /* Links */
+    linkColor: "#1677ff"
 };
