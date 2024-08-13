@@ -103,7 +103,6 @@ const StationPage = () => {
                     const itemFuelTypesList = [];
                     item.fuelTypes.map((itemFuelType) => {
                         itemFuelTypesList.push(`${itemFuelType.name} (${itemFuelType.countType})`);
-                        itemFuelTypesList.push("\t");
                     });
                     item.fuelTypes = itemFuelTypesList;
                 });

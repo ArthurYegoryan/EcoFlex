@@ -1,7 +1,7 @@
 import { colors } from '../../assets/styles/colors';
 import { Space, Table, Typography } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const TableComponent = ({ 
@@ -375,6 +375,20 @@ const TableComponent = ({
             dataIndex: 'fuelTypes',
             key: 'fuelTypes',
             width: "20px",
+            render: (values) => {
+                return (
+                    <>
+                        {values.map((value, index) => (
+                            <React.Fragment key={index}>
+                                <Typography.Text>
+                                    {value}
+                                </Typography.Text>
+                                <br/>
+                            </React.Fragment>
+                        ))}
+                    </>
+                );
+            }
         },
         {
             title: t("stations.action"),
@@ -489,6 +503,9 @@ const TableComponent = ({
             sticky={{
                 offsetHeader: 64,
             }}
+            // expandable={{
+            //     expandedRowKeys: [ "fuelTypes" ]
+            // }}
         />
     );
 };
