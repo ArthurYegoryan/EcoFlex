@@ -49,30 +49,44 @@ const StationPage = () => {
                 "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
             });
         },
-        byStationsGroupName: () => {
+        byYandexId: () => {
+            setQueryFields({
+                ...queryFields,
+                "OrderBy": "YandexStationId",
+                "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
+            });
+        },
+        byStationName: () => {
             setQueryFields({
                 ...queryFields,
                 "OrderBy": "Name",
                 "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
             });
         },
-        byStationsGroupAddress: () => {
+        byStationAddress: () => {
             setQueryFields({
                 ...queryFields,
                 "OrderBy": "Address",
                 "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
             });
         },
-        byStationsGroupPhoneNumber: () => {
+        byStationPhoneNumber: () => {
             setQueryFields({
                 ...queryFields,
                 "OrderBy": "PhoneNumber",
                 "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
             });
+        },
+        byStationTin: () => {
+            setQueryFields({
+                ...queryFields,
+                "OrderBy": "TIN",
+                "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
+            });
         }
     };
     
-    const queryString = `?StationGroupId=${stationGroupId}`;
+    const queryString = `?OrderBy=${queryFields.OrderBy}&StationGroupId=${stationGroupId}&PageIndex=${currentPage}&PageSize=${queryFields.PageSize}&OrderDir=${queryFields.OrderDir}`;
 
     useEffect(() => {
         const getStations = async () => {
@@ -104,7 +118,7 @@ const StationPage = () => {
     }, [queryFields, currentPage, isStationChanged]);
 
     return (
-        <div>
+        <div style={{ minWidth: "900px" }} className="stations-group-page">
             Station Page
 
             <Table whichTable={"stations"}

@@ -235,34 +235,34 @@ const TableComponent = ({
         {
             title: (
                 <span>
-                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'}
                         alt="Sort" 
                         style={{
                             width: "15px",
                             cursor: "pointer",
                         }}
                         onClick={() => {
-                            stationsFilterHandlers.byId()
+                            stationsFilterHandlers.byId();
                         }}
                     />
-                    &nbsp;&nbsp;ID
+                    &nbsp;&nbsp;ID {process.env.PUBLIC_URL}
                 </span>
             ),
             dataIndex: 'number',
             key: 'number',
-            width: "10px",
+            width: "8px",
         },
         {
             title: (
                 <span>
-                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
                         alt="Sort" 
                         style={{
                             width: "15px",
                             cursor: "pointer",
                         }}
                         onClick={() => {
-                            stationsFilterHandlers.byYandexId()
+                            stationsFilterHandlers.byYandexId();
                         }}
                     />
                     &nbsp;&nbsp;{t("stations.yandexId")}
@@ -270,19 +270,19 @@ const TableComponent = ({
             ),
             dataIndex: 'yandexStationId',
             key: 'yandexStationId',
-            width: "20px",
+            width: "17px",
         },
         {
             title: (
                 <span>
-                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
                         alt="Sort" 
                         style={{
                             width: "15px",
                             cursor: "pointer",
                         }}
                         onClick={() => {
-                            stationsFilterHandlers.byStationName()
+                            stationsFilterHandlers.byStationName();
                         }}
                     />
                     &nbsp;&nbsp;{t("stations.stationName")}
@@ -295,14 +295,14 @@ const TableComponent = ({
         {
             title: (
                 <span>
-                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
                         alt="Sort" 
                         style={{
                             width: "15px",
                             cursor: "pointer",
                         }}
                         onClick={() => {
-                            stationsFilterHandlers.byStationAddress()
+                            stationsFilterHandlers.byStationAddress();
                         }}
                     />
                     &nbsp;&nbsp;{t("stations.stationAddress")}
@@ -315,34 +315,40 @@ const TableComponent = ({
         {
             title: (
                 <span>
-                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
                         alt="Sort" 
                         style={{
                             width: "15px",
                             cursor: "pointer",
                         }}
                         onClick={() => {
-                            fuelTypesfilterHandlers.byStationPhone()
+                            stationsFilterHandlers.byStationPhoneNumber();
                         }}
                     />
-                    &nbsp;&nbsp;{t("stations.stationPhone")}
+                    &nbsp;&nbsp;
+                    <img src={process.env.PUBLIC_URL + '../img/phone.svg'} 
+                        alt="Phone" 
+                        style={{
+                            width: "20px"
+                        }}
+                    />
                 </span>
             ),
             dataIndex: 'phoneNumber',
             key: 'phoneNumber',
-            width: "20px",
+            width: "11px",
         },
         {
             title: (
                 <span>
-                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
                         alt="Sort" 
                         style={{
                             width: "15px",
                             cursor: "pointer",
                         }}
                         onClick={() => {
-                            fuelTypesfilterHandlers.byStationTin()
+                            stationsFilterHandlers.byStationTin();
                         }}
                     />
                     &nbsp;&nbsp;{t("stations.stationTin")}
@@ -350,7 +356,7 @@ const TableComponent = ({
             ),
             dataIndex: 'tin',
             key: 'tin',
-            width: "20px",
+            width: "10px",
         },
         {
             title: t("stations.fuelTypes"),
