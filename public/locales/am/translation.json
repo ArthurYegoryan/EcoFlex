@@ -42,7 +42,13 @@
         "fuelTypes":"Վառելիքի տեսակներ",
         "action": "Գործողություն",
         "returnStationsGroupPage": "Վերադառնալ լցակայանների ցանց էջ",
-        "addNewStation": "Ավելացնել նոր լցակայան"
+        "addChangeStation": {
+            "addNewStation": "Ավելացնել նոր լցակայան",
+            "changeStationData": "Փոփոխել լցակայանի տվյալները",
+            "name": "Անվանում",
+            "coordinateWidth": "Կոորդինատային լայնություն",
+            "coordinateLength": "Կոորդինատային երկարություն"
+        }
     },
     "operations": {
         "save": "Պահպանել",

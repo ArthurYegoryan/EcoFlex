@@ -2,6 +2,7 @@ import "./StationPage.css";
 import SearchSection from "./searchSection/SearchSection";
 import Table from "../../../generalComponents/table/Table";
 import Pagination from "../../../generalComponents/pagination/Pagination";
+import ModalComponent from "../../../generalComponents/modalComponent/ModalComponent";
 import Loader from "../../../generalComponents/loaders/Loader";
 import { getData } from "../../../api/getData";
 import { addNumeration } from "../../../utils/helpers/addNumeration";
@@ -97,6 +98,8 @@ const StationPage = () => {
             setShowLoading(false);
 
             if (response.status === 200) {
+                console.log("Response: ", response);
+
                 const { list, count, rowsPerPage } = response.data.data;
 
                 list.map((item) => {
@@ -145,6 +148,12 @@ const StationPage = () => {
                             setPage={setCurrentPage}
                             leftMargin={paginationLeftMarginClassname} />
             </div>
+            {isOpenChangeModal &&
+                <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
+                                isOpen={isOpenChangeModal}
+                                title={t("stations.addChangeStation.changeStationData")}
+                                closeImageUrl="../img/x.svg" />
+            }
             {showLoading &&
                 <Loader />
             }

@@ -23,7 +23,7 @@ const SearchSection = () => {
                                 marginLeft={"15px"} />
             }
             {role === "Admin" &&
-                <ButtonComponent label={t("stations.addNewStation")}
+                <ButtonComponent label={t("stations.addChangeStation.addNewStation")}
                                 startIcon={<Add />}
                                 marginLeft={"15px"} />
             }

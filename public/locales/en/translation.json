@@ -42,7 +42,13 @@
         "fuelTypes":"Fuel types",
         "action": "Action",
         "returnStationsGroupPage": "Return stations group page",
-        "addNewStation": "Add new station"
+        "addChangeStation": {
+            "addNewStation": "Add new station",
+            "changeStationData": "Change station data",
+            "name": "Name",
+            "coordinateWidth": "Coordinate width",
+            "coordinateLength": "Coordinate length"
+        }
     },
     "operations": {
         "save": "Save",

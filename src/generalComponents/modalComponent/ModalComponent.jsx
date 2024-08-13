@@ -9,7 +9,8 @@ const ModalComponent = ({
     isOpen,
     title,
     body,
-    bgcolor = 'background.paper'
+    bgcolor = 'background.paper',
+    closeImageUrl = "img/x.svg"
 }) => {
     const modalStyle = {
         position: 'absolute',  //  as 'absolute'
@@ -33,7 +34,7 @@ const ModalComponent = ({
                 <Box sx={modalStyle}>
                     <div className="modal-close-button-div">
                         <button onClick={onCloseHandler} className="modal-close-button">
-                            <img src={process.env.PUBLIC_URL + "img/x.svg"} alt="close" />
+                            <img src={process.env.PUBLIC_URL + closeImageUrl} alt="close" />
                         </button>
                     </div>
                     <Typography id="modal-modal-title" variant="h6" component="h2">

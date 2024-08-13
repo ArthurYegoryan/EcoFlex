@@ -42,7 +42,13 @@
         "fuelTypes":"Виды топлива",
         "action": "Действие",
         "returnStationsGroupPage": "Вернуться на страницу сети заправочных станций",
-        "addNewStation": "Добавить новую заправочную станцию"
+        "addChangeStation": {
+            "addNewStation": "Добавить новую заправочную станцию",
+            "changeStationData": "Изменить данные заправочной станции",
+            "name": "Название",
+            "coordinateWidth": "Координатная ширина",
+            "coordinateLength": "Координатная длина"
+        }
     },
     "operations": {
         "save": "Сохранить",
