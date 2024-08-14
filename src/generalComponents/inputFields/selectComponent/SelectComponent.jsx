@@ -12,11 +12,7 @@ export default function SelectComponent({
     hasFirstRow,
     firstRowLabel,
     firstRowValue,
-    chooseData, 
-    // chooseDataValue,
-    // fields, 
-    // changeFieldName, 
-    // setField, 
+    chooseData,
     width,
     marginTop,
     marginLeft,
@@ -27,10 +23,8 @@ export default function SelectComponent({
     const [ value, setValue ] = React.useState(defaultValue ?? "");
     
     const handleChange = (event) => {
-        onChooseHandler && onChooseHandler(event);   // onChooseHandler(event.target.value)
+        onChooseHandler && onChooseHandler(event);
         setValue(event.target.value);
-        // fields ? setField({ ...fields, [changeFieldName]: event.target.value }) 
-        //        : setField(value);
     };
 
     return (
@@ -54,17 +48,6 @@ export default function SelectComponent({
                                 <MenuItem key={data} value={data}>{data}</MenuItem>
                             );                            
                         })
-                        // chooseData.map((data) => {
-                        //     if (typeof data === "string") {
-                        //         return (
-                        //             <MenuItem value={data.toLowerCase()}>{data}</MenuItem>
-                        //         );
-                        //     } else {
-                        //         return (
-                        //             <MenuItem value={data[chooseDataValue]}>{data[chooseDataValue] === "Sale" ? t("trxTypes.sale") : t("trxTypes.cancel")}</MenuItem>
-                        //         );
-                        //     }                            
-                        // })
                     }
                 </Select>
                 {existsError &&

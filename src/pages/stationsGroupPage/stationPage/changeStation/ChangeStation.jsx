@@ -1,10 +1,12 @@
 import "./ChangeStation.css";
 import TextInputComponent from "../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
-import SelectComponent from "../../../../generalComponents/inputFields/selectComponent/SelectComponent";
+import MultipleSelect from "../../../../generalComponents/inputFields/multiSelectComponent/MultiSelectComponent";
 import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
 import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import { changeData } from "../../../../api/changeData";
+import { makeFuelTypesList } from "../../../../utils/helpers/makeFuelTypesList";
+import { makeFuelTypesListWithIds } from "../../../../utils/helpers/makeFuelTypesListWithIds";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
@@ -18,9 +20,11 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const ChangeStation = ({ 
+    stationGroupId,
     stationData,
     isStationChanged,
     setIsStationChanged,
+    allFuelTypes,
     onCloseHandler 
 }) => {
     const [ changedStationData, setChangedStationData ] = useState({
@@ -32,7 +36,8 @@ const ChangeStation = ({
         phoneNumber: stationData.phoneNumber,
         lat: stationData.lat,
         long: stationData.long,
-        fuelTypes: stationData.fuelTypes
+        fuelTypes: stationData.fuelTypes,
+        stationGroupId: stationGroupId
     });
     const [ isLoading, setIsLoading ] = useState(false);
     const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
@@ -66,6 +71,8 @@ const ChangeStation = ({
 
         if (!checkFieldsValidations(autoFilledChangedStationData)) {
             if (isChangedAnyData(stationData, autoFilledChangedStationData)) {
+                autoFilledChangedStationData.fuelTypes = makeFuelTypesListWithIds(autoFilledChangedStationData.fuelTypes, allFuelTypes);
+                
                 try {
                     setIsLoading(true);
                     const response = await changeData(urls.STATIONS_URL, autoFilledChangedStationData);
@@ -77,6 +84,7 @@ const ChangeStation = ({
     
                         navigate(paths.LOGIN);
                     } else if (response.statusCode === 400) {
+                        console.log("Error response: ", response);
                         response.errors.map((err) => {
                             if (err.param === "Name") setShowStationNameErrorLabel(true);
                             if (err.param === "YandexStationId") setShowYandexStationIdErrorLabel(true);
@@ -157,14 +165,15 @@ const ChangeStation = ({
                                     ...changedStationData,
                                     long: evt.target.value
                                 })}} />
-            {/* <SelectComponent label={t("fuelTypes.addChangeFuelType.chooseCountType")}
-                             chooseData={["Kg", "Ltr"]}
-                             defaultValue={fuelTypes}
-                             marginTop={"25px"}
-                             onChooseHandler={(evt) => {setChangedStationData({
+            <MultipleSelect label={t("stations.fuelTypes")}
+                            dataForMultiSelecting={makeFuelTypesList(allFuelTypes, true)}
+                            defaultValue={stationData.fuelTypes}
+                            width={"473px"}
+                            marginTop={"25px"}
+                            onChangeHandler={(value) => setChangedStationData({
                                 ...changedStationData,
-                                fuelTypes: evt.target.value === "Ltr" ? "L" : evt.target.value
-                            })}} /> */}
+                                fuelTypes: value
+                            })} />
             {showSuccessAnimation &&
                 <SuccessAnimation />
             }

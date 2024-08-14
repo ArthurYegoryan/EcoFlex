@@ -7,6 +7,7 @@ import ModalComponent from "../../../generalComponents/modalComponent/ModalCompo
 import Loader from "../../../generalComponents/loaders/Loader";
 import { getData } from "../../../api/getData";
 import { addNumeration } from "../../../utils/helpers/addNumeration";
+import { makeFuelTypesList } from "../../../utils/helpers/makeFuelTypesList";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { editToken } from "../../../redux/slices/authSlice";
@@ -23,6 +24,7 @@ const StationPage = () => {
     const url = window.location.href;
     const stationGroupId = Number(url.slice(url.lastIndexOf("/") + 1));
 
+    const [ allFuelTypes, setAllFuelTypes ] = useState([]);
     const [ stations, setStations ] = useState([]);
     const [ choosedStation, setChoosedStation ] = useState({});
     const [ queryFields, setQueryFields ] = useState({
@@ -99,19 +101,10 @@ const StationPage = () => {
             setShowLoading(false);
 
             if (response.status === 200) {
-                console.log("Response: ", response);
-
                 const { list, count, rowsPerPage } = response.data.data;
+                const listForView = makeFuelTypesList(list);
 
-                list.map((item) => {
-                    const itemFuelTypesList = [];
-                    item.fuelTypes.map((itemFuelType) => {
-                        itemFuelTypesList.push(`${itemFuelType.name} (${itemFuelType.countType})`);
-                    });
-                    item.fuelTypes = itemFuelTypesList;
-                });
-
-                setStations(addNumeration(list, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
+                setStations(addNumeration(listForView, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
                 setPageCount(Math.ceil(count/rowsPerPage));
             } else if (response.status === 401) {
                 dispatch(editToken(""));
@@ -122,6 +115,25 @@ const StationPage = () => {
         };
         getStations();
     }, [queryFields, currentPage, isStationChanged]);
+
+    useEffect(() => {
+        const getFuelTypes = async () => {
+            setShowLoading(true);
+            const response = await getData(urls.FUEL_TYPES_URL + "?PageSize=1000");
+            setShowLoading(false);
+
+            if (response.status === 200) {
+                const { list } = response.data.data;
+                setAllFuelTypes(list);
+            } else if (response.status === 401) {
+                dispatch(editToken(""));
+                localStorage.clear();
+
+                navigate(paths.LOGIN)
+            }
+        };
+        getFuelTypes();
+    }, []);
 
     return (
         <div style={{ minWidth: "900px" }} className="stations-page">
@@ -153,9 +165,11 @@ const StationPage = () => {
                 <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
                                 isOpen={isOpenChangeModal}
                                 title={t("stations.addChangeStation.changeStationData")}
-                                body={<ChangeStation stationData={choosedStation}
+                                body={<ChangeStation stationGroupId={stationGroupId}
+                                                     stationData={choosedStation}
                                                      isStationChanged={isStationChanged}
                                                      setIsStationChanged={setIsStationChanged}
+                                                     allFuelTypes={allFuelTypes}
                                                      onCloseHandler={() => setIsOpenChangeModal(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }
