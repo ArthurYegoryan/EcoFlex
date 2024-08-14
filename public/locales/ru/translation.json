@@ -67,7 +67,8 @@
         "wrongUsernamePassword": "Неверное имя пользователя или пароль",
         "onlyNumbersError": "Должен содержать только цифры",
         "fuelTypeExistsError": "Данный тип топлива существует!",
-        "yandexFuelTypeIdExistsError": "Данный Yandex ID существует!"
+        "stationExistsError": "Данная заправочная станция существует!",
+        "yandexIdExistsError": "Данный Yandex ID существует!"
     },
 
 

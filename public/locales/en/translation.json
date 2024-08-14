@@ -67,7 +67,8 @@
         "wrongUsernamePassword": "Incorrect username or password",
         "onlyNumbersError": "Must contain only numbers",
         "fuelTypeExistsError": "This fuel type exists!",
-        "yandexFuelTypeIdExistsError": "This Yandex ID exists!"
+        "stationExistsError": "This station exists!",
+        "yandexIdExistsError": "This Yandex ID exists!"
     },
 
 

@@ -1,8 +1,8 @@
-.change-fuel-type-buttons {
+.change-station-buttons {
     display: flex;
     margin-top: 25px;
 }
 
-.change-fuel-type-error-text {
+.change-station-error-text {
     color: red;
 }

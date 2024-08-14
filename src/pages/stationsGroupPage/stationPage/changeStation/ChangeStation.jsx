@@ -1,17 +1,17 @@
 import "./ChangeStation.css";
-import TextInputComponent from "../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
-import SelectComponent from "../../../generalComponents/inputFields/selectComponent/SelectComponent";
-import Button from "../../../generalComponents/buttons/Button";
-import Loader from "../../../generalComponents/loaders/Loader";
-import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
-import { changeData } from "../../../api/changeData";
-import { urls } from "../../../constants/urls/urls";
-import { paths } from "../../../constants/paths/paths";
-import { colors } from "../../../assets/styles/colors";
-import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
-import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
-import { onlyNumbersValidation } from "../../../utils/fieldsValidations/onlyNumbersValidation";
-import { editToken } from "../../../redux/slices/authSlice";
+import TextInputComponent from "../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
+import SelectComponent from "../../../../generalComponents/inputFields/selectComponent/SelectComponent";
+import Button from "../../../../generalComponents/buttons/Button";
+import Loader from "../../../../generalComponents/loaders/Loader";
+import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
+import { changeData } from "../../../../api/changeData";
+import { urls } from "../../../../constants/urls/urls";
+import { paths } from "../../../../constants/paths/paths";
+import { colors } from "../../../../assets/styles/colors";
+import { isChangedAnyData } from "../../../../utils/helpers/isChangedAnyData";
+import { autoFillWithDefaultData } from "../../../../utils/helpers/autoFillWithDefaultData";
+import { onlyNumbersValidation } from "../../../../utils/fieldsValidations/onlyNumbersValidation";
+import { editToken } from "../../../../redux/slices/authSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -123,7 +123,7 @@ const ChangeStation = ({
                                     ...changedStationData,
                                     address: evt.target.value
                                 })}} />
-            <TextInputComponent label={t("stations.tin")}
+            <TextInputComponent label={t("stations.stationTin")}
                                 defaultValue={stationData.tin}
                                 marginTop={"25px"}
                                 width="473px"
@@ -168,13 +168,13 @@ const ChangeStation = ({
             {showSuccessAnimation &&
                 <SuccessAnimation />
             }
-            {showFuelNameErrorLabel &&
-                <p className="change-fuel-type-error-text">{t("errors.fuelTypeExistsError")}</p>
+            {showStationNameErrorLabel &&
+                <p className="change-station-error-text">{t("errors.fuelTypeExistsError")}</p>
             }
-            {showYandexFuelTypeIdErrorLabel &&
-                <p className="change-fuel-type-error-text">{t("errors.yandexFuelTypeIdExistsError")}</p>
+            {showYandexStationIdErrorLabel &&
+                <p className="change-station-error-text">{t("errors.yandexIdExistsError")}</p>
             }
-            <div className="change-fuel-type-buttons">
+            <div className="change-station-buttons">
                 <Button label={t("operations.save")}
                         backgroundColor={colors.successBgColor}
                         hoverColor={colors.successHoverColor}

@@ -1,5 +1,6 @@
 import "./StationPage.css";
 import SearchSection from "./searchSection/SearchSection";
+import ChangeStation from "./changeStation/ChangeStation";
 import Table from "../../../generalComponents/table/Table";
 import Pagination from "../../../generalComponents/pagination/Pagination";
 import ModalComponent from "../../../generalComponents/modalComponent/ModalComponent";
@@ -152,6 +153,10 @@ const StationPage = () => {
                 <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
                                 isOpen={isOpenChangeModal}
                                 title={t("stations.addChangeStation.changeStationData")}
+                                body={<ChangeStation stationData={choosedStation}
+                                                     isStationChanged={isStationChanged}
+                                                     setIsStationChanged={setIsStationChanged}
+                                                     onCloseHandler={() => setIsOpenChangeModal(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }
             {showLoading &&

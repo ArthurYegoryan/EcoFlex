@@ -67,7 +67,8 @@
         "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ",
         "onlyNumbersError": "Պետք է պարունակի միայն թվանշաններ",
         "fuelTypeExistsError": "Տվյալ վառելիքի տեսակը գոյություն ունի!",
-        "yandexFuelTypeIdExistsError": "Տվյալ Yandex ID-ն գոյություն ունի!"
+        "stationExistsError": "Տվյալ լցակայանը գոյություն ունի!",
+        "yandexIdExistsError": "Տվյալ Yandex ID-ն գոյություն ունի!"
     },
 
 

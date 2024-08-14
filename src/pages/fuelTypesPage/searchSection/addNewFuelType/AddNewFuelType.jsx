@@ -182,7 +182,7 @@ const AddNewFueltype = ({
                 <p className="add-new-fuel-type-error-text">{t("errors.fuelTypeExistsError")}</p>
             }
             {showYandexFuelTypeIdErrorLabel &&
-                <p className="add-new-fuel-type-error-text">{t("errors.yandexFuelTypeIdExistsError")}</p>
+                <p className="add-new-fuel-type-error-text">{t("errors.yandexIdExistsError")}</p>
             }
             <div className="add-new-fuel-type-buttons">
                 <Button label={t("operations.save")}
