@@ -72,7 +72,7 @@ const ChangeStation = ({
         if (!checkFieldsValidations(autoFilledChangedStationData)) {
             if (isChangedAnyData(stationData, autoFilledChangedStationData)) {
                 autoFilledChangedStationData.fuelTypes = makeFuelTypesListWithIds(autoFilledChangedStationData.fuelTypes, allFuelTypes);
-                
+
                 try {
                     setIsLoading(true);
                     const response = await changeData(urls.STATIONS_URL, autoFilledChangedStationData);
@@ -84,7 +84,6 @@ const ChangeStation = ({
     
                         navigate(paths.LOGIN);
                     } else if (response.statusCode === 400) {
-                        console.log("Error response: ", response);
                         response.errors.map((err) => {
                             if (err.param === "Name") setShowStationNameErrorLabel(true);
                             if (err.param === "YandexStationId") setShowYandexStationIdErrorLabel(true);
