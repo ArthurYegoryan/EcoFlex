@@ -88,7 +88,7 @@ const ChangeStation = ({
                             if (err.param === "Name") setShowStationNameErrorLabel(true);
                             if (err.param === "YandexStationId") setShowYandexStationIdErrorLabel(true);
                         });                    
-                    } else if (response.data.message === "Success") {
+                    } else if (response.status === 200) {
                         setIsStationChanged(!isStationChanged);
                         setShowSuccessAnimation(true);
                         setTimeout(() => {

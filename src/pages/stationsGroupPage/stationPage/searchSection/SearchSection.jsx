@@ -1,13 +1,22 @@
 import "./SearchSection.css";
+import AddStation from "./addStation/AddStation";
 import TextInput from "../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import ButtonComponent from "../../../../generalComponents/buttons/Button";
+import ModalComponent from "../../../../generalComponents/modalComponent/ModalComponent";
 import SearchIcon from '@mui/icons-material/Search';
 import { FileDownload } from "@mui/icons-material";
 import { Add } from "@mui/icons-material";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-const SearchSection = () => {
+const SearchSection = ({
+    stationGroupId,
+    allFuelTypes,
+    isStationAdded,
+    setIsStationAdded
+}) => {
+    const [ isOpenedAddStationModal, setIsOpenedAddStationModal ] = useState(false);
     const role = useSelector((state) => state.auth.role.payload) ?? localStorage.getItem("role");
     const { t } = useTranslation();
 
@@ -25,7 +34,19 @@ const SearchSection = () => {
             {role === "Admin" &&
                 <ButtonComponent label={t("stations.addChangeStation.addNewStation")}
                                 startIcon={<Add />}
-                                marginLeft={"15px"} />
+                                marginLeft={"15px"}
+                                onClickHandler={() => setIsOpenedAddStationModal(true)} />
+            }
+            {isOpenedAddStationModal &&
+                <ModalComponent onCloseHandler={() => setIsOpenedAddStationModal(false)}
+                                isOpen={isOpenedAddStationModal}
+                                title={t("stations.addChangeStation.addNewStation")}
+                                body={<AddStation stationGroupId={stationGroupId}
+                                                  allFuelTypes={allFuelTypes}
+                                                  isStationAdded={isStationAdded}
+                                                  setIsStationAdded={setIsStationAdded}
+                                                  onCloseHandler={() => setIsOpenedAddStationModal(false)} />}
+                                closeImageUrl="../img/x.svg" />
             }
         </div>
     );

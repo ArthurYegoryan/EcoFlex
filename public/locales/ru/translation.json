@@ -66,6 +66,8 @@
         "emptyPasswordError": "Введите пароль",
         "wrongUsernamePassword": "Неверное имя пользователя или пароль",
         "onlyNumbersError": "Должен содержать только цифры",
+        "onlyNumbersLengthEightError": "Должен содержать только цифры и иметь длину ровно 8",
+        "onlyNumbersPointError": "Должен содержать только цифры и одну точку (но не в начале или конце)",
         "fuelTypeExistsError": "Данный тип топлива существует!",
         "stationExistsError": "Данная заправочная станция существует!",
         "yandexIdExistsError": "Данный Yandex ID существует!"

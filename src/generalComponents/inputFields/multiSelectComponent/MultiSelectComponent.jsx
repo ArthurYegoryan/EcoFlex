@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
@@ -36,6 +37,8 @@ export default function MultipleSelect({
     size = "small",
     width = 300,
     marginTop,
+    existsError,
+    errorText,
     onChangeHandler,
 }) {
   const theme = useTheme();
@@ -55,6 +58,7 @@ export default function MultipleSelect({
     <div>
       <FormControl sx={{ m: 1, width: width, margin: "none", marginTop: marginTop }}
                    size={size}
+                   error={existsError}
       >
         <InputLabel id="demo-multiple-chip-label" >
           {label}
@@ -93,6 +97,9 @@ export default function MultipleSelect({
             </MenuItem>
           ))}
         </Select>
+        {existsError &&
+            <FormHelperText>{errorText}</FormHelperText>
+        }
       </FormControl>
     </div>
   );

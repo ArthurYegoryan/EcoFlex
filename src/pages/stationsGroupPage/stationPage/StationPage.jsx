@@ -34,6 +34,7 @@ const StationPage = () => {
     });
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
+    const [ isStationAdded, setIsStationAdded ] = useState(false);
     const [ isStationChanged, setIsStationChanged ] = useState(false);
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
     const [ showLoading, setShowLoading ] = useState();
@@ -114,7 +115,7 @@ const StationPage = () => {
             }
         };
         getStations();
-    }, [queryFields, currentPage, isStationChanged]);
+    }, [queryFields, currentPage, isStationAdded, isStationChanged]);
 
     useEffect(() => {
         const getFuelTypes = async () => {
@@ -137,7 +138,10 @@ const StationPage = () => {
 
     return (
         <div style={{ minWidth: "900px" }} className="stations-page">
-            <SearchSection />
+            <SearchSection stationGroupId={stationGroupId}
+                           allFuelTypes={allFuelTypes}
+                           isStationAdded={isStationAdded}
+                           setIsStationAdded={setIsStationAdded} />
             <p className="stations-back-stations-groups-link"
                 style={{
                     color: colors.linkColor

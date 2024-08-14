@@ -66,6 +66,8 @@
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
         "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ",
         "onlyNumbersError": "Պետք է պարունակի միայն թվանշաններ",
+        "onlyNumbersLengthEightError": "Պետք է պարունակի միայն թվանշաններ և ունենա ճիշտ 8 երկարություն",
+        "onlyNumbersPointError": "Պետք է պարունակի միայն թվանշաններ և մեկ կետ (բայց ոչ սկզբում կամ վերջում)",
         "fuelTypeExistsError": "Տվյալ վառելիքի տեսակը գոյություն ունի!",
         "stationExistsError": "Տվյալ լցակայանը գոյություն ունի!",
         "yandexIdExistsError": "Տվյալ Yandex ID-ն գոյություն ունի!"
