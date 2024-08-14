@@ -5,6 +5,7 @@ export const urls = {
     POST_FORGOT_PASSWORD_URL: `${URL}Users/forgot-password`,
 
     DOWNLOAD_CSV_URL: `${URL}Files/download-csv`,
+    DOWNLOAD_CSV_STATIONS_URL: `${URL}Files/download-csv-st`,
 
     FUEL_TYPES_URL: `${URL}FuelTypes`,
     STATION_GROUPS_URL: `${URL}StationGroups`,
