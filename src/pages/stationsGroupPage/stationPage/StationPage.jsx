@@ -27,13 +27,16 @@ const StationPage = () => {
     const [ allFuelTypes, setAllFuelTypes ] = useState([]);
     const [ stations, setStations ] = useState([]);
     const [ choosedStation, setChoosedStation ] = useState({});
+    const [ searchText, setSearchText ] = useState("");
     const [ queryFields, setQueryFields ] = useState({
         "OrderBy": "Id",
         "PageSize": pageSize,
-        "OrderDir": "Asc"
+        "OrderDir": "Asc",
+        "SearchText": ""
     });
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
+    const [ isSearchClicked, setIsSearchClicked ] = useState(false);
     const [ isStationAdded, setIsStationAdded ] = useState(false);
     const [ isStationChanged, setIsStationChanged ] = useState(false);
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
@@ -93,7 +96,18 @@ const StationPage = () => {
         }
     };
     
-    const queryString = `?OrderBy=${queryFields.OrderBy}&StationGroupId=${stationGroupId}&PageIndex=${currentPage}&PageSize=${queryFields.PageSize}&OrderDir=${queryFields.OrderDir}`;
+    const queryString = `?OrderBy=${queryFields.OrderBy}&StationGroupId=${stationGroupId}` + 
+                        `&PageIndex=${currentPage}&PageSize=${queryFields.PageSize}` + 
+                        `&OrderDir=${queryFields.OrderDir}&SearchText=${queryFields.SearchText}`;
+
+    useEffect(() => {
+        if (searchText !== queryFields.SearchText) {
+            setQueryFields({
+                ...queryFields,
+                SearchText: searchText
+            });
+        }
+    }, [isSearchClicked]);
 
     useEffect(() => {
         const getStations = async () => {
@@ -141,7 +155,10 @@ const StationPage = () => {
             <SearchSection stationGroupId={stationGroupId}
                            allFuelTypes={allFuelTypes}
                            isStationAdded={isStationAdded}
-                           setIsStationAdded={setIsStationAdded} />
+                           setIsStationAdded={setIsStationAdded}
+                           setSearchText={setSearchText}
+                           isSearchClicked={isSearchClicked}
+                           setIsSearchClicked={setIsSearchClicked} />
             <p className="stations-back-stations-groups-link"
                 style={{
                     color: colors.linkColor

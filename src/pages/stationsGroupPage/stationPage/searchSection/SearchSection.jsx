@@ -16,7 +16,10 @@ const SearchSection = ({
     stationGroupId,
     allFuelTypes,
     isStationAdded,
-    setIsStationAdded
+    setIsStationAdded,
+    setSearchText,
+    isSearchClicked,
+    setIsSearchClicked
 }) => {
     const [ isOpenedAddStationModal, setIsOpenedAddStationModal ] = useState(false);
     const [ showConnectionError, setShowConnectionError ] = useState(false);
@@ -34,19 +37,27 @@ const SearchSection = ({
 
     return (
         <div className="stations-search-area">
-            <TextInput label={t("searchSections.searchData")} />
+            <TextInput label={t("searchSections.searchData")}
+                       onChangeHandler={(e) => setSearchText(e.target.value)} />
             <ButtonComponent label={t("operations.search")}
                             startIcon={<SearchIcon />}
-                            marginLeft={"15px"} />
+                            height={"30px"}
+                            marginTop={"5px"}
+                            marginLeft={"15px"}
+                            onClickHandler={() => setIsSearchClicked(!isSearchClicked)} />
             {role === "Admin" &&
                 <ButtonComponent label={t("operations.export")}
                                 startIcon={<FileDownload />}
+                                height={"30px"}
+                                marginTop={"5px"}
                                 marginLeft={"15px"}
                                 onClickHandler={onCliCkExportBtn} />
             }
             {role === "Admin" &&
                 <ButtonComponent label={t("stations.addChangeStation.addNewStation")}
                                 startIcon={<Add />}
+                                height={"30px"}
+                                marginTop={"5px"}
                                 marginLeft={"15px"}
                                 onClickHandler={() => setIsOpenedAddStationModal(true)} />
             }
