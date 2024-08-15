@@ -5,7 +5,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import LoginContainer from "../pages/loginPage/LoginContainer";
 import FuelTypesPage from "../pages/fuelTypesPage/FuelTypesPage";
 import StationsGroupPage from "../pages/stationsGroupPage/StationsGroupPage";
-import StationPage from "../pages/stationsGroupPage/stationPage/StationPage";
+import StationsPage from "../pages/stationsGroupPage/stationsPage/StationsPage";
 import FuelPricesPage from "../pages/fuelPricesPage/FuelPricesPage";
 import DispensersPage from "../pages/dispensersPage/DispensersPage";
 import UsersPage from "../pages/usersPage/UsersPage";
@@ -22,7 +22,7 @@ const AppRoutes = () => {
                 <Route index element={<Navigate to={paths.FUEL_TYPES} />} />
                 <Route path={paths.FUEL_TYPES} element={<FuelTypesPage />} />
                 <Route path={paths.STATIONS_GROUPS} element={<StationsGroupPage />} />
-                <Route path={paths.STATION} element={<StationPage />} />
+                <Route path={paths.STATION} element={<StationsPage />} />
                 <Route path={paths.FUEL_PRICES} element={<FuelPricesPage />} />
                 <Route path={paths.DISPENSERS} element={<DispensersPage />} />
                 <Route path={paths.USERS} element={<UsersPage />} />

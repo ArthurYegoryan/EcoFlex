@@ -1,5 +1,5 @@
-import "./StationPage.css";
-import SearchSection from "./stationPageSearchSection/StationPageSearchSection";
+import "./StationsPage.css";
+import SearchSection from "./stationsSearchSection/StationsSearchSection";
 import ChangeStation from "./changeStation/ChangeStation";
 import Table from "../../../generalComponents/table/Table";
 import Pagination from "../../../generalComponents/pagination/Pagination";

@@ -1,5 +1,5 @@
 import "./FuelTypesPage.css";
-import SearchSection from "./searchSection/SearchSection";
+import SearchSection from "./fuelTypesSearchSection/FuelTypesSearchSection";
 import ChangeFueltype from "./changeFuelType/ChangeFuelType";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";

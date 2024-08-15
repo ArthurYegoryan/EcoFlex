@@ -1,4 +1,4 @@
-import "./SearchSection.css";
+import "./FuelTypesSearchSection.css";
 import AddNewFueltype from "./addNewFuelType/AddNewFuelType";
 import ButtonComponent from "../../../generalComponents/buttons/Button";
 import ModalComponent from "../../../generalComponents/modalComponent/ModalComponent";
