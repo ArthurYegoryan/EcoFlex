@@ -81,8 +81,6 @@ const FuelTypesPage = () => {
                 const response = await getData(urls.FUEL_TYPES_URL + queryString);
                 setShowLoading(false);
 
-                console.log("Response fuel types: ", response);
-
                 if (response.status === 200) {
                     const { list, count, rowsPerPage } = response.data.data;
     
