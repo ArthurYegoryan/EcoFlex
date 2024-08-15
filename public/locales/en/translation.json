@@ -55,6 +55,11 @@
             "coordinateLength": "Coordinate length"
         }
     },
+    "fuelPrices": {
+        "changeAllFuelPricesOfStationsGroup": "Change the prices of all fuel on the network",
+        "addAllDiscountsOfStationsGroup": "Add discounts on all fuel in the network",
+        "changeStationFuelPrices": "Change station fuel prices"
+    },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",

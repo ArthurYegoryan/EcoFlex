@@ -1,17 +1,20 @@
+import "./Table.css";
 import { colors } from '../../assets/styles/colors';
 import { Space, Table, Typography } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 const TableComponent = ({ 
-    whichTable, 
+    whichTable,
     size = "normal",
     datas,
     setCurrentData,
     onClickHref,
     onClickEditButton,
     onClickDeleteButton,
+    renderHandler,
+    filterHandlers,
     fuelTypesfilterHandlers,
     stationsGroupFilterHandlers,
     stationsFilterHandlers,
@@ -402,94 +405,191 @@ const TableComponent = ({
         },
     ];
 
-    const banksColumns = [
+    const stationsGroupFuelPricesColumns = [
         {
-            title: 'ID',
-            width: 10,
-            dataIndex: 'id',
-            key: 'id',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'}
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID {process.env.PUBLIC_URL}
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "8px",
         },
         {
-            title: 'Short name',
-            width: 14,
-            dataIndex: 'short_name',
-            key: 'short_name',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byYandexId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexStationId',
+            key: 'yandexStationId',
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
         },
         {
-            title: 'Name AM',
-            width: 14,
-            dataIndex: 'name_am',
-            key: 'name_am',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "20px",
         },
         {
-            title: 'Name RU',
-            width: 14,
-            dataIndex: 'name_ru',
-            key: 'name_ru',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "20px",
         },
         {
-            title: 'Name EN',
-            width: 14,
-            dataIndex: 'name_en',
-            key: 'name_en',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;
+                    <img src={process.env.PUBLIC_URL + '../img/phone.svg'} 
+                        alt="Phone" 
+                        style={{
+                            width: "20px"
+                        }}
+                    />
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "11px",
         },
         {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-            width: 25,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationTin();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationTin")}
+                </span>
+            ),
+            dataIndex: 'tin',
+            key: 'tin',
+            width: "10px",
         },
         {
-            title: 'Second email',
-            dataIndex: 'secondEmail',
-            key: 'secondEmail',
-            width: 25,
+            title: t("stations.fuelTypes"),
+            dataIndex: 'fuelTypes',
+            key: 'fuelTypes',
+            width: "30px",
+            render: (record) => renderHandler ? renderHandler(record) : null
         },
         {
-            title: 'Is active',
-            dataIndex: 'is_active',
-            key: 'is_active',
-            width: 11,
-        },
-        {
-            title: 'URL',
-            dataIndex: 'url',
-            key: 'url',
-            width: 30,
-        },
-        {
-            title: 'Is owner',
-            dataIndex: 'is_owner',
-            key: 'is_owner',
-            width: 11,
-        },
-        {
-            title: 'Action',
+            title: t("stations.action"),
             key: 'operation',
-            width: 15,
+            width: "10px",
             render: (record) => (
                 <Space size="middle">
-                    <BsFillPencilFill style={{ color: "blue", cursor: "pointer" }} onClick={() => {
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
                         setCurrentData(record);
                         onClickEditButton(record);
-                    }} />
-                    <BsFillTrashFill style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                        setCurrentData(record);
-                        onClickDeleteButton(record);
                     }} />
                 </Space>
             )
         },
-    ]
+    ];
 
-    const data = [];
+    const fuelTypesWithPricesColumns = [
+        {
+            title: 'Fuel name',
+            dataIndex: 'name',
+            key: 'name',
+            width: "15px",
+        },
+        {
+            title: 'Count type',
+            dataIndex: 'countType',
+            key: 'countType',
+            width: "5px",
+        },
+        {
+            title: 'Price',
+            dataIndex: 'price',
+            key: 'price',
+            width: "10px",
+        },
+    ]
 
     let columns = [];
 
     if (whichTable === "fuelTypes") columns = fuelTypesColumns;
     else if (whichTable === "stationsGroup") columns = stationsGroupColumns;
     else if (whichTable === "stations") columns = stationsColumns;
-    else if (whichTable === "banks") columns = banksColumns;
+    else if (whichTable === "stationsGroupFuelPrices") columns = stationsGroupFuelPricesColumns;
+    else if (whichTable === "fuelTypesWithPrices") columns = fuelTypesWithPricesColumns;
 
     return (
         <Table
@@ -500,9 +600,6 @@ const TableComponent = ({
             sticky={{
                 offsetHeader: 64,
             }}
-            // expandable={{
-            //     expandedRowKeys: [ "fuelTypes" ]
-            // }}
         />
     );
 };

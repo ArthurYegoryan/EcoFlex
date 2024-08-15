@@ -55,6 +55,11 @@
             "coordinateLength": "Координатная длина"
         }
     },
+    "fuelPrices": {
+        "changeAllFuelPricesOfStationsGroup": "Изменить цены на все топливо в сети",
+        "addAllDiscountsOfStationsGroup": "Добавьте скидки на все топливо в сети",
+        "changeStationFuelPrices": "Изменить цены на топливо на заправочной станции"
+    },
     "operations": {
         "save": "Сохранить",
         "cancel": "Отменить",

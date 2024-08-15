@@ -4,6 +4,7 @@ export const paths = {
     STATIONS_GROUPS: "/stationsGroups",
     STATION: "/stationsGroups/:stationGroupId",
     FUEL_PRICES: "/fuel-prices",
+    STATIONS_GROUP_FUEL_PRICES: "/fuel-prices/:stationGroupId",
     DISPENSERS: "/dispensers",
     USERS: "/users",
     TRANSACTIONS: "/transactions",

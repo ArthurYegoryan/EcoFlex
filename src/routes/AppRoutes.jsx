@@ -7,6 +7,7 @@ import FuelTypesPage from "../pages/fuelTypesPage/FuelTypesPage";
 import StationsGroupPage from "../pages/stationsGroupPage/StationsGroupPage";
 import StationsPage from "../pages/stationsGroupPage/stationsPage/StationsPage";
 import FuelPricesPage from "../pages/fuelPricesPage/FuelPricesPage";
+import StationsGroupFuelPrices from "../pages/fuelPricesPage/stationsGroupFuelPrices/StationsGroupFuelPrices";
 import DispensersPage from "../pages/dispensersPage/DispensersPage";
 import UsersPage from "../pages/usersPage/UsersPage";
 import TransactionsPage from "../pages/transactionsPage/TransactionsPage";
@@ -24,6 +25,7 @@ const AppRoutes = () => {
                 <Route path={paths.STATIONS_GROUPS} element={<StationsGroupPage />} />
                 <Route path={paths.STATION} element={<StationsPage />} />
                 <Route path={paths.FUEL_PRICES} element={<FuelPricesPage />} />
+                <Route path={paths.STATIONS_GROUP_FUEL_PRICES} element={<StationsGroupFuelPrices />} />
                 <Route path={paths.DISPENSERS} element={<DispensersPage />} />
                 <Route path={paths.USERS} element={<UsersPage />} />
                 <Route path={paths.TRANSACTIONS} element={<TransactionsPage />} />

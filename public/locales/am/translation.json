@@ -55,6 +55,11 @@
             "coordinateLength": "Կոորդինատային երկարություն"
         }
     },
+    "fuelPrices": {
+        "changeAllFuelPricesOfStationsGroup": "Փոփոխել ցանցի բոլոր վառելիքների գները",
+        "addAllDiscountsOfStationsGroup": "Ավելացնել ցանցի բոլոր վառելիքների զեղչերը",
+        "changeStationFuelPrices": "Փոփոխել լցակայանի վառելիքի գները"
+    },
     "operations": {
         "save": "Պահպանել",
         "cancel": "Չեղարկել",
