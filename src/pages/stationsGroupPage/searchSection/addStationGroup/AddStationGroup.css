@@ -1,0 +1,8 @@
+.add-stations-group-buttons {
+    display: flex;
+    margin-top: 25px;
+}
+
+.stations-group-error-text {
+    color: red;
+}

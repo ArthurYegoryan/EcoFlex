@@ -31,7 +31,12 @@
         "stationsGroupName": "Название сети заправочных станций",
         "stationsGroupAddress": "Адрес",
         "stationsGroupPhoneNumber": "Номер телефона",
-        "action": "Действие"
+        "action": "Действие",
+        "addChangeStationsGroup": {
+            "addNewStationsGroup": "Добавить новую сеть заправочных станций",
+            "changeStationsGroupData": "Изменить данные сети заправочных станций",
+            "name": "Название"
+        }
     },
     "stations": {
         "yandexId": "Яндекс ID",
@@ -70,7 +75,8 @@
         "onlyNumbersPointError": "Должен содержать только цифры и одну точку (но не в начале или конце)",
         "fuelTypeExistsError": "Данный тип топлива существует!",
         "stationExistsError": "Данная заправочная станция существует!",
-        "yandexIdExistsError": "Данный Yandex ID существует!"
+        "yandexIdExistsError": "Данный Yandex ID существует!",
+        "stationsGroupExistsError": "Сеть данных заправочных станций существует!"
     },
 
 

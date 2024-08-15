@@ -1,6 +1,5 @@
 import "./StationsGroupPage.css";
-import TextInputComponent from "../../generalComponents/inputFields/textInputComponent/TextInputComponent";
-import Button from "../../generalComponents/buttons/Button";
+import SearchSection from "./searchSection/SearchSection";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination"
 import Loader from "../../generalComponents/loaders/Loader";
@@ -24,12 +23,16 @@ const StationsGroupPage = () => {
     const [ showLoading, setShowLoading ] = useState(false);
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
+    const [ isSearchClicked, setIsSearchClicked ] = useState(false);
+    const [ searchText, setSearchText ] = useState("");
     const [ queryFields, setQueryFields ] = useState({
         "OrderBy": "Id",
         "PageSize": pageSize,
-        "OrderDir": "Asc"
+        "OrderDir": "Asc",
+        "SearchText": "",
     });
-    const [ isStationGroupChanged, setIsStationGroupChanged ] = useState(false);
+    const [ isStationsGroupAdded, setIsStationsGroupAdded ] = useState(false);
+    const [ isStationsGroupChanged, setIsStationsGroupChanged ] = useState(false);
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
 
     const { isMenuOpen } = useSelector((state) => state.menu);
@@ -72,15 +75,24 @@ const StationsGroupPage = () => {
         }
     };
 
-    let queryString = `?OrderBy=${queryFields.OrderBy}&PageIndex=${currentPage}&PageSize=${queryFields.PageSize}&OrderDir=${queryFields.OrderDir}`;
+    let queryString = `?OrderBy=${queryFields.OrderBy}&PageIndex=${currentPage}` + 
+                      `&PageSize=${queryFields.PageSize}&OrderDir=${queryFields.OrderDir}` +
+                      `&SearchText=${queryFields.SearchText}`;
+
+    useEffect(() => {
+        if (searchText !== queryFields.SearchText) {
+            setQueryFields({
+                ...queryFields,
+                SearchText: searchText
+            });
+        }
+    }, [isSearchClicked]);
 
     useEffect(() => {
         const callForStationGroups = async () => {
             setShowLoading(true);
             const response = await getData(urls.STATION_GROUPS_URL + queryString);
             setShowLoading(false);
-
-            console.log("Response stations groups: ", response);
 
             if (response.status === 200) {
                 const { list, count, rowsPerPage } = response.data.data;
@@ -95,7 +107,7 @@ const StationsGroupPage = () => {
             }
         };
         callForStationGroups();
-    }, [queryFields, currentPage, isStationGroupChanged]);
+    }, [queryFields, currentPage, isStationsGroupAdded, isStationsGroupChanged]);
 
     const onClickHrefHandler = (stationGroupName) => {
         let stationGroupId = 0;
@@ -109,6 +121,11 @@ const StationsGroupPage = () => {
 
     return (
         <div style={{ minWidth: "900px" }} className="stations-group-page">
+            <SearchSection isStationsGroupAdded={isStationsGroupAdded}
+                           setIsStationsGroupAdded={setIsStationsGroupAdded}
+                           setSearchText={setSearchText}
+                           isSearchClicked={isSearchClicked}
+                           setIsSearchClicked={setIsSearchClicked} />
             <Table whichTable={"stationsGroup"}
                     datas={stationsGroups}
                     setCurrentData={setChoosenStationsGroup}

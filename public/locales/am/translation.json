@@ -31,7 +31,12 @@
         "stationsGroupName": "Լցակայանների ցանցի անուն",
         "stationsGroupAddress": "Հասցե",
         "stationsGroupPhoneNumber": "Հեռախոսահամար",
-        "action": "Գործողություն"
+        "action": "Գործողություն",
+        "addChangeStationsGroup": {
+            "addNewStationsGroup": "Ավելացնել նոր լցակայանների ցանց",
+            "changeStationsGroupData": "Փոփոխել լցակայանների ցանցի տվյալները",
+            "name": "Անվանում"
+        }
     },
     "stations": {
         "yandexId": "Յանդեքս ID",
@@ -70,7 +75,8 @@
         "onlyNumbersPointError": "Պետք է պարունակի միայն թվանշաններ և մեկ կետ (բայց ոչ սկզբում կամ վերջում)",
         "fuelTypeExistsError": "Տվյալ վառելիքի տեսակը գոյություն ունի!",
         "stationExistsError": "Տվյալ լցակայանը գոյություն ունի!",
-        "yandexIdExistsError": "Տվյալ Yandex ID-ն գոյություն ունի!"
+        "yandexIdExistsError": "Տվյալ Yandex ID-ն գոյություն ունի!",
+        "stationsGroupExistsError": "Տվյալ լցակայանների ցանցը գոյություն ունի!"
     },
 
 

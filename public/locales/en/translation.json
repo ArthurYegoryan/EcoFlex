@@ -31,7 +31,12 @@
         "stationsGroupName": "Stations group name",
         "stationsGroupAddress": "Stations group address",
         "stationsGroupPhoneNumber": "Stations group phone number",
-        "action": "Action"
+        "action": "Action",
+        "addChangeStationsGroup": {
+            "addNewStationsGroup": "Add new stations group",
+            "changeStationsGroupData": "Change stations group data",
+            "name": "Անվանում"
+        }
     },
     "stations": {
         "yandexId": "Yandex ID",
@@ -70,7 +75,8 @@
         "onlyNumbersPointError": "Must contain only numbers and one dot (but not at the beginning or end)",
         "fuelTypeExistsError": "This fuel type exists!",
         "stationExistsError": "This station exists!",
-        "yandexIdExistsError": "This Yandex ID exists!"
+        "yandexIdExistsError": "This Yandex ID exists!",
+        "stationsGroupExistsError": "This stations group exists!"
     },
 
 
