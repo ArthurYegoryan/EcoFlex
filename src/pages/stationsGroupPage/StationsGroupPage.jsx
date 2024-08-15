@@ -1,7 +1,9 @@
 import "./StationsGroupPage.css";
 import SearchSection from "./stationsGroupSearchSection/StationsGroupSearchSection";
+import ChangeStationsGroup from "./changeStationsGroup/ChangeStationsGroup";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination"
+import ModalComponent from "../../generalComponents/modalComponent/ModalComponent";
 import Loader from "../../generalComponents/loaders/Loader";
 import { getData } from "../../api/getData";
 import { addNumeration } from "../../utils/helpers/addNumeration";
@@ -18,8 +20,7 @@ const StationsGroupPage = () => {
     const pageSize = windowHeight < 950 ? 7 : 10;
 
     const [ stationsGroups, setStationsGroups ] = useState([]);
-    const [ choosenStationsGroup, setChoosenStationsGroup ] = useState({});
-    const [ choosedStationsGroupName, setChoosedStationsGroupName ] = useState({});
+    const [ choosedStationsGroup, setChoosedStationsGroup ] = useState({});
     const [ showLoading, setShowLoading ] = useState(false);
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
@@ -128,8 +129,7 @@ const StationsGroupPage = () => {
                            setIsSearchClicked={setIsSearchClicked} />
             <Table whichTable={"stationsGroup"}
                     datas={stationsGroups}
-                    setCurrentData={setChoosenStationsGroup}
-                    setCurrentDataName={setChoosedStationsGroupName}
+                    setCurrentData={setChoosedStationsGroup}
                     onClickHref={onClickHrefHandler}
                     onClickEditButton={() => setIsOpenChangeModal(true)}
                     stationsGroupFilterHandlers={filterHandlers} />
@@ -138,6 +138,16 @@ const StationsGroupPage = () => {
                             setPage={setCurrentPage}
                             leftMargin={paginationLeftMarginClassname} />
             </div>
+            {isOpenChangeModal &&
+                <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
+                                isOpen={isOpenChangeModal}
+                                title={t("stations.addChangeStation.changeStationData")}
+                                body={<ChangeStationsGroup stationsGroupData={choosedStationsGroup}
+                                                           isStationsGroupChanged={isStationsGroupChanged}
+                                                           setIsStationsGroupChanged={setIsStationsGroupChanged}
+                                                           onCloseHandler={() => setIsOpenChangeModal(false)} />}
+                                closeImageUrl="../img/x.svg" />
+            }
             {showLoading &&
                 <Loader />
             }

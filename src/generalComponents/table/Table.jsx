@@ -9,7 +9,6 @@ const TableComponent = ({
     size = "normal",
     datas,
     setCurrentData,
-    setCurrentDataName,
     onClickHref,
     onClickEditButton,
     onClickDeleteButton,
@@ -18,8 +17,6 @@ const TableComponent = ({
     stationsFilterHandlers,
 }) => {
     const { t } = useTranslation();
-
-    const [ isEllipsisTrue, setIsEllipsisTrue ] = useState(true);
 
     const fuelTypesColumns = [
         {
@@ -172,7 +169,7 @@ const TableComponent = ({
             render: (text) => {
                 return (
                     <a onClick={() => {
-                        setCurrentDataName(text);
+                        // setCurrentDataName(text);
                         onClickHref(text);
                     }}>
                         {text}
