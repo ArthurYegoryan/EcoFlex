@@ -38,7 +38,7 @@ const SearchSection = ({
     return (
         <div className="stations-search-area">
             <TextInput label={t("searchSections.searchData")}
-                       onChangeHandler={(e) => setSearchText(e.target.value)} />
+                       onChangeHandler={(e) => setSearchText(e.target.value.trim())} />
             <ButtonComponent label={t("operations.search")}
                             startIcon={<SearchIcon />}
                             height={"30px"}
