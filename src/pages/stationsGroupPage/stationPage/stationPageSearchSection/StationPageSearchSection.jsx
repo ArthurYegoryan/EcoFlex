@@ -1,4 +1,4 @@
-import "./SearchSection.css";
+import "./StationPageSearchSection.css";
 import AddStation from "./addStation/AddStation";
 import TextInput from "../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import ButtonComponent from "../../../../generalComponents/buttons/Button";

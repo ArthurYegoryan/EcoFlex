@@ -1,4 +1,4 @@
-import "./SearchSection.css";
+import "./StationsGroupSearchSection.css";
 import AddStationGroup from "./addStationGroup/AddStationGroup";
 import TextInput from "../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import ButtonComponent from "../../../generalComponents/buttons/Button";
@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-const SearchSection = ({
+const StationsGroupSearchSection = ({
     isStationsGroupAdded,
     setIsStationsGroupAdded,
     setSearchText,
@@ -75,4 +75,4 @@ const SearchSection = ({
     );
 };
 
-export default SearchSection;
+export default StationsGroupSearchSection;
