@@ -37,7 +37,7 @@ const StationsGroupFuelPrices = () => {
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ isSearchClicked, setIsSearchClicked ] = useState(false);
     const [ isStationAdded, setIsStationAdded ] = useState(false);
-    const [ isStationChanged, setIsStationChanged ] = useState(false);
+    const [ isStationFuelPricesChanged, setIsStationFuelPricesChanged ] = useState(false);
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
     const [ showLoading, setShowLoading ] = useState();
 
@@ -127,7 +127,7 @@ const StationsGroupFuelPrices = () => {
             }
         };
         getStations();
-    }, [queryFields, currentPage, isStationAdded, isStationChanged]);
+    }, [queryFields, currentPage, isStationAdded, isStationFuelPricesChanged]);
 
     useEffect(() => {
         const getFuelTypes = async () => {
@@ -203,7 +203,9 @@ const StationsGroupFuelPrices = () => {
                                 isOpen={isOpenChangeModal}
                                 title={t("fuelPrices.changeStationFuelPrices")}
                                 body={<ChangeStationFuelPrices station={choosedStation}
-                                                                onClickHandler={() => setIsOpenChangeModal(false)} />}
+                                                                isStationFuelPricesChanged={isStationFuelPricesChanged}
+                                                                setIsStationFuelPricesChanged={setIsStationFuelPricesChanged}
+                                                                onCloseHandler={() => setIsOpenChangeModal(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }
             {showLoading &&

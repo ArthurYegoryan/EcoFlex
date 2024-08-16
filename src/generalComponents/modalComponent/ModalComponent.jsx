@@ -37,13 +37,15 @@ const ModalComponent = ({
                             <img src={process.env.PUBLIC_URL + closeImageUrl} alt="close" />
                         </button>
                     </div>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        <div className="modal-modal-title-div">
-                            <div className="modal-modal-title-text">
-                                <span>{title}</span>
-                            </div>                            
-                        </div>
-                    </Typography>
+                    {title &&
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            <div className="modal-modal-title-div">
+                                <div className="modal-modal-title-text">
+                                    <span>{title}</span>
+                                </div>                            
+                            </div>
+                        </Typography>
+                    }
                     <div className="modal-modal-body-div">
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                             {body}

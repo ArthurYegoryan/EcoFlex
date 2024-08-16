@@ -68,12 +68,12 @@ const ChangeFueltype = ({
                     const response = await changeData(urls.FUEL_TYPES_URL, autoFilledChangedFuelTypeData);
                     setIsLoading(false);
         
-                    if (response.statusCode === 401) {
+                    if (response.status === 401) {
                         dispatch(editToken(""));
                         localStorage.clear();
     
                         navigate(paths.LOGIN);
-                    } else if (response.statusCode === 400) {
+                    } else if (response.status === 400) {
                         response.errors.map((err) => {
                             if (err.param === "Name") setShowFuelNameErrorLabel(true);
                             if (err.param === "YandexFuelTypeId") setShowYandexFuelTypeIdErrorLabel(true);

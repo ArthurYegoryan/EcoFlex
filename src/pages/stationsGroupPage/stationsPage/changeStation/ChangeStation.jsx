@@ -78,12 +78,12 @@ const ChangeStation = ({
                     const response = await changeData(urls.STATIONS_URL, autoFilledChangedStationData);
                     setIsLoading(false);
         
-                    if (response.statusCode === 401) {
+                    if (response.status === 401) {
                         dispatch(editToken(""));
                         localStorage.clear();
     
                         navigate(paths.LOGIN);
-                    } else if (response.statusCode === 400) {
+                    } else if (response.status === 400) {
                         response.errors.map((err) => {
                             if (err.param === "Name") setShowStationNameErrorLabel(true);
                             if (err.param === "YandexStationId") setShowYandexStationIdErrorLabel(true);

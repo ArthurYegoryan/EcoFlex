@@ -12,6 +12,7 @@ export default function TextInputSeparateLabel({
     componentBottomMargin = "10px",
     labelMarginLeft,
     textInputMarginRight,
+    onChangeHandler
 }) {
   return (
     <div style={{ 
@@ -53,6 +54,7 @@ export default function TextInputSeparateLabel({
                 sx={{
                   width: textInputWidth
                 }}
+                onChange={onChangeHandler}
             />
         </div>        
     </div>

@@ -9,5 +9,6 @@ export const urls = {
 
     FUEL_TYPES_URL: `${URL}FuelTypes`,
     STATION_GROUPS_URL: `${URL}StationGroups`,
-    STATIONS_URL: `${URL}Stations`
+    STATIONS_URL: `${URL}Stations`,
+    FUEL_PRICES_URL: `${URL}Prices`,
 };

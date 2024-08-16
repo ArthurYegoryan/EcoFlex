@@ -48,12 +48,12 @@ const ChangeStationsGroup = ({
                 const response = await changeData(urls.STATION_GROUPS_URL, autoFilledChangedStationsGroupData);
                 setIsLoading(false);
     
-                if (response.statusCode === 401) {
+                if (response.status === 401) {
                     dispatch(editToken(""));
                     localStorage.clear();
 
                     navigate(paths.LOGIN);
-                } else if (response.statusCode === 400) {
+                } else if (response.status === 400) {
                     response.errors.map((err) => {
                         if (err.param === "Name") setShowStationsGroupNameErrorLabel(true);
                     });                    

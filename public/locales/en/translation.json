@@ -1,4 +1,8 @@
 {
+    "generalQuestionsTexts": {
+        "attention": "Attention!",
+        "stationFuelTypesPricesWillChange": "Stations fuel types prices will change"
+    },
     "nav": {
         "fuelTypes": "Fuel types",
         "stationGroups": "Station groups",

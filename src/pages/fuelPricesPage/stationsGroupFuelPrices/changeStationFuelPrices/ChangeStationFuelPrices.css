@@ -1,8 +1,5 @@
-.change-station-buttons {
+.change-station-fuel-prices-buttons {
     display: flex;
-    margin-top: 25px;
-}
-
-.change-station-error-text {
-    color: red;
+    justify-content: center;
+    margin-top: 50px;
 }

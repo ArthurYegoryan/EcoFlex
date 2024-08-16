@@ -1,4 +1,8 @@
 {
+    "generalQuestionsTexts": {
+        "attention": "Ուշադրություն!",
+        "stationFuelTypesPricesWillChange": "Լցակայանի վառելիքի տեսակների գները կփոփոխվեն"
+    },
     "nav": {
         "fuelTypes": "Վառելիքի տեսակներ",
         "stationGroups": "Լցակայանների ցանց",
