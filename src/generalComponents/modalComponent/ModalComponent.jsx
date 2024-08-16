@@ -9,6 +9,7 @@ const ModalComponent = ({
     isOpen,
     title,
     body,
+    bodyMaxHeight = "700px",
     bgcolor = 'background.paper',
     closeImageUrl = "img/x.svg"
 }) => {
@@ -46,7 +47,12 @@ const ModalComponent = ({
                             </div>
                         </Typography>
                     }
-                    <div className="modal-modal-body-div">
+                    <div style={{ 
+                            overflowY: "auto",
+                            maxHeight: bodyMaxHeight 
+                         }} 
+                         className="modal-modal-body-div"
+                    >
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                             {body}
                         </Typography>

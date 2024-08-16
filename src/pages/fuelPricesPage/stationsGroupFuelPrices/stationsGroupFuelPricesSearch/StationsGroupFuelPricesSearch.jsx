@@ -1,5 +1,5 @@
 import "./StationsGroupFuelPricesSearch.css";
-import AddStation from "./addStation/AddStation";
+import ChangeStationsGroupFuelPrices from "./changeStationsGroupFuelPrices/ChangeStationsGroupFuelPrices";
 import TextInput from "../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import ButtonComponent from "../../../../generalComponents/buttons/Button";
 import ModalComponent from "../../../../generalComponents/modalComponent/ModalComponent";
@@ -15,8 +15,8 @@ import { useTranslation } from "react-i18next";
 const SearchSection = ({
     stationGroupId,
     allFuelTypes,
-    isStationAdded,
-    setIsStationAdded,
+    isStationsGroupFuelTypesChanged,
+    setIsStationsGroupFuelTypesChanged,
     setSearchText,
     isSearchClicked,
     setIsSearchClicked
@@ -77,22 +77,25 @@ const SearchSection = ({
                 <ModalComponent onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)}
                                 isOpen={isOpenedChangeStationsGroupFuelPricesModal}
                                 title={t("fuelPrices.changeAllFuelPricesOfStationsGroup")}
-                                body={<AddStation stationGroupId={stationGroupId}
-                                                  allFuelTypes={allFuelTypes}
-                                                  isStationAdded={isStationAdded}
-                                                  setIsStationAdded={setIsStationAdded}
-                                                  onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
+                                body={<ChangeStationsGroupFuelPrices 
+                                            stationGroupId={stationGroupId}
+                                            allFuelTypes={allFuelTypes}
+                                            isStationsGroupFuelTypesChanged={isStationsGroupFuelTypesChanged}
+                                            setStationsGroupFuelTypesChanged={setIsStationsGroupFuelTypesChanged}
+                                            onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
+                                bodyMaxHeight={"700px"}
                                 closeImageUrl="../img/x.svg" />
             }
             {isOpenedAddStationsGroupDiscountsModal &&
                 <ModalComponent onCloseHandler={() => setIsOpenedAddStationsGroupDiscountsModal(false)}
                                 isOpen={isOpenedAddStationsGroupDiscountsModal}
                                 title={t("fuelPrices.addAllDiscountsOfStationsGroup")}
-                                body={<AddStation stationGroupId={stationGroupId}
-                                                  allFuelTypes={allFuelTypes}
-                                                  isStationAdded={isStationAdded}
-                                                  setIsStationAdded={setIsStationAdded}
-                                                  onCloseHandler={() => setIsOpenedAddStationsGroupDiscountsModal(false)} />}
+                                body={<ChangeStationsGroupFuelPrices 
+                                            stationGroupId={stationGroupId}
+                                            allFuelTypes={allFuelTypes}
+                                            isStationsGroupFuelTypesChanged={isStationsGroupFuelTypesChanged}
+                                            setStationsGroupFuelTypesChanged={setIsStationsGroupFuelTypesChanged}
+                                            onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }
         </div>

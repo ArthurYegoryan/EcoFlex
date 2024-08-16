@@ -1,33 +1,34 @@
-import "./ChangeStationFuelPrices.css";
-import Button from "../../../../generalComponents/buttons/Button";
-import TextInputSeparateLabel from "../../../../generalComponents/inputFields/textInputSeparateLabel/TextInputSeparateLabel";
-import ModalComponent from "../../../../generalComponents/modalComponent/ModalComponent";
-import WarningModalBody from "../../../../generalComponents/modalComponent/warningModalBody/WarningModalBody";
-import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
-import Loader from "../../../../generalComponents/loaders/Loader";
-import { changeData } from "../../../../api/changeData";
-import { colors } from "../../../../assets/styles/colors";
-import { paths } from "../../../../constants/paths/paths";
-import { urls } from "../../../../constants/urls/urls";
-import { editToken } from "../../../../redux/slices/authSlice";
+import "./ChangeStationsGroupFuelPrices.css";
+import Button from "../../../../../generalComponents/buttons/Button";
+import TextInputSeparateLabel from "../../../../../generalComponents/inputFields/textInputSeparateLabel/TextInputSeparateLabel";
+import ModalComponent from "../../../../../generalComponents/modalComponent/ModalComponent";
+import WarningModalBody from "../../../../../generalComponents/modalComponent/warningModalBody/WarningModalBody";
+import SuccessAnimation from "../../../../../generalComponents/successAnimation/SuccessAnimation";
+import Loader from "../../../../../generalComponents/loaders/Loader";
+import { changeData } from "../../../../../api/changeData";
+import { colors } from "../../../../../assets/styles/colors";
+import { paths } from "../../../../../constants/paths/paths";
+import { urls } from "../../../../../constants/urls/urls";
+import { editToken } from "../../../../../redux/slices/authSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const ChangeStation = ({
-    station,
-    isStationFuelPricesChanged,
-    setIsStationFuelPricesChanged,
+const ChangeStationsGroupFuelPrices = ({
+    stationGroupId,
+    allFuelTypes,
+    isStationsGroupFuelTypesChanged,
+    setIsStationsGroupFuelTypesChanged,
     onCloseHandler,
 }) => {
-    const changeFuelPricesBody = {
-        staionGroupId: station.stationGroup.id,
-        stationIds: [
-            station.id
-        ],
-        fuelTypeIdToPrice: {}
-    };
+    // const changeFuelPricesBody = {
+    //     staionGroupId: station.stationGroup.id,
+    //     stationIds: [
+    //         station.id
+    //     ],
+    //     fuelTypeIdToPrice: {}
+    // };
     const [ fuelTypesIdsPrices, setFuelTypesIdsPrices ] = useState({});
     const [ isLoading, setIsLoading ] = useState(false);
     const [ isOpenWarningModalBody, setIsOpenWarningModalBody ] = useState(false);
@@ -37,30 +38,30 @@ const ChangeStation = ({
     const { t } = useTranslation();
 
     const onSaveHandler = async () => {
-        changeFuelPricesBody.fuelTypeIdToPrice = fuelTypesIdsPrices;
+        // changeFuelPricesBody.fuelTypeIdToPrice = fuelTypesIdsPrices;
 
-        setIsLoading(true);
-        const response = await changeData(urls.FUEL_PRICES_URL, changeFuelPricesBody);
-        setIsLoading(false);
+        // setIsLoading(true);
+        // const response = await changeData(urls.FUEL_PRICES_URL, changeFuelPricesBody);
+        // setIsLoading(false);
 
-        if (response.status === 200) {
-            setIsStationFuelPricesChanged(!isStationFuelPricesChanged);
-            setShowSuccessAnimation(true);
-            setTimeout(() => {
-                onCloseHandler();
-            }, 2500);
-        } else if (response.status === 401) {
-            dispatch(editToken(""));
-            localStorage.clear();
+        // if (response.status === 200) {
+        //     setIsStationFuelPricesChanged(!isStationFuelPricesChanged);
+        //     setShowSuccessAnimation(true);
+        //     setTimeout(() => {
+        //         onCloseHandler();
+        //     }, 2500);
+        // } else if (response.status === 401) {
+        //     dispatch(editToken(""));
+        //     localStorage.clear();
 
-            navigate(paths.LOGIN);
-        }
+        //     navigate(paths.LOGIN);
+        // }
     };
 
     return (
-        <div className="change-station-fuel-prices">
+        <div className="change-stations-group-fuel-prices">
             {
-                station.fuelTypes.map((fuelType) => {
+                allFuelTypes.map((fuelType) => {
                     return <TextInputSeparateLabel label={fuelType.name}
                                                    defaultValue={fuelType.price}
                                                    textInputWidth="100px"
@@ -74,7 +75,7 @@ const ChangeStation = ({
                                                    }} />
                 })
             }
-            <div className="change-station-fuel-prices-buttons">
+            <div className="change-stations-group-fuel-prices-buttons">
                 <Button label={t("operations.save")}
                         backgroundColor={colors.successBgColor}
                         hoverColor={colors.successHoverColor}
@@ -109,4 +110,4 @@ const ChangeStation = ({
     );
 };
 
-export default ChangeStation;
+export default ChangeStationsGroupFuelPrices;
