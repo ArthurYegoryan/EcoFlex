@@ -15,8 +15,8 @@ import { useTranslation } from "react-i18next";
 const SearchSection = ({
     stationGroupId,
     allFuelTypes,
-    isStationsGroupFuelTypesChanged,
-    setIsStationsGroupFuelTypesChanged,
+    isStationsGroupFuelPricesChanged,
+    setIsStationsGroupFuelPricesChanged,
     setSearchText,
     isSearchClicked,
     setIsSearchClicked
@@ -26,6 +26,9 @@ const SearchSection = ({
     const [ showConnectionError, setShowConnectionError ] = useState(false);
     const role = useSelector((state) => state.auth.role.payload) ?? localStorage.getItem("role");
     const { t } = useTranslation();
+
+    const windowHeight = window.screen.height;
+    const pageSize = windowHeight < 950 ? "500px" : "700px";
 
     const onCliCkExportBtn = async () => {
         setShowConnectionError(false);
@@ -80,10 +83,10 @@ const SearchSection = ({
                                 body={<ChangeStationsGroupFuelPrices 
                                             stationGroupId={stationGroupId}
                                             allFuelTypes={allFuelTypes}
-                                            isStationsGroupFuelTypesChanged={isStationsGroupFuelTypesChanged}
-                                            setStationsGroupFuelTypesChanged={setIsStationsGroupFuelTypesChanged}
+                                            isStationsGroupFuelPricesChanged={isStationsGroupFuelPricesChanged}
+                                            setIsStationsGroupFuelPricesChanged={setIsStationsGroupFuelPricesChanged}
                                             onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
-                                bodyMaxHeight={"700px"}
+                                bodyMaxHeight={pageSize}
                                 closeImageUrl="../img/x.svg" />
             }
             {isOpenedAddStationsGroupDiscountsModal &&
@@ -93,8 +96,8 @@ const SearchSection = ({
                                 body={<ChangeStationsGroupFuelPrices 
                                             stationGroupId={stationGroupId}
                                             allFuelTypes={allFuelTypes}
-                                            isStationsGroupFuelTypesChanged={isStationsGroupFuelTypesChanged}
-                                            setStationsGroupFuelTypesChanged={setIsStationsGroupFuelTypesChanged}
+                                            isStationsGroupFuelPricesChanged={isStationsGroupFuelPricesChanged}
+                                            setIsStationsGroupFuelPricesChanged={setIsStationsGroupFuelPricesChanged}
                                             onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }

@@ -18,17 +18,14 @@ import { useTranslation } from "react-i18next";
 const ChangeStationsGroupFuelPrices = ({
     stationGroupId,
     allFuelTypes,
-    isStationsGroupFuelTypesChanged,
-    setIsStationsGroupFuelTypesChanged,
+    isStationsGroupFuelPricesChanged,
+    setIsStationsGroupFuelPricesChanged,
     onCloseHandler,
 }) => {
-    // const changeFuelPricesBody = {
-    //     staionGroupId: station.stationGroup.id,
-    //     stationIds: [
-    //         station.id
-    //     ],
-    //     fuelTypeIdToPrice: {}
-    // };
+    const groupFuelPricesBody = {
+        stationGroupId: stationGroupId,
+        fuelTypeIdToPrice: {}
+    };
     const [ fuelTypesIdsPrices, setFuelTypesIdsPrices ] = useState({});
     const [ isLoading, setIsLoading ] = useState(false);
     const [ isOpenWarningModalBody, setIsOpenWarningModalBody ] = useState(false);
@@ -38,24 +35,24 @@ const ChangeStationsGroupFuelPrices = ({
     const { t } = useTranslation();
 
     const onSaveHandler = async () => {
-        // changeFuelPricesBody.fuelTypeIdToPrice = fuelTypesIdsPrices;
+        groupFuelPricesBody.fuelTypeIdToPrice = fuelTypesIdsPrices;
 
-        // setIsLoading(true);
-        // const response = await changeData(urls.FUEL_PRICES_URL, changeFuelPricesBody);
-        // setIsLoading(false);
+        setIsLoading(true);
+        const response = await changeData(urls.FUEL_PRICES_URL, groupFuelPricesBody);
+        setIsLoading(false);
 
-        // if (response.status === 200) {
-        //     setIsStationFuelPricesChanged(!isStationFuelPricesChanged);
-        //     setShowSuccessAnimation(true);
-        //     setTimeout(() => {
-        //         onCloseHandler();
-        //     }, 2500);
-        // } else if (response.status === 401) {
-        //     dispatch(editToken(""));
-        //     localStorage.clear();
+        if (response.status === 200) {
+            setIsStationsGroupFuelPricesChanged(!isStationsGroupFuelPricesChanged);
+            setShowSuccessAnimation(true);
+            setTimeout(() => {
+                onCloseHandler();
+            }, 2500);
+        } else if (response.status === 401) {
+            dispatch(editToken(""));
+            localStorage.clear();
 
-        //     navigate(paths.LOGIN);
-        // }
+            navigate(paths.LOGIN);
+        }
     };
 
     return (
@@ -70,7 +67,7 @@ const ChangeStationsGroupFuelPrices = ({
                                                    onChangeHandler={(e) => {
                                                        setFuelTypesIdsPrices({
                                                            ...fuelTypesIdsPrices,
-                                                           [fuelType.id]: e.target.value
+                                                           [fuelType.id]: Number(e.target.value)
                                                        })
                                                    }} />
                 })
@@ -92,7 +89,7 @@ const ChangeStationsGroupFuelPrices = ({
                 <ModalComponent onCloseHandler={() => setIsOpenWarningModalBody(false)}
                                 isOpen={isOpenWarningModalBody}
                                 body={<WarningModalBody warningTitle={t("generalQuestionsTexts.attention")}
-                                                        warningText={t("generalQuestionsTexts.stationFuelTypesPricesWillChange")}
+                                                        warningText={t("generalQuestionsTexts.groupFuelTypesPricesWillBeChanged")}
                                                         onSaveHandler={() => {
                                                             setIsOpenWarningModalBody(false);
                                                             onSaveHandler();

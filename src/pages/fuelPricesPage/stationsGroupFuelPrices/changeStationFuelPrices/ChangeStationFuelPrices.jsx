@@ -91,7 +91,7 @@ const ChangeStation = ({
                 <ModalComponent onCloseHandler={() => setIsOpenWarningModalBody(false)}
                                 isOpen={isOpenWarningModalBody}
                                 body={<WarningModalBody warningTitle={t("generalQuestionsTexts.attention")}
-                                                        warningText={t("generalQuestionsTexts.stationFuelTypesPricesWillChange")}
+                                                        warningText={t("generalQuestionsTexts.stationFuelTypesPricesWillBeChanged")}
                                                         onSaveHandler={() => {
                                                             setIsOpenWarningModalBody(false);
                                                             onSaveHandler();

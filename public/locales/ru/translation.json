@@ -1,7 +1,8 @@
 {
     "generalQuestionsTexts": {
         "attention": "Внимание!",
-        "stationFuelTypesPricesWillChange": "Цены на виды топлива на заправочных станциях изменятся"
+        "stationFuelTypesPricesWillBeChanged": "Цены на виды топлива на заправочных станциях изменятся",
+        "groupFuelTypesPricesWillBeChanged": "Цены на все виды топлива в сети изменятся"
     },
     "nav": {
         "fuelTypes": "Виды топлива",

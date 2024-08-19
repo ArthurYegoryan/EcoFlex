@@ -36,7 +36,7 @@ const StationsGroupFuelPrices = () => {
     const [ pageCount, setPageCount ] = useState(1);
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ isSearchClicked, setIsSearchClicked ] = useState(false);
-    const [ isStationAdded, setIsStationAdded ] = useState(false);
+    const [ isGroupFuelPricesChanged, setIsGroupFuelPricesChanged ] = useState(false);
     const [ isStationFuelPricesChanged, setIsStationFuelPricesChanged ] = useState(false);
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
     const [ showLoading, setShowLoading ] = useState();
@@ -127,7 +127,7 @@ const StationsGroupFuelPrices = () => {
             }
         };
         getStations();
-    }, [queryFields, currentPage, isStationAdded, isStationFuelPricesChanged]);
+    }, [queryFields, currentPage, isGroupFuelPricesChanged, isStationFuelPricesChanged]);
 
     useEffect(() => {
         const getFuelTypes = async () => {
@@ -166,8 +166,8 @@ const StationsGroupFuelPrices = () => {
         <div style={{ minWidth: "900px" }} className="stations-group-fuel-prices-page">
             <SearchSection stationGroupId={stationGroupId}
                            allFuelTypes={allFuelTypes}
-                           isStationAdded={isStationAdded}
-                           setIsStationAdded={setIsStationAdded}
+                           isGroupFuelPricesChanged={isGroupFuelPricesChanged}
+                           setIsStationsGroupFuelPricesChanged={setIsGroupFuelPricesChanged}
                            setSearchText={setSearchText}
                            isSearchClicked={isSearchClicked}
                            setIsSearchClicked={setIsSearchClicked} />
