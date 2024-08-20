@@ -1,6 +1,9 @@
 import "./DispensersPage.css";
+import ChangeDispenser from "./changeDispenser/ChangeDispenser";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
+import ModalComponent from "../../generalComponents/modalComponent/ModalComponent";
+import Loader from "../../generalComponents/loaders/Loader";
 import { getData } from "../../api/getData";
 import { makeDispensersForView } from "../../utils/helpers/makeDispensersForView";
 import { addNumeration } from "../../utils/helpers/addNumeration";
@@ -16,6 +19,7 @@ const DispensersPage = () => {
     const windowHeight = window.screen.height;
     const pageSize = windowHeight < 950 ? 7 : 10;
 
+    const [ stationsGroups, setStationsGroups ] = useState([]);
     const [ dispensers, setDispensers ] = useState([]);
     const [ choosedDispenser, setChoosedDispenser ] = useState({});
     const [ showLoading, setShowLoading ] = useState(false);
@@ -114,17 +118,59 @@ const DispensersPage = () => {
         callForDispensers();
     }, [queryFields, currentPage, isDispenserAdded, isDispenserChanged]);
 
+    useEffect(() => {
+        const callForStationsGroups = async () => {
+            setShowLoading(true);
+            const response = await getData(urls.STATION_GROUPS_URL + "?PageSize=1000");
+            setShowLoading(false);
+
+            if (response.status === 200) {
+                console.log("Stations groups list: ", response);
+                const { list } = response.data.data;
+
+                setStationsGroups(list);
+            } else if (response.status === 401) {
+                dispatch(editToken(""));
+                localStorage.clear();
+
+                navigate(paths.LOGIN)
+            }
+        };
+        callForStationsGroups();
+    }, []);
+
     return (
         <div className="dispensers-page">
+            {/* <SearchSection isStationsGroupAdded={isStationsGroupAdded}
+                           setIsStationsGroupAdded={setIsStationsGroupAdded}
+                           setSearchText={setSearchText}
+                           isSearchClicked={isSearchClicked}
+                           setIsSearchClicked={setIsSearchClicked} /> */}
             <Table whichTable={"dispensers"}
                    datas={dispensers}
+                   setCurrentData={setChoosedDispenser}
                    size="small"
+                   onClickEditButton={() => setIsOpenChangeModal(true)}
                    filterHandlers={filterHandlers} />
             <div className="dispensers-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}
                             leftMargin={paginationLeftMarginClassname} />
             </div>
+            {isOpenChangeModal &&
+                <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
+                                isOpen={isOpenChangeModal}
+                                title={t("dispensers.addChangeDispenser.changeDispenser")}
+                                body={<ChangeDispenser dispenserData={choosedDispenser}
+                                                        stationsGroups={stationsGroups}
+                                                        isDispenserChanged={isDispenserChanged}
+                                                        setIsDispenserChanged={setIsDispenserChanged}
+                                                        onCloseHandler={() => setIsOpenChangeModal(false)} />}
+                                closeImageUrl="../img/x.svg" />
+            }
+            {showLoading &&
+                <Loader />
+            }
         </div>
     );
 };
