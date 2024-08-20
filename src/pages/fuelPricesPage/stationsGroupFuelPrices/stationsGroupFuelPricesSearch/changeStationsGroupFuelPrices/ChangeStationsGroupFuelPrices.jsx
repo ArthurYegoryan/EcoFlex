@@ -10,7 +10,7 @@ import { colors } from "../../../../../assets/styles/colors";
 import { paths } from "../../../../../constants/paths/paths";
 import { urls } from "../../../../../constants/urls/urls";
 import { editToken } from "../../../../../redux/slices/authSlice";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -30,9 +30,17 @@ const ChangeStationsGroupFuelPrices = ({
     const [ isLoading, setIsLoading ] = useState(false);
     const [ isOpenWarningModalBody, setIsOpenWarningModalBody ] = useState(false);
     const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    const [ goToBottom, setGoToBottom ] = useState(false);
+    const bottomOfModalRef = useRef(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { t } = useTranslation();
+
+    useEffect(() => {
+        if (goToBottom) {
+            bottomOfModalRef.current.scrollIntoView();
+        }
+    }, [goToBottom]);
 
     const onSaveHandler = async () => {
         groupFuelPricesBody.fuelTypeIdToPrice = fuelTypesIdsPrices;
@@ -43,6 +51,7 @@ const ChangeStationsGroupFuelPrices = ({
 
         if (response.status === 200) {
             setIsStationsGroupFuelPricesChanged(!isStationsGroupFuelPricesChanged);
+            setGoToBottom(true);
             setShowSuccessAnimation(true);
             setTimeout(() => {
                 onCloseHandler();
@@ -85,6 +94,7 @@ const ChangeStationsGroupFuelPrices = ({
                         color={colors.successCancelColor}
                         onClickHandler={onCloseHandler} />
             </div>
+            <div ref={bottomOfModalRef}></div>
             {isOpenWarningModalBody &&
                 <ModalComponent onCloseHandler={() => setIsOpenWarningModalBody(false)}
                                 isOpen={isOpenWarningModalBody}
