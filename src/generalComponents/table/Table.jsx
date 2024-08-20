@@ -583,6 +583,148 @@ const TableComponent = ({
         },
     ]
 
+    const dispensersColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "7px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byYandexDispenserId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.dispenserId")}
+                </span>
+            ),
+            dataIndex: 'yandexDispenserId',
+            key: 'yandexDispenserId',
+            width: "18px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.bySerialNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.serialNumber")}
+                </span>
+            ),
+            dataIndex: 'serialNumber',
+            key: 'serialNumber',
+            width: "18px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.stationName")}
+                </span>
+            ),
+            dataIndex: 'stationName',
+            key: 'stationName',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationGroupName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.stationGroupName")}
+                </span>
+            ),
+            dataIndex: 'stationGroupName',
+            key: 'stationGroupName',
+            width: "23px",
+        },
+        {
+            title: t("dispensers.address"),
+            dataIndex: 'address',
+            key: 'address',
+            width: "30px",
+        },
+        {
+            title: t("dispensers.fuelTypes"),
+            dataIndex: 'fuelTypes',
+            key: 'fuelTypes',
+            width: "22px",
+            render: (values) => {
+                return (
+                    <>
+                        {values.map((value, index) => (
+                            <React.Fragment key={index}>
+                                <Typography.Text>
+                                    {value}
+                                </Typography.Text>
+                                <br/>
+                            </React.Fragment>
+                        ))}
+                    </>
+                );
+            }
+        },
+        {
+            title: t("stationsGroup.action"),
+            key: 'operation',
+            width: "13px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                </Space>
+            )
+        },
+    ];
+
     let columns = [];
 
     if (whichTable === "fuelTypes") columns = fuelTypesColumns;
@@ -590,6 +732,7 @@ const TableComponent = ({
     else if (whichTable === "stations") columns = stationsColumns;
     else if (whichTable === "stationsGroupFuelPrices") columns = stationsGroupFuelPricesColumns;
     else if (whichTable === "fuelTypesWithPrices") columns = fuelTypesWithPricesColumns;
+    else if (whichTable === "dispensers") columns = dispensersColumns;
 
     return (
         <Table

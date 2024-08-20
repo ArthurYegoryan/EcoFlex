@@ -65,6 +65,22 @@
         "addAllDiscountsOfStationsGroup": "Добавьте скидки на все топливо в сети",
         "changeStationFuelPrices": "Изменить цены на топливо на заправочной станции"
     },
+    "dispensers": {
+        "dispenserId": "ID дозатора",
+        "serialNumber": "Серийный номер",
+        "stationName":"Название заправочной станции",
+        "stationGroupName": "Название сети заправочной станции",
+        "address": "Адрес",
+        "fuelTypes": "Виды топлива",
+        "action": "Операция",
+        "addChangeDispenser": {
+            "addDispenser": "Добавить новый дозатор",
+            "chooseStationGroup": "Выберите сеть заправочной станции",
+            "chooseStation": "Выберите заправочную станцию",
+            "chooseFuelTypes": "Выберите типы топлива",
+            "changeDispenser": "Изменить данные дозатора"
+        }
+    },
     "operations": {
         "save": "Сохранить",
         "cancel": "Отменить",

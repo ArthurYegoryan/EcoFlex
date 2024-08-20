@@ -65,6 +65,22 @@
         "addAllDiscountsOfStationsGroup": "Add discounts on all fuel in the network",
         "changeStationFuelPrices": "Change station fuel prices"
     },
+    "dispensers": {
+        "dispenserId": "Dispenser ID",
+        "serialNumber": "Serial number",
+        "stationName":"Station name",
+        "stationGroupName": "Station group name",
+        "address": "Address",
+        "fuelTypes": "Fuel types",
+        "action": "Action",
+        "addChangeDispenser": {
+            "addDispenser": "Add new dispenser",
+            "chooseStationGroup": "Choose station group",
+            "chooseStation": "Choose station",
+            "chooseFuelTypes": "Choose fuel types",
+            "changeDispenser": "Change dispenser data"
+        }
+    },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",

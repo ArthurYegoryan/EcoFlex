@@ -65,6 +65,22 @@
         "addAllDiscountsOfStationsGroup": "Ավելացնել ցանցի բոլոր վառելիքների զեղչերը",
         "changeStationFuelPrices": "Փոփոխել լցակայանի վառելիքի գները"
     },
+    "dispensers": {
+        "dispenserId": "Դիսպենսերի ID",
+        "serialNumber": "Սերիալ համար",
+        "stationName":"Լցակայանի անուն",
+        "stationGroupName": "Լցակայանի ցանցի անուն",
+        "address": "Հասցե",
+        "fuelTypes": "Վառելիքի տեսակներ",
+        "action": "Գործողություն",
+        "addChangeDispenser": {
+            "addDispenser": "Ավելացնել նոր դիսպենսեր",
+            "chooseStationGroup": "Ընտրել լցակայանի ցանցը",
+            "chooseStation": "Ընտրել լցակայանը",
+            "chooseFuelTypes": "Ընտրել վառելիքի տեսակները",
+            "changeDispenser": "Փոփոխել դիսպենսերի տվյալները"
+        }
+    },
     "operations": {
         "save": "Պահպանել",
         "cancel": "Չեղարկել",
