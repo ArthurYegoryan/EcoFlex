@@ -15,7 +15,6 @@ import { useTranslation } from "react-i18next";
 const SearchSection = ({
     stationGroupId,
     allFuelTypes,
-    isStationsGroupFuelPricesChanged,
     setIsStationsGroupFuelPricesChanged,
     setSearchText,
     isSearchClicked,
@@ -83,7 +82,6 @@ const SearchSection = ({
                                 body={<ChangeStationsGroupFuelPrices 
                                             stationGroupId={stationGroupId}
                                             allFuelTypes={allFuelTypes}
-                                            isStationsGroupFuelPricesChanged={isStationsGroupFuelPricesChanged}
                                             setIsStationsGroupFuelPricesChanged={setIsStationsGroupFuelPricesChanged}
                                             onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
                                 bodyMaxHeight={pageSize}
@@ -96,7 +94,6 @@ const SearchSection = ({
                                 body={<ChangeStationsGroupFuelPrices 
                                             stationGroupId={stationGroupId}
                                             allFuelTypes={allFuelTypes}
-                                            isStationsGroupFuelPricesChanged={isStationsGroupFuelPricesChanged}
                                             setIsStationsGroupFuelPricesChanged={setIsStationsGroupFuelPricesChanged}
                                             onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
                                 closeImageUrl="../img/x.svg" />

@@ -18,7 +18,6 @@ import { useTranslation } from "react-i18next";
 const ChangeStationsGroupFuelPrices = ({
     stationGroupId,
     allFuelTypes,
-    isStationsGroupFuelPricesChanged,
     setIsStationsGroupFuelPricesChanged,
     onCloseHandler,
 }) => {
@@ -50,7 +49,7 @@ const ChangeStationsGroupFuelPrices = ({
         setIsLoading(false);
 
         if (response.status === 200) {
-            setIsStationsGroupFuelPricesChanged(!isStationsGroupFuelPricesChanged);
+            setIsStationsGroupFuelPricesChanged(Math.random());
             setGoToBottom(true);
             setShowSuccessAnimation(true);
             setTimeout(() => {
