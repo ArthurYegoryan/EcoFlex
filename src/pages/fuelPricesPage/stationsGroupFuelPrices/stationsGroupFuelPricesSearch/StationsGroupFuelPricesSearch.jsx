@@ -1,5 +1,6 @@
 import "./StationsGroupFuelPricesSearch.css";
 import ChangeStationsGroupFuelPrices from "./changeStationsGroupFuelPrices/ChangeStationsGroupFuelPrices";
+import AddStationsGroupFuelDiscounts from "./addStationsGroupFuelDiscounts/AddStationsGroupFuelDiscounts";
 import TextInput from "../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import ButtonComponent from "../../../../generalComponents/buttons/Button";
 import ModalComponent from "../../../../generalComponents/modalComponent/ModalComponent";
@@ -16,6 +17,7 @@ const SearchSection = ({
     stationGroupId,
     allFuelTypes,
     setIsStationsGroupFuelPricesChanged,
+    setIsStationsGroupFuelDiscountsChanged,
     setSearchText,
     isSearchClicked,
     setIsSearchClicked
@@ -91,11 +93,11 @@ const SearchSection = ({
                 <ModalComponent onCloseHandler={() => setIsOpenedAddStationsGroupDiscountsModal(false)}
                                 isOpen={isOpenedAddStationsGroupDiscountsModal}
                                 title={t("fuelPrices.addAllDiscountsOfStationsGroup")}
-                                body={<ChangeStationsGroupFuelPrices 
+                                body={<AddStationsGroupFuelDiscounts 
                                             stationGroupId={stationGroupId}
                                             allFuelTypes={allFuelTypes}
-                                            setIsStationsGroupFuelPricesChanged={setIsStationsGroupFuelPricesChanged}
-                                            onCloseHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(false)} />}
+                                            setIsStationsGroupFuelDiscountsChanged={setIsStationsGroupFuelDiscountsChanged}
+                                            onCloseHandler={() => setIsOpenedAddStationsGroupDiscountsModal(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }
         </div>

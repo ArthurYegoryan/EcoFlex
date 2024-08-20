@@ -37,6 +37,7 @@ const StationsGroupFuelPrices = () => {
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ isSearchClicked, setIsSearchClicked ] = useState(false);
     const [ isGroupFuelPricesChanged, setIsGroupFuelPricesChanged ] = useState(Math.random());
+    const [ isGroupFuelDiscountsChanged, setIsGroupFuelDiscountsChanged ] = useState(Math.random());
     const [ isStationFuelPricesChanged, setIsStationFuelPricesChanged ] = useState(false);
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
     const [ showLoading, setShowLoading ] = useState();
@@ -127,17 +128,39 @@ const StationsGroupFuelPrices = () => {
             }
         };
         getStations();
-    }, [queryFields, currentPage, isGroupFuelPricesChanged, isStationFuelPricesChanged]);
+    }, [
+        queryFields, 
+        currentPage, 
+        isGroupFuelPricesChanged, 
+        isGroupFuelDiscountsChanged, 
+        isStationFuelPricesChanged
+    ]);
 
     useEffect(() => {
-        const getFuelTypes = async () => {
+        const getGroupAllStations = async () => {
             setShowLoading(true);
-            const response = await getData(urls.FUEL_TYPES_URL + "?PageSize=1000");
+            const response = await getData(urls.STATIONS_URL + `?PageSize=1000&StationGroupId=${stationGroupId}`);
             setShowLoading(false);
 
             if (response.status === 200) {
                 const { list } = response.data.data;
-                setAllFuelTypes(list);
+
+                const groupFuelTypes = [];
+                list.map((station) => {
+                    station.fuelTypes.map((fuelType) => {
+                        let isInclude = false;
+
+                        for (let i = 0; i < groupFuelTypes.length; i++) {
+                            if (fuelType.id === groupFuelTypes[i].id) {
+                                isInclude = true;
+                            }
+                        }
+
+                        if (!isInclude) groupFuelTypes.push(fuelType);
+                    });
+                });
+
+                setAllFuelTypes(groupFuelTypes);
             } else if (response.status === 401) {
                 dispatch(editToken(""));
                 localStorage.clear();
@@ -145,8 +168,8 @@ const StationsGroupFuelPrices = () => {
                 navigate(paths.LOGIN)
             }
         };
-        getFuelTypes();
-    }, []);
+        getGroupAllStations();
+    }, [isGroupFuelPricesChanged, isGroupFuelDiscountsChanged]);
 
     const makeDatasForTable = (datas) => {
         const dataForTable = [];
@@ -167,6 +190,7 @@ const StationsGroupFuelPrices = () => {
             <SearchSection stationGroupId={stationGroupId}
                            allFuelTypes={allFuelTypes}
                            setIsStationsGroupFuelPricesChanged={setIsGroupFuelPricesChanged}
+                           setIsStationsGroupFuelDiscountsChanged={setIsGroupFuelDiscountsChanged}
                            setSearchText={setSearchText}
                            isSearchClicked={isSearchClicked}
                            setIsSearchClicked={setIsSearchClicked} />
