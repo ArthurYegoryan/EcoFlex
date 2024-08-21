@@ -5,6 +5,8 @@ import MultipleSelect from "../../../generalComponents/inputFields/multiSelectCo
 import Button from "../../../generalComponents/buttons/Button";
 import Loader from "../../../generalComponents/loaders/Loader";
 import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
+import { makeFuelTypesList } from "../../../utils/helpers/makeFuelTypesList";
+import { makeFuelTypesListWithIds } from "../../../utils/helpers/makeFuelTypesListWithIds";
 import { changeData } from "../../../api/changeData";
 import { getData } from "../../../api/getData";
 import { urls } from "../../../constants/urls/urls";
@@ -21,6 +23,8 @@ import { useTranslation } from "react-i18next";
 const ChangeDispenser = ({ 
     dispenserData,
     stationsGroups,
+    stations,
+    allFuelTypes,
     isDispenserChanged,
     setIsDispenserChanged,
     onCloseHandler 
@@ -32,7 +36,9 @@ const ChangeDispenser = ({
         serialNumber: dispenserData.serialNumber,
         yandexDispenserId: dispenserData.yandexDispenserId,
         stationGroupName: dispenserData.stationGroupName,
-        stationName: dispenserData.stationName
+        stationName: dispenserData.stationName,
+        fuelTypes: dispenserData.fuelTypes,
+        
     });
     const [ isLoading, setIsLoading ] = useState(false);
     const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
@@ -71,12 +77,27 @@ const ChangeDispenser = ({
     }, [makeCallForGroupStations]);
 
    const onSaveHandler = async () => {
-        const autoFilledChangedStationsGroupData = autoFillWithDefaultData(dispenserData, changedDispenserData);
+        const autoFilledChangedDispenserData = autoFillWithDefaultData(dispenserData, changedDispenserData);
 
-        if (isChangedAnyData(dispenserData, autoFilledChangedStationsGroupData)) {
+        const bodyForChangeDispenser = {
+            id: autoFilledChangedDispenserData.id,
+            serialNumber: autoFilledChangedDispenserData.serialNumber,
+            yandexDispenserId: autoFilledChangedDispenserData.yandexDispenserId,
+            stationId: 0,
+            fuelTypes: makeFuelTypesListWithIds(autoFilledChangedDispenserData.fuelTypes, allFuelTypes)
+        };
+
+        for (let i = 0; i < stations.length; i++) {
+            if (stations[i].name === autoFilledChangedDispenserData.stationName) {
+                bodyForChangeDispenser.stationId = stations[i].id;
+                break;
+            }
+        }
+
+        if (isChangedAnyData(dispenserData, autoFilledChangedDispenserData)) {
             try {
                 setIsLoading(true);
-                const response = await changeData(urls.STATION_GROUPS_URL, autoFilledChangedStationsGroupData);
+                const response = await changeData(urls.DISPENSERS_URL, bodyForChangeDispenser);
                 setIsLoading(false);
     
                 if (response.status === 401) {
@@ -138,6 +159,15 @@ const ChangeDispenser = ({
                                     ...changedDispenserData,
                                     stationName: evt.target.value
                                 })}} />
+            <MultipleSelect label={t("dispensers.addChangeDispenser.chooseFuelTypes")}
+                            marginTop={"25px"}
+                            width="473px"
+                            defaultValue={dispenserData.fuelTypes}
+                            dataForMultiSelecting={makeFuelTypesList(dispenserData.station.fuelTypes, true)}
+                            onChangeHandler={(value) => {setChangedDispenserData({
+                                ...changedDispenserData,
+                                fuelTypes: value
+                            })}} />
             {showSuccessAnimation &&
                 <SuccessAnimation />
             }

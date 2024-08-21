@@ -20,6 +20,8 @@ const DispensersPage = () => {
     const pageSize = windowHeight < 950 ? 7 : 10;
 
     const [ stationsGroups, setStationsGroups ] = useState([]);
+    const [ stations, setStations ] = useState([]);
+    const [ allFuelTypes, setAllFuelTypes ] = useState([]);
     const [ dispensers, setDispensers ] = useState([]);
     const [ choosedDispenser, setChoosedDispenser ] = useState({});
     const [ showLoading, setShowLoading ] = useState(false);
@@ -119,24 +121,28 @@ const DispensersPage = () => {
     }, [queryFields, currentPage, isDispenserAdded, isDispenserChanged]);
 
     useEffect(() => {
-        const callForStationsGroups = async () => {
+        const callForStationsGroupsFuelTypes = async () => {
             setShowLoading(true);
-            const response = await getData(urls.STATION_GROUPS_URL + "?PageSize=1000");
+            const responseStationsGroups = await getData(urls.STATION_GROUPS_URL + "?PageSize=1000");
+            const responseStations = await getData(urls.STATIONS_URL + "?PageSize=1000");
+            const responseFuelTypes = await getData(urls.FUEL_TYPES_URL + "?PageSize=1000");
             setShowLoading(false);
 
-            if (response.status === 200) {
-                console.log("Stations groups list: ", response);
-                const { list } = response.data.data;
-
-                setStationsGroups(list);
-            } else if (response.status === 401) {
+            if (responseStationsGroups.status === 200 &&
+                responseStations.status === 200 &&
+                responseFuelTypes.status === 200
+            ) {
+                setStationsGroups(responseStationsGroups.data.data.list);
+                setStations(responseStations.data.data.list);
+                setAllFuelTypes(responseFuelTypes.data.data.list);
+            } else if (responseStationsGroups.status === 401) {
                 dispatch(editToken(""));
                 localStorage.clear();
 
                 navigate(paths.LOGIN)
             }
         };
-        callForStationsGroups();
+        callForStationsGroupsFuelTypes();
     }, []);
 
     return (
@@ -163,6 +169,8 @@ const DispensersPage = () => {
                                 title={t("dispensers.addChangeDispenser.changeDispenser")}
                                 body={<ChangeDispenser dispenserData={choosedDispenser}
                                                         stationsGroups={stationsGroups}
+                                                        stations={stations}
+                                                        allFuelTypes={allFuelTypes}
                                                         isDispenserChanged={isDispenserChanged}
                                                         setIsDispenserChanged={setIsDispenserChanged}
                                                         onCloseHandler={() => setIsOpenChangeModal(false)} />}

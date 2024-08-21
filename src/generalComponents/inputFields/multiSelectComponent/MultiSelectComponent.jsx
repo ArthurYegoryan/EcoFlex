@@ -42,7 +42,7 @@ export default function MultipleSelect({
     onChangeHandler,
 }) {
   const theme = useTheme();
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState(defaultValue);
 
   const handleChange = (event) => {
     const {
@@ -53,6 +53,10 @@ export default function MultipleSelect({
     );
     onChangeHandler(value);
   };
+
+  // const handleDelete = (chipToDelete) => () => {
+  //   setValue((chips) => chips.filter((chip) => chip !== chipToDelete));
+  // };
 
   return (
     <div>
@@ -73,7 +77,10 @@ export default function MultipleSelect({
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip key={value} 
+                      label={value} 
+                      // onDelete={handleDelete(value)} 
+                      />
               ))}
             </Box>
           )}
