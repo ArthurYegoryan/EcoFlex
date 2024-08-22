@@ -74,7 +74,7 @@
         "fuelTypes": "Виды топлива",
         "action": "Операция",
         "addChangeDispenser": {
-            "addDispenser": "Добавить новый дозатор",
+            "addNewDispenser": "Добавить новый дозатор",
             "chooseStationGroup": "Выберите сеть заправочной станции",
             "chooseStation": "Выберите заправочную станцию",
             "chooseFuelTypes": "Выберите типы топлива",

@@ -54,7 +54,7 @@ export default function MultipleSelect({
     onChangeHandler(value);
   };
 
-  // const handleDelete = (chipToDelete) => () => {
+  // const handleDelete = (chipToDelete) => {
   //   setValue((chips) => chips.filter((chip) => chip !== chipToDelete));
   // };
 
@@ -79,7 +79,7 @@ export default function MultipleSelect({
               {selected.map((value) => (
                 <Chip key={value} 
                       label={value} 
-                      // onDelete={handleDelete(value)} 
+                      // onDelete={handleDelete} 
                       />
               ))}
             </Box>

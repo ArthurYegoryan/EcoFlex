@@ -74,7 +74,7 @@
         "fuelTypes": "Fuel types",
         "action": "Action",
         "addChangeDispenser": {
-            "addDispenser": "Add new dispenser",
+            "addNewDispenser": "Add new dispenser",
             "chooseStationGroup": "Choose station group",
             "chooseStation": "Choose station",
             "chooseFuelTypes": "Choose fuel types",

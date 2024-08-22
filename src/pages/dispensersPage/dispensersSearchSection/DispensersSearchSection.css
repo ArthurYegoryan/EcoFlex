@@ -1,0 +1,9 @@
+.dispensers-search-area {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.dispensers-connection-error-text {
+    color: red;
+    margin-top: 0;
+}

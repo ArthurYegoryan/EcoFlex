@@ -74,7 +74,7 @@
         "fuelTypes": "Վառելիքի տեսակներ",
         "action": "Գործողություն",
         "addChangeDispenser": {
-            "addDispenser": "Ավելացնել նոր դիսպենսեր",
+            "addNewDispenser": "Ավելացնել նոր դիսպենսեր",
             "chooseStationGroup": "Ընտրել լցակայանի ցանցը",
             "chooseStation": "Ընտրել լցակայանը",
             "chooseFuelTypes": "Ընտրել վառելիքի տեսակները",

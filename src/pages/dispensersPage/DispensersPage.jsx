@@ -1,4 +1,5 @@
 import "./DispensersPage.css";
+import SearchSection from "./dispensersSearchSection/DispensersSearchSection";
 import ChangeDispenser from "./changeDispenser/ChangeDispenser";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
@@ -147,11 +148,14 @@ const DispensersPage = () => {
 
     return (
         <div className="dispensers-page">
-            {/* <SearchSection isStationsGroupAdded={isStationsGroupAdded}
-                           setIsStationsGroupAdded={setIsStationsGroupAdded}
+            <SearchSection stationsGroups={stationsGroups}
+                           stations={stations}
+                           allFuelTypes={allFuelTypes}
+                           isDispenserAdded={isDispenserAdded}
+                           setIsDispenserAdded={setIsDispenserAdded}
                            setSearchText={setSearchText}
                            isSearchClicked={isSearchClicked}
-                           setIsSearchClicked={setIsSearchClicked} /> */}
+                           setIsSearchClicked={setIsSearchClicked} />
             <Table whichTable={"dispensers"}
                    datas={dispensers}
                    setCurrentData={setChoosedDispenser}
