@@ -6,6 +6,7 @@ import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
 import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import { makeFuelTypesList } from "../../../../utils/helpers/makeFuelTypesList";
+import { makeFuelTypesListWithIds } from "../../../../utils/helpers/makeFuelTypesListWithIds";
 import { onlyNumbersValidation } from "../../../../utils/fieldsValidations/onlyNumbersValidation";
 import { addData } from "../../../../api/addData";
 import { getData } from "../../../../api/getData";
@@ -47,6 +48,7 @@ const AddStation = ({
     const [ emptyDispenserIdError, setEmptyDispenserIdError ] = useState(false);
     const [ invalidDispenserIdError, setInvalidDispenserIdError ] = useState(false);
     const [ emptySerialNumberError, setEmptySerialNumberError ] = useState(false);
+    const [ emptyStationGroupNameError, setEmptyStationGroupNameError ] = useState(false);
     const [ emptyStationNameError, setEmptyStationNameError ] = useState(false);
     const [ emptyFuelTypesError, setEmptyFuelTypesError ] = useState(false);
 
@@ -104,11 +106,12 @@ const AddStation = ({
         setEmptyDispenserIdError(false);
         setInvalidDispenserIdError(false);
         setEmptySerialNumberError(false);
+        setEmptyStationGroupNameError(false);
         setEmptyStationNameError(false);
         setEmptyFuelTypesError(false);
     };
 
-    const checkFieldsValidations = ({ yandexDispenserId, serialNumber, stationName, fuelTypes }) => {
+    const checkFieldsValidations = ({ yandexDispenserId, serialNumber, stationGroupName, stationName, fuelTypes }) => {
         let existsError = false;
 
         if (!yandexDispenserId.length) {
@@ -124,11 +127,15 @@ const AddStation = ({
             existsError = true;
             setEmptySerialNumberError(true);
         }
-        if (!stationName.lenght) {
+        if (!stationGroupName.length) {
+            existsError = true;
+            setEmptyStationGroupNameError(true);
+        }
+        if (!stationName.length) {
             existsError = true;
             setEmptyStationNameError(true);
         }
-        if (!fuelTypes.lenght) {
+        if (!fuelTypes.length) {
             existsError = true;
             setEmptyFuelTypesError(true);
         }
@@ -139,12 +146,25 @@ const AddStation = ({
     const onSaveHandler = async () => {
         resetPrevValidations();
 
-        console.log("New dispenser data: ", JSON.stringify(newDispenserData, null, 3));
-
         if (!checkFieldsValidations(newDispenserData)) {
+            const bodyForAddDispenser = {
+                id: newDispenserData.id,
+                serialNumber: newDispenserData.serialNumber,
+                yandexDispenserId: newDispenserData.yandexDispenserId,
+                stationId: 0,
+                fuelTypes: makeFuelTypesListWithIds(newDispenserData.fuelTypes, allFuelTypes)
+            };
+    
+            for (let i = 0; i < stations.length; i++) {
+                if (stations[i].name === newDispenserData.stationName) {
+                    bodyForAddDispenser.stationId = stations[i].id;
+                    break;
+                }
+            }
+
             try {
                 setIsLoading(true);
-                const response = await addData(urls.DISPENSERS_URL, newDispenserData);
+                const response = await addData(urls.DISPENSERS_URL, bodyForAddDispenser);
                 setIsLoading(false);
     
                 if (response.statusCode === 401) {
@@ -193,6 +213,8 @@ const AddStation = ({
                                 })}} />
             <SelectComponent label={t("dispensers.addChangeDispenser.chooseStationGroup")}
                                 chooseData={stationsGroupsNamesList}
+                                existsError={emptyStationGroupNameError}
+                                errorText={t("errors.emptyFieldError")}
                                 marginTop={"25px"}
                                 width="473px"
                                 onChooseHandler={(evt) => {
@@ -212,10 +234,11 @@ const AddStation = ({
                                 onChooseHandler={(evt) => {
                                     setNewDispenserData({
                                         ...newDispenserData,
-                                        stationName: evt.target.value
+                                        stationName: evt.target.value,
+                                        fuelTypes: []
                                     });
                                     setGetStationFuelTypes(!getStationFuelTypes);
-                                    setResetMultiSelectValues(true);
+                                    setResetMultiSelectValues(!resetMultiSelectValues);
                                     setShowFuelTypes(true);
                                 }} />
             {showFuelTypes && 

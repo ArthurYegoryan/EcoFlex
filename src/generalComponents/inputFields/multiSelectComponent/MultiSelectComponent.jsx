@@ -34,6 +34,7 @@ export default function MultipleSelect({
     label,
     dataForMultiSelecting = [],
     defaultValue = [],
+    resetValue = false,
     size = "small",
     width = 300,
     marginTop,
@@ -43,6 +44,10 @@ export default function MultipleSelect({
 }) {
   const theme = useTheme();
   const [value, setValue] = React.useState(defaultValue);
+
+  React.useEffect(() => {
+    setValue([]);
+  }, [resetValue]);
 
   const handleChange = (event) => {
     const {
