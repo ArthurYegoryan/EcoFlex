@@ -54,14 +54,14 @@ const DispensersSearchSection = ({
                                 marginLeft={"15px"}
                                 onClickHandler={onCliCkExportBtn} />
             }
-            {/* {role === "Admin" &&
+            {role === "Admin" &&
                 <ButtonComponent label={t("dispensers.addChangeDispenser.addNewDispenser")}
                                 startIcon={<Add />}
                                 height={"30px"}
                                 marginTop={"5px"}
                                 marginLeft={"15px"}
                                 onClickHandler={() => setIsOpenedAddDispenserModal(true)} />
-            } */}
+            }
             {showConnectionError &&
                 <p className="dispensers-connection-error-text">{t("errors.connectionError")}</p>
             }
