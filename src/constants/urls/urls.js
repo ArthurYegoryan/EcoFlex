@@ -13,4 +13,5 @@ export const urls = {
     FUEL_PRICES_URL: `${URL}Prices`,
     FUEL_DISCOUNTS_URL: `${URL}Discounts`,
     DISPENSERS_URL: `${URL}Dispensers`,
+    USERS_URL: `${URL}Users`,
 };
