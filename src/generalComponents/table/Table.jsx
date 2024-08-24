@@ -764,7 +764,7 @@ const TableComponent = ({
             ),
             dataIndex: 'fullName',
             key: 'fullName',
-            width: "18px",
+            width: "13px",
         },
         {
             title: (
@@ -784,7 +784,7 @@ const TableComponent = ({
             ),
             dataIndex: 'role',
             key: 'role',
-            width: "18px",
+            width: "12px",
         },        
         {
             title: (
@@ -805,20 +805,6 @@ const TableComponent = ({
             dataIndex: 'stationsList',
             key: 'stationsList',
             width: "20px",
-            // render: (values) => {
-            //     return (
-            //         <>
-            //             {values.map((value, index) => (
-            //                 <React.Fragment key={index}>
-            //                     <Typography.Text>
-            //                         {value}
-            //                     </Typography.Text>
-            //                     <br/>
-            //                 </React.Fragment>
-            //             ))}
-            //         </>
-            //     );
-            // }
         },
         {
             title: (
@@ -844,12 +830,12 @@ const TableComponent = ({
             ),
             dataIndex: 'phoneNumber',
             key: 'phoneNumber',
-            width: "30px",
+            width: "10px",
         },
         {
             title: t("users.action"),
             key: 'operation',
-            width: "13px",
+            width: "10px",
             render: (record) => (
                 <Space size="middle">
                     <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
