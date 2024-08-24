@@ -72,7 +72,7 @@
         "stationGroupName": "Название сети заправочной станции",
         "address": "Адрес",
         "fuelTypes": "Виды топлива",
-        "action": "Операция",
+        "action": "Действие",
         "addChangeDispenser": {
             "addNewDispenser": "Добавить новый дозатор",
             "chooseStationGroup": "Выберите сеть заправочной станции",
@@ -80,6 +80,12 @@
             "chooseFuelTypes": "Выберите типы топлива",
             "changeDispenser": "Изменить данные дозатора"
         }
+    },
+    "users": {
+        "fullName": "Имя фамилия",
+        "role": "Роль",
+        "stations": "Станции",
+        "action": "Действие"
     },
     "operations": {
         "save": "Сохранить",

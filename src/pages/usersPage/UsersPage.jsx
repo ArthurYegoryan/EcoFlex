@@ -31,7 +31,8 @@ const UsersPage = () => {
     });
     const [ isUserAdded, setIsUserAdded ] = useState(false);
     const [ isUserChanged, setIsUserChanged ] = useState(false);
-    const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false)
+    const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
+    const [ isOpenDeleteModal, setIsOpenDeleteModal ] = useState(false);
     
     const { isMenuOpen } = useSelector((state) => state.menu);
     const dispatch = useDispatch();
@@ -50,21 +51,28 @@ const UsersPage = () => {
                 "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
             });
         },
-        byStationsGroupName: () => {
+        byFullName: () => {
             setQueryFields({
                 ...queryFields,
-                "OrderBy": "Name",
+                "OrderBy": "FullName",
                 "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
             });
         },
-        byStationsGroupAddress: () => {
+        byRole: () => {
             setQueryFields({
                 ...queryFields,
-                "OrderBy": "Address",
+                "OrderBy": "Role",
                 "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
             });
         },
-        byStationsGroupPhoneNumber: () => {
+        byStationName: () => {
+            setQueryFields({
+                ...queryFields,
+                "OrderBy": "StationGroupName",
+                "OrderDir": queryFields.OrderDir === "Asc" ? "Desc" : "Asc"
+            });
+        },
+        byPhoneNumber: () => {
             setQueryFields({
                 ...queryFields,
                 "OrderBy": "PhoneNumber",
@@ -95,7 +103,15 @@ const UsersPage = () => {
             if (response.status === 200) {
                 const { list, count, rowsPerPage } = response.data.data;
 
-                console.log("Users: ", list);
+                list.map((user) => {
+                    user.fullName = user.firstName + " " + user.lastName;
+
+                    let stationsList = "";
+                    user.stations.map((station) => {
+                        stationsList += station.name + ", ";
+                    });
+                    user.stationsList = stationsList.length ? stationsList.slice(0, stationsList.length - 2) : stationsList;
+                });
 
                 setUsers(addNumeration(list, currentPage, pageSize, queryFields.OrderDir === "Desc" && true, count));
                 setPageCount(Math.ceil(count/rowsPerPage));
@@ -115,13 +131,12 @@ const UsersPage = () => {
                            setIsStationsGroupAdded={setIsStationsGroupAdded}
                            setSearchText={setSearchText}
                            isSearchClicked={isSearchClicked}
-                           setIsSearchClicked={setIsSearchClicked} />
-            <Table whichTable={"stationsGroup"}
-                    datas={stationsGroups}
-                    setCurrentData={setChoosedStationsGroup}
-                    onClickHref={onClickHrefHandler}
+                           setIsSearchClicked={setIsSearchClicked} /> */}
+            <Table whichTable={"users"}
+                    datas={users}
+                    setCurrentData={setChoosedUser}
                     onClickEditButton={() => setIsOpenChangeModal(true)}
-                    stationsGroupFilterHandlers={filterHandlers} /> */}
+                    filterHandlers={filterHandlers} />
             <div className="users-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}

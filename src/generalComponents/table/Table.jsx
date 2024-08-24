@@ -725,6 +725,146 @@ const TableComponent = ({
         },
     ];
 
+    const usersColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "7px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byFullName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("users.fullName")}
+                </span>
+            ),
+            dataIndex: 'fullName',
+            key: 'fullName',
+            width: "18px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byRole();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("users.role")}
+                </span>
+            ),
+            dataIndex: 'role',
+            key: 'role',
+            width: "18px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("users.stations")}
+                </span>
+            ),
+            dataIndex: 'stationsList',
+            key: 'stationsList',
+            width: "20px",
+            // render: (values) => {
+            //     return (
+            //         <>
+            //             {values.map((value, index) => (
+            //                 <React.Fragment key={index}>
+            //                     <Typography.Text>
+            //                         {value}
+            //                     </Typography.Text>
+            //                     <br/>
+            //                 </React.Fragment>
+            //             ))}
+            //         </>
+            //     );
+            // }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;
+                    <img src={process.env.PUBLIC_URL + 'img/phone.svg'} 
+                        alt="Phone" 
+                        style={{
+                            width: "15px",
+                        }}
+                    />
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "30px",
+        },
+        {
+            title: t("users.action"),
+            key: 'operation',
+            width: "13px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                    <BsFillTrashFill style={{ color: colors.cancelBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickDeleteButton(record);
+                    }} />
+                </Space>
+            )
+        },
+    ];
+
     let columns = [];
 
     if (whichTable === "fuelTypes") columns = fuelTypesColumns;
@@ -733,6 +873,7 @@ const TableComponent = ({
     else if (whichTable === "stationsGroupFuelPrices") columns = stationsGroupFuelPricesColumns;
     else if (whichTable === "fuelTypesWithPrices") columns = fuelTypesWithPricesColumns;
     else if (whichTable === "dispensers") columns = dispensersColumns;
+    else if (whichTable === "users") columns = usersColumns;
 
     return (
         <Table

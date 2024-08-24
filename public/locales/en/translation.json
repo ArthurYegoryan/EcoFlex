@@ -81,6 +81,12 @@
             "changeDispenser": "Change dispenser data"
         }
     },
+    "users": {
+        "fullName": "Name surname",
+        "role": "Role",
+        "stations": "Stations",
+        "action": "Action"
+    },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",
