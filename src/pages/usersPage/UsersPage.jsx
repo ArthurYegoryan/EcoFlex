@@ -1,6 +1,8 @@
 import "./UsersPage.css";
+import ChangeUser from "./changeUser/ChangeUser";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
+import ModalComponent from "../../generalComponents/modalComponent/ModalComponent";
 import Loader from "../../generalComponents/loaders/Loader";
 import { addNumeration } from "../../utils/helpers/addNumeration";
 import { getData } from "../../api/getData";
@@ -15,7 +17,10 @@ import { useTranslation } from "react-i18next";
 const UsersPage = () => {
     const windowHeight = window.screen.height;
     const pageSize = windowHeight < 950 ? 7 : 10;
+    const modalSize = windowHeight < 950 ? "500px" : "700px";
 
+    const [ stationsGroups, setStationsGroups ] = useState([]);
+    const [ stations, setStations ] = useState([]);
     const [ users, setUsers ] = useState([]);
     const [ choosedUser, setChoosedUser ] = useState({});
     const [ showLoading, setShowLoading ] = useState(false);
@@ -119,11 +124,36 @@ const UsersPage = () => {
                 dispatch(editToken(""));
                 localStorage.clear();
 
-                navigate(paths.LOGIN)
+                navigate(paths.LOGIN);
             }
         }
         getUsers();
     }, [queryFields, currentPage, isUserAdded, isUserChanged]);
+
+    useEffect(() => {
+        const getStationsGroupsAndStations = async () => {
+            setShowLoading(true);
+            const responseStationsGroups = await getData(urls.STATION_GROUPS_URL + "?PageSize=1000");
+            const responseStations = await getData(urls.STATIONS_URL + "?PageSize=10000");
+            setShowLoading(false);
+
+            if (responseStationsGroups.status === 200 &&
+                responseStations.status === 200
+            ) {
+                setStationsGroups(responseStationsGroups.data.data.list);
+                setStations(responseStations.data.data.list);
+            } else if (
+                responseStationsGroups.status === 401 ||
+                responseStations.status === 401
+            ) {
+                dispatch(editToken(""));
+                localStorage.clear();
+
+                navigate(paths.LOGIN);
+            }
+        };
+        getStationsGroupsAndStations();
+    }, []);
 
     return (
         <div style={{ minWidth: "900px" }} className="users-page">
@@ -142,16 +172,19 @@ const UsersPage = () => {
                             setPage={setCurrentPage}
                             leftMargin={paginationLeftMarginClassname} />
             </div>
-            {/* {isOpenChangeModal &&
+            {isOpenChangeModal &&
                 <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
                                 isOpen={isOpenChangeModal}
-                                title={t("stations.addChangeStation.changeStationData")}
-                                body={<ChangeStationsGroup stationsGroupData={choosedStationsGroup}
-                                                           isStationsGroupChanged={isStationsGroupChanged}
-                                                           setIsStationsGroupChanged={setIsStationsGroupChanged}
-                                                           onCloseHandler={() => setIsOpenChangeModal(false)} />}
+                                title={t("users.addChangeUser.changeUserData")}
+                                body={<ChangeUser userData={choosedUser}
+                                                    stationsGroups={stationsGroups}
+                                                    stations={stations}
+                                                    isUserChanged={isUserChanged}
+                                                    setIsUserChanged={setIsUserChanged}
+                                                    onCloseHandler={() => setIsOpenChangeModal(false)} />}
+                                bodyMaxHeight={modalSize}
                                 closeImageUrl="../img/x.svg" />
-            } */}
+            }
             {showLoading &&
                 <Loader />
             }

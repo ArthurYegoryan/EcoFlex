@@ -16,6 +16,7 @@ export default function TextInput({
     label,
     size = "small",
     defaultValue,
+    disabled = false,
     isPassword = false,
     onChangeHandler,
     marginTop,
@@ -50,6 +51,7 @@ export default function TextInput({
                             variant="outlined"
                             size={size}
                             defaultValue={defaultValue}
+                            disabled={disabled}
                             error={existsError}
                             helperText={existsError && errorText} />
                 </Box> :

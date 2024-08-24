@@ -85,7 +85,18 @@
         "fullName": "Name surname",
         "role": "Role",
         "stations": "Stations",
-        "action": "Action"
+        "action": "Action",
+        "addChangeUser": {
+            "addNewUser":"Add new user",
+            "changeUserData":"Change user data",
+            "name": "Name",
+            "surname": "Surname",
+            "phone": "Phone number",
+            "email": "Email",
+            "role": "Role",
+            "chooseStationsGroup": "Choose stations group",
+            "searchStations": "Search station(s)"
+        }
     },
     "operations": {
         "save": "Save",
