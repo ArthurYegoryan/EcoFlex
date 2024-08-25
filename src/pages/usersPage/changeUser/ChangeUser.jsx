@@ -21,7 +21,7 @@ const ChangeUser = ({
         if (station.stationGroup.id === userData.stations[0]?.stationGroup.id) {
             availableStations.push(station.name);
         }
-    });
+    });    
 
     const [ changedUserData, setChangedUserData ] = useState({
         id: userData.id,
@@ -39,11 +39,36 @@ const ChangeUser = ({
 
     const stationsGroupsList = [];
     stationsGroups.map((stationsGroup) => stationsGroupsList.push(stationsGroup.name));
+        
+    const getGroupIdSetStations = (stationGroupName) => {
+        let groupId = 0;
+        stationsGroups.map((group) => {
+            if (group.name === stationGroupName) {
+                groupId = group.id;
+            }
+        });
+        setChangedUserData({
+            ...changedUserData,
+            stationGroupId: groupId,
+            stations: []
+        });
+
+        const availableStations = [];
+        stations.map((station) => {
+            if (station.stationGroup.id === groupId) {
+                availableStations.push(station.name);
+            }
+        });
+
+        setUserAvailableStations(availableStations);
+
+        return availableStations;
+    };
 
     const userStationDetector = (station) => {
         let isIncludes = false;
 
-        userData.stations.map((userStation) => {
+        changedUserData.stations.length && changedUserData.stations.map((userStation) => {
             if (userStation.name === station) {
                 isIncludes = true;
             }
@@ -62,6 +87,10 @@ const ChangeUser = ({
         });
 
         setUserAvailableStations(searchedStations);
+    };
+
+    const checkBoxHandler = (evt) => {
+        console.log(evt.target.value);
     };
 
     return (
@@ -108,7 +137,8 @@ const ChangeUser = ({
                                      defaultValue={userData.stations[0]?.stationGroup.name}
                                      chooseData={stationsGroupsList}
                                      width={"473px"}
-                                     marginTop={"25px"} />
+                                     marginTop={"25px"}
+                                     onChooseHandler={(evt) => getGroupIdSetStations(evt.target.value)} />
                     <TextInput label={t("users.addChangeUser.searchStations")}
                                width="473px"
                                marginTop={"25px"}
@@ -119,7 +149,8 @@ const ChangeUser = ({
                         {
                             userAvailableStations.map((station) => {
                                 return <CheckBox label={station}
-                                                defaultChecked={userStationDetector(station)} />
+                                                defaultChecked={userStationDetector(station)}
+                                                onChangeHandler={(evt) => checkBoxHandler(evt)} />
                             })
                         }
                     </div>                    

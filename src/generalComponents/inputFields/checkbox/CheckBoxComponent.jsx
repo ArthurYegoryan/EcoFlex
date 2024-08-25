@@ -4,10 +4,13 @@ import Checkbox from '@mui/material/Checkbox';
 
 export default function CheckBoxLabels({
     label,
-    defaultChecked,
+    defaultChecked = false,
     onChangeHandler
 }) {
     return (
-        <FormControlLabel control={<Checkbox defaultChecked={defaultChecked} onChange={onChangeHandler} />} label={label} />
+        <FormControlLabel control={
+                              <Checkbox defaultChecked={defaultChecked} 
+                                        onChange={onChangeHandler} />} 
+                          label={label} />
     );
 };
