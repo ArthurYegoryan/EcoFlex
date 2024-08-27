@@ -851,6 +851,277 @@ const TableComponent = ({
         },
     ];
 
+    const transactionsColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "7px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byYandexId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexTransactionId',
+            key: 'yandexTransactionId',
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTransactionType();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.transactionType")}
+                </span>
+            ),
+            dataIndex: 'transactionType',
+            key: 'transactionType',
+            width: "13px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTransactionDate();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.transactionDate")}
+                </span>
+            ),
+            dataIndex: 'transactionDate',
+            key: 'transactionDate',
+            width: "12px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStation();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.station")}
+                </span>
+            ),
+            dataIndex: 'stationName',
+            key: 'stationName',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTin();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.tin")}
+                </span>
+            ),
+            dataIndex: 'tin',
+            key: 'tin',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationGroup();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.stationGroup")}
+                </span>
+            ),
+            dataIndex: 'stationGroupName',
+            key: 'stationGroupName',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byFuelType();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.fuelType")}
+                </span>
+            ),
+            dataIndex: 'fuelTypeName',
+            key: 'fuelTypeName',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byFuelSize();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.fuelVolume")}
+                </span>
+            ),
+            dataIndex: 'fuelSizeCountType',
+            key: 'fuelSizeCountType',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byAmount();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.transactionAmount")}
+                </span>
+            ),
+            dataIndex: 'amountCurrency',
+            key: 'amountCurrency',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTransactionStatus();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.yandexStatus")}
+                </span>
+            ),
+            dataIndex: 'currentTransactionStatus',
+            key: 'currentTransactionStatus',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byEcrStatus();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.yandexStatus")}
+                </span>
+            ),
+            dataIndex: 'ecrStatus',
+            key: 'ecrStatus',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byReceiptId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.receiptId")}
+                </span>
+            ),
+            dataIndex: 'receiptId',
+            key: 'receiptId',
+            width: "10px",
+        },
+    ]
+
     let columns = [];
 
     if (whichTable === "fuelTypes") columns = fuelTypesColumns;
@@ -860,6 +1131,7 @@ const TableComponent = ({
     else if (whichTable === "fuelTypesWithPrices") columns = fuelTypesWithPricesColumns;
     else if (whichTable === "dispensers") columns = dispensersColumns;
     else if (whichTable === "users") columns = usersColumns;
+    else if (whichTable === "transactions") columns = transactionsColumns;
 
     return (
         <Table

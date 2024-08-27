@@ -103,6 +103,20 @@
             "userData":"данные пользователя?"
         }
     },
+    "transactions": {
+        "yandexId":"Яндекс ID",
+        "transactionType": "Тип транзакции",
+        "transactionDate": "Дата транзакции",
+        "station": "Заправочная станция",
+        "tin": "ИНН",
+        "stationGroup": "Сеть заправочных станций",
+        "fuelType": "Тип топлива",
+        "fuelVolume": "Объем топлива",
+        "transactionAmount": "Сумма транзакции",
+        "yandexStatus": "Статус Яндекса",
+        "ecrStatus": "Статус ECR",
+        "receiptId": "Идентификатор квитанции"
+    },
     "operations": {
         "save": "Сохранить",
         "cancel": "Отменить",

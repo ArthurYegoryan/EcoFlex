@@ -15,4 +15,5 @@ export const urls = {
     DISPENSERS_URL: `${URL}Dispensers`,
     USERS_URL: `${URL}Users`,
     ADD_USER_URL: `${URL}Users/registration`,
+    TRANSACTIONS_URL: `${URL}Transactions`,
 };

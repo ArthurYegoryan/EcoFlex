@@ -103,6 +103,20 @@
             "userData":"user data?"
         }
     },
+    "transactions": {
+        "yandexId":"Yandex ID",
+        "transactionType": "Transaction type",
+        "transactionDate": "Transaction date",
+        "station": "Station",
+        "tin": "TIN",
+        "stationGroup": "Station group",
+        "fuelType": "Fuel type",
+        "fuelVolume": "Fuel volume",
+        "transactionAmount": "Transaction amount",
+        "yandexStatus": "Yandex status",
+        "ecrStatus": "ECR status",
+        "receiptId": "Receipt ID"
+    },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",

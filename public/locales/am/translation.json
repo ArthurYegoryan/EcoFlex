@@ -103,6 +103,20 @@
             "userData":"օգտատիրոջ տվյալները"
         }
     },
+    "transactions": {
+        "yandexId":"Յանդեքս ID",
+        "transactionType": "Գործարքի տեսակ",
+        "transactionDate": "Գործարքի ամսաթիվ",
+        "station": "Լցակայան",
+        "tin": "ՀՎՀՀ",
+        "stationGroup": "Լցակայանի ցանց",
+        "fuelType": "Վառելիքի տեսակ",
+        "fuelVolume": "Վառելիքի ծավալ",
+        "transactionAmount": "Գործարքի գումար",
+        "yandexStatus": "Յանդեքս կարգավիճակ",
+        "ecrStatus": "ECR կարգավիճակ",
+        "receiptId": "Անդորրագրի ID"
+    },
     "operations": {
         "save": "Պահպանել",
         "cancel": "Չեղարկել",
