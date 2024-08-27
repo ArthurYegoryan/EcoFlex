@@ -5,6 +5,7 @@ import CheckBox from "../../../generalComponents/inputFields/checkbox/CheckBoxCo
 import Button from "../../../generalComponents/buttons/Button";
 import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
 import Loader from "../../../generalComponents/loaders/Loader";
+import { emailValidation } from "../../../utils/fieldsValidations/emailValidation";
 import { changeData } from "../../../api/changeData";
 import { colors } from "../../../assets/styles/colors";
 import { urls } from "../../../constants/urls/urls";
@@ -50,6 +51,8 @@ const ChangeUser = ({
     const [ userAvailableStations, setUserAvailableStations ] = useState(availableStations);
     const [ emptyFirstNameError, setEmptyFirstNameError ] = useState(false);
     const [ emptyLastNameError, setEmptyLastNameError ] = useState(false);
+    const [ emptyEmailError, setEmptyEmailError ] = useState(false);
+    const [ invalidEmailError, setInvalidEmailError ] = useState(false);
     const [ emptyStationsError, setEmptyStationsError ] = useState(false);
     const [ showLoading, setShowLoading ] = useState(false);
     const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
@@ -141,7 +144,15 @@ const ChangeUser = ({
         }
     };
 
-    const checkFieldsValidations = ({ firstName, lastName, stations }) => {
+    const resetPrevValidations = () => {
+        setEmptyFirstNameError(false);
+        setEmptyLastNameError(false);
+        setEmptyEmailError(false);
+        setInvalidEmailError(false);
+        setEmptyStationsError(false);
+    };
+
+    const checkFieldsValidations = ({ firstName, lastName, email, stations }) => {
         let existsError = false;
 
         if (!firstName.length) {
@@ -151,6 +162,15 @@ const ChangeUser = ({
         if (!lastName.length) {
             existsError = true;
             setEmptyLastNameError(true);
+        }
+        if (!email.length) {
+            existsError = true;
+            setEmptyEmailError(true);
+        } else {
+            if (!emailValidation(email)) {
+                existsError = true;
+                setInvalidEmailError(true);
+            }
         }
         if (!stations.length) {
             existsError = true;
@@ -181,9 +201,7 @@ const ChangeUser = ({
     };
 
     const onSaveHandler = async () => {
-        setEmptyFirstNameError(false);
-        setEmptyLastNameError(false);
-        setEmptyStationsError(false);
+        resetPrevValidations();
 
         if (!checkFieldsValidations(changedUserData)) {
             if (isChangedAnyData({
@@ -249,6 +267,11 @@ const ChangeUser = ({
                         })} />
             <TextInput label={t("users.addChangeUser.email")}
                         defaultValue={userData.email}
+                        existsError={emptyEmailError || invalidEmailError}
+                        errorText={
+                            emptyEmailError ? t("errors.emptyFieldError") :
+                            invalidEmailError ? t("errors.invalidEmailError") : null
+                        }
                         width="473px"
                         marginTop={"25px"}
                         onChangeHandler={(evt) => setChangedUserData({
