@@ -2,7 +2,8 @@
     "generalQuestionsTexts": {
         "attention": "Внимание!",
         "stationFuelTypesPricesWillBeChanged": "Цены на виды топлива на заправочных станциях изменятся",
-        "groupFuelTypesPricesWillBeChanged": "Цены на все виды топлива в сети изменятся"
+        "groupFuelTypesPricesWillBeChanged": "Цены на все виды топлива в сети изменятся",
+        "doYouWantDelete": "Вы хотите удалить"
     },
     "nav": {
         "fuelTypes": "Виды топлива",
@@ -96,13 +97,18 @@
             "role": "Статус",
             "chooseStationsGroup": "Выберите сеть заправочных станций",
             "searchStations": "Поиск заправочной станци(и)й"
+        },
+        "deleteUser": {
+            "deleteUserData":"Удалить данные пользователя",
+            "userData":"данные пользователя?"
         }
     },
     "operations": {
         "save": "Сохранить",
         "cancel": "Отменить",
         "export": "Экспорт",
-        "search": "Поиск"
+        "search": "Поиск",
+        "delete": "Удалить"
     },
     "searchSections": {
         "searchData": "Данные для поиска"

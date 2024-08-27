@@ -2,7 +2,8 @@
     "generalQuestionsTexts": {
         "attention": "Attention!",
         "stationFuelTypesPricesWillBeChanged": "Station fuel types prices will be changed",
-        "groupFuelTypesPricesWillBeChanged": "Group fuel types prices will be changed"
+        "groupFuelTypesPricesWillBeChanged": "Group fuel types prices will be changed",
+        "doYouWantDelete": "Do yow want to delete"
     },
     "nav": {
         "fuelTypes": "Fuel types",
@@ -96,13 +97,18 @@
             "role": "Role",
             "chooseStationsGroup": "Choose stations group",
             "searchStations": "Search station(s)"
+        },
+        "deleteUser": {
+            "deleteUserData":"Delete user's data",
+            "userData":"user data?"
         }
     },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",
         "export": "Export",
-        "search": "Search"
+        "search": "Search",
+        "delete": "Delete"
     },
     "searchSections": {
         "searchData": "Search data"

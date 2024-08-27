@@ -1,6 +1,7 @@
 import "./UsersPage.css";
 import SearchSection from "./usersSearchSection/UsersSearchSection";
 import ChangeUser from "./changeUser/ChangeUser";
+import DeleteUser from "./deleteUser/DeleteUser";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
 import ModalComponent from "../../generalComponents/modalComponent/ModalComponent";
@@ -37,6 +38,7 @@ const UsersPage = () => {
     });
     const [ isUserAdded, setIsUserAdded ] = useState(false);
     const [ isUserChanged, setIsUserChanged ] = useState(false);
+    const [ isUserDeleted, setIsUserDeleted ] = useState(false);
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
     const [ isOpenDeleteModal, setIsOpenDeleteModal ] = useState(false);
     
@@ -129,7 +131,7 @@ const UsersPage = () => {
             }
         }
         getUsers();
-    }, [queryFields, currentPage, isUserAdded, isUserChanged]);
+    }, [queryFields, currentPage, isUserAdded, isUserChanged, isUserDeleted]);
 
     useEffect(() => {
         const getStationsGroupsAndStations = async () => {
@@ -169,6 +171,7 @@ const UsersPage = () => {
                     datas={users}
                     setCurrentData={setChoosedUser}
                     onClickEditButton={() => setIsOpenChangeModal(true)}
+                    onClickDeleteButton={() => setIsOpenDeleteModal(true)}
                     filterHandlers={filterHandlers} />
             <div className="users-page-pagination">
                 <Pagination pageCount={pageCount}
@@ -185,6 +188,17 @@ const UsersPage = () => {
                                                     isUserChanged={isUserChanged}
                                                     setIsUserChanged={setIsUserChanged}
                                                     onCloseHandler={() => setIsOpenChangeModal(false)} />}
+                                bodyMaxHeight={modalSize}
+                                closeImageUrl="../img/x.svg" />
+            }
+            {isOpenDeleteModal &&
+                <ModalComponent onCloseHandler={() => setIsOpenDeleteModal(false)}
+                                isOpen={isOpenDeleteModal}
+                                title={t("users.deleteUser.deleteUserData")}
+                                body={<DeleteUser user={choosedUser}
+                                                    isUserDeleted={isUserDeleted}
+                                                    setIsUserDeleted={setIsUserDeleted}
+                                                    onCloseHandler={() => setIsOpenDeleteModal(false)} />}
                                 bodyMaxHeight={modalSize}
                                 closeImageUrl="../img/x.svg" />
             }

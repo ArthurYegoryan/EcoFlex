@@ -8,6 +8,8 @@ export const colors = {
     cancelBgColor: "#FF0000",         // red
     cancelHoverColor: "#F1807E",      // light red
     successCancelColor: "#FFFFFF",    // white
+    whiteColor: "#FFFFFF",         // white
+    whiteHoverColor: "#16E1E1",    // sky blue
 
     /* Login */
     loginBgColor: "#EBEBEB",          // light grey

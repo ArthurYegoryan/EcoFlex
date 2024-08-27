@@ -2,7 +2,8 @@
     "generalQuestionsTexts": {
         "attention": "Ուշադրություն!",
         "stationFuelTypesPricesWillBeChanged": "Լցակայանի վառելիքի տեսակների գները կփոփոխվեն",
-        "groupFuelTypesPricesWillBeChanged": "Ցանցի բոլոր վառելիքի տեսակների գները կփոփոխվեն"
+        "groupFuelTypesPricesWillBeChanged": "Ցանցի բոլոր վառելիքի տեսակների գները կփոփոխվեն",
+        "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել"
     },
     "nav": {
         "fuelTypes": "Վառելիքի տեսակներ",
@@ -87,8 +88,8 @@
         "stations": "Լցակայաններ",
         "action": "Գործողություն",
         "addChangeUser": {
-            "addNewUser":"Ավելացնել նոր օգտագործող",
-            "changeUserData":"Փոփոխել օգտագործողի տվյալները",
+            "addNewUser":"Ավելացնել նոր օգտատեր",
+            "changeUserData":"Փոփոխել օգտատիրոջ տվյալները",
             "name": "Անուն",
             "surname": "Ազգանուն",
             "phone": "Հեռախոսահամար",
@@ -96,13 +97,18 @@
             "role": "Կարգավիճակ",
             "chooseStationsGroup": "Ընտրել լցակայանների ցանցը",
             "searchStations": "Փնտրել լցակայան(ներ)ը"
+        },
+        "deleteUser": {
+            "deleteUserData":"Ջնջել օգտատիրոջ տվյալները",
+            "userData":"օգտատիրոջ տվյալները"
         }
     },
     "operations": {
         "save": "Պահպանել",
         "cancel": "Չեղարկել",
         "export": "Արտահանել",
-        "search": "Որոնում"
+        "search": "Որոնում",
+        "delete": "Ջնջել"
     },
     "searchSections": {
         "searchData": "Որոնման տվյալ"
