@@ -113,6 +113,7 @@
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
         "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ",
+        "invalidEmailError": "Անվավեր էլեկտրոնային հասցե",
         "onlyNumbersError": "Պետք է պարունակի միայն թվանշաններ",
         "onlyNumbersLengthEightError": "Պետք է պարունակի միայն թվանշաններ և ունենա ճիշտ 8 երկարություն",
         "onlyNumbersPointError": "Պետք է պարունակի միայն թվանշաններ և մեկ կետ (բայց ոչ սկզբում կամ վերջում)",

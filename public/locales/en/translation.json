@@ -113,6 +113,7 @@
         "emptyUsernameError": "Enter the username",
         "emptyPasswordError": "Enter the password",
         "wrongUsernamePassword": "Incorrect username or password",
+        "invalidEmailError": "Invalid email",
         "onlyNumbersError": "Must contain only numbers",
         "onlyNumbersLengthEightError": "Must contain only numbers and have a length of exactly 8",
         "onlyNumbersPointError": "Must contain only numbers and one dot (but not at the beginning or end)",

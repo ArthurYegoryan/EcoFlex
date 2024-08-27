@@ -1,4 +1,5 @@
 import "./UsersPage.css";
+import SearchSection from "./usersSearchSection/UsersSearchSection";
 import ChangeUser from "./changeUser/ChangeUser";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
@@ -157,11 +158,13 @@ const UsersPage = () => {
 
     return (
         <div style={{ minWidth: "900px" }} className="users-page">
-            {/* <SearchSection isStationsGroupAdded={isStationsGroupAdded}
-                           setIsStationsGroupAdded={setIsStationsGroupAdded}
+            <SearchSection stationsGroups={stationsGroups}
+                           stations={stations}
+                           isUserAdded={isUserAdded}
+                           setIsUserAdded={setIsUserAdded}
                            setSearchText={setSearchText}
                            isSearchClicked={isSearchClicked}
-                           setIsSearchClicked={setIsSearchClicked} /> */}
+                           setIsSearchClicked={setIsSearchClicked} />
             <Table whichTable={"users"}
                     datas={users}
                     setCurrentData={setChoosedUser}

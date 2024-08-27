@@ -113,6 +113,7 @@
         "emptyUsernameError": "Введите имя пользователя",
         "emptyPasswordError": "Введите пароль",
         "wrongUsernamePassword": "Неверное имя пользователя или пароль",
+        "invalidEmailError": "Неверный адрес электронной почты",
         "onlyNumbersError": "Должен содержать только цифры",
         "onlyNumbersLengthEightError": "Должен содержать только цифры и иметь длину ровно 8",
         "onlyNumbersPointError": "Должен содержать только цифры и одну точку (но не в начале или конце)",
