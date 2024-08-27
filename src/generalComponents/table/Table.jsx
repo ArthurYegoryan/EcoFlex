@@ -18,6 +18,9 @@ const TableComponent = ({
     fuelTypesfilterHandlers,
     stationsGroupFilterHandlers,
     stationsFilterHandlers,
+    windowHeight,
+    minWidth,
+    scroll = false,
 }) => {
     const { t } = useTranslation();
 
@@ -918,7 +921,7 @@ const TableComponent = ({
             ),
             dataIndex: 'transactionType',
             key: 'transactionType',
-            width: "13px",
+            width: "10px",
         },
         {
             title: (
@@ -938,7 +941,7 @@ const TableComponent = ({
             ),
             dataIndex: 'transactionDate',
             key: 'transactionDate',
-            width: "12px",
+            width: "10px",
         },        
         {
             title: (
@@ -958,7 +961,7 @@ const TableComponent = ({
             ),
             dataIndex: 'stationName',
             key: 'stationName',
-            width: "20px",
+            width: "10px",
         },
         {
             title: (
@@ -1118,7 +1121,7 @@ const TableComponent = ({
             ),
             dataIndex: 'receiptId',
             key: 'receiptId',
-            width: "10px",
+            width: "11px",
         },
     ]
 
@@ -1141,6 +1144,11 @@ const TableComponent = ({
             size={size}
             sticky={{
                 offsetHeader: 64,
+            }}
+            scroll={scroll && {
+                scrollToFirstRowOnChange: true,
+                y: (windowHeight < 950) ? 450 : 650,
+                x: minWidth
             }}
         />
     );

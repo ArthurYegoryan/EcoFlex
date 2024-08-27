@@ -175,7 +175,10 @@ const TransactionsPage = () => {
             <Table whichTable={"transactions"}
                    size="small"
                    datas={transactions}
-                   filterHandlers={filterHandlers} />
+                   filterHandlers={filterHandlers}
+                   scroll={true}
+                   windowHeight={windowHeight}
+                   minWidth={"1600px"} />
             <div className="transactions-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}
