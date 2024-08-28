@@ -3,7 +3,8 @@
         "attention": "Внимание!",
         "stationFuelTypesPricesWillBeChanged": "Цены на виды топлива на заправочных станциях изменятся",
         "groupFuelTypesPricesWillBeChanged": "Цены на все виды топлива в сети изменятся",
-        "doYouWantDelete": "Вы хотите удалить"
+        "doYouWantDelete": "Вы хотите удалить",
+        "newPassSendSuccess": "Новый пароль был успешно отправлен на Ваш электронный адрес !!!"
     },
     "nav": {
         "fuelTypes": "Виды топлива",
@@ -130,7 +131,8 @@
         "reporting": "Отчет",
         "stationsSummaryReporting": "Сводный отчет заправочных станций",
         "search": "Поиск",
-        "delete": "Удалить"
+        "delete": "Удалить",
+        "recover": "Восстановить"
     },
     "searchSections": {
         "searchData": "Данные для поиска"
@@ -140,6 +142,7 @@
         "emptyFieldError": "Заполните поле",
         "emptyUsernameError": "Введите имя пользователя",
         "emptyPasswordError": "Введите пароль",
+        "wrongUsername": "Неверное имя пользователя",
         "wrongUsernamePassword": "Неверное имя пользователя или пароль",
         "invalidEmailError": "Неверный адрес электронной почты",
         "onlyNumbersError": "Должен содержать только цифры",

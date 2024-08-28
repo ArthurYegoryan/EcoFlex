@@ -3,7 +3,8 @@
         "attention": "Attention!",
         "stationFuelTypesPricesWillBeChanged": "Station fuel types prices will be changed",
         "groupFuelTypesPricesWillBeChanged": "Group fuel types prices will be changed",
-        "doYouWantDelete": "Do yow want to delete"
+        "doYouWantDelete": "Do yow want to delete",
+        "newPassSendSuccess": "The new password has been successfully sent to your email address !!!"
     },
     "nav": {
         "fuelTypes": "Fuel types",
@@ -130,7 +131,8 @@
         "reporting": "Reporting",
         "stationsSummaryReporting": "Stations summary reporting",
         "search": "Search",
-        "delete": "Delete"
+        "delete": "Delete",
+        "recover": "Recover"
     },
     "searchSections": {
         "searchData": "Search data"
@@ -140,6 +142,7 @@
         "emptyFieldError": "Fill the field",
         "emptyUsernameError": "Enter the username",
         "emptyPasswordError": "Enter the password",
+        "wrongUsername": "Wrong username",
         "wrongUsernamePassword": "Incorrect username or password",
         "invalidEmailError": "Invalid email",
         "onlyNumbersError": "Must contain only numbers",

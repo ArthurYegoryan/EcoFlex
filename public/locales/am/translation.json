@@ -3,7 +3,8 @@
         "attention": "Ուշադրություն!",
         "stationFuelTypesPricesWillBeChanged": "Լցակայանի վառելիքի տեսակների գները կփոփոխվեն",
         "groupFuelTypesPricesWillBeChanged": "Ցանցի բոլոր վառելիքի տեսակների գները կփոփոխվեն",
-        "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել"
+        "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել",
+        "newPassSendSuccess": "Նոր գաղտնաբառը հաջողությամբ ուղարկվել է Ձեր էլ. հասցեին !!!"
     },
     "nav": {
         "fuelTypes": "Վառելիքի տեսակներ",
@@ -130,7 +131,8 @@
         "reporting": "Հաշվետվություն",
         "stationsSummaryReporting": "Լցակայանների ամփոփ հաաշվետվություն",
         "search": "Որոնում",
-        "delete": "Ջնջել"
+        "delete": "Ջնջել",
+        "recover": "Վերականգնել"
     },
     "searchSections": {
         "searchData": "Որոնման տվյալ"
@@ -140,6 +142,7 @@
         "emptyFieldError": "Լրացրեք դաշտը",
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
+        "wrongUsername": "Սխալ մուտքանուն",
         "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ",
         "invalidEmailError": "Անվավեր էլեկտրոնային հասցե",
         "onlyNumbersError": "Պետք է պարունակի միայն թվանշաններ",
