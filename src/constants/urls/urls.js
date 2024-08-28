@@ -6,6 +6,8 @@ export const urls = {
 
     DOWNLOAD_CSV_URL: `${URL}Files/download-csv`,
     DOWNLOAD_CSV_STATIONS_URL: `${URL}Files/download-csv-st`,
+    DOWNLOAD_CSV_TRANSACTIONS_URL: `${URL}Files/download-csv-tr`,
+    DOWNLOAD_SUMMARY_URL: `${URL}Files/download-summary`,
 
     FUEL_TYPES_URL: `${URL}FuelTypes`,
     STATION_GROUPS_URL: `${URL}StationGroups`,

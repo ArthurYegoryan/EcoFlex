@@ -1,10 +1,12 @@
 import "./TransactionsPage.css";
+import SearchSection from "./transactionsSearchSection/TransactionsSearchSection";
 import Table from "../../generalComponents/table/Table";
 import Pagination from "../../generalComponents/pagination/Pagination";
 import Loader from "../../generalComponents/loaders/Loader";
 import { makeTransactionsForView } from "../../utils/helpers/makeTransactionsForView";
 import { addNumeration } from "../../utils/helpers/addNumeration";
 import { getData } from "../../api/getData";
+import { downloadCSV } from "../../api/downloadCSV";
 import { urls } from "../../constants/urls/urls";
 import { paths } from "../../constants/paths/paths";
 import { editToken } from "../../redux/slices/authSlice";
@@ -16,13 +18,22 @@ const TransactionsPage = () => {
     const windowHeight = window.screen.height;
     const pageSize = windowHeight < 950 ? 7 : 10;
 
+    // console.log(new Date(Date.now() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000).toISOString());
+
+    const [ allFuelTypes, setAllFuelTypes ] = useState([]);
     const [ transactions, setTransactions ] = useState([]);
-    const [ searchText, setSearchText ] = useState("");
+    const [ searchParams, setSearchParams ] = useState({
+        searchText: "",
+        transactionType: "",
+        fuelTypeName: "",
+        startDate: new Date(Date.now() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000),
+        endDate: new Date(Date.now()),
+    });
     const [ queryFields, setQueryFields ] = useState({
-        "OrderBy": "Id",
+        "OrderBy": "TransactionDate",
         "TransactionType": "",
-        "StartDate": "",
-        "EndDate": "",
+        "StartDate": new Date(Date.now() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000).toISOString(),
+        "EndDate": new Date(Date.now()).toISOString(),
         "FuelTypeId": "",
         "PageSize": pageSize,
         "OrderDir": "Desc",
@@ -32,6 +43,7 @@ const TransactionsPage = () => {
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ isSearchClicked, setIsSearchClicked ] = useState(false);
     const [ showLoader, setShowLoader ] = useState(false);
+    const [ showConnectionError, setShowConnectionError ] = useState(false);
 
     const { isMenuOpen } = useSelector((state) => state.menu);
     const dispatch = useDispatch();
@@ -141,12 +153,20 @@ const TransactionsPage = () => {
                         `&OrderDir=${queryFields.OrderDir}&SearchText=${queryFields.SearchText}`;
 
     useEffect(() => {
-        if (searchText !== queryFields.SearchText) {
-            setQueryFields({
-                ...queryFields,
-                SearchText: searchText
-            });
-        }
+        const fuelTypeId = "";
+        allFuelTypes.map((fuelType) => {
+            if (fuelType.name === searchParams.fuelTypeName) {
+                fuelTypeId = fuelType.id;
+            }
+        });
+
+        setQueryFields({
+            ...queryFields,
+            TransactionType: searchParams.transactionType,
+            FuelTypeId: fuelTypeId,
+            StartDate: searchParams.startDate.toISOString(),
+            EndDate: searchParams.endDate.toISOString(),
+        });
     }, [isSearchClicked]);
 
     useEffect(() => {
@@ -170,8 +190,52 @@ const TransactionsPage = () => {
         getTransactions();
     }, [queryFields, currentPage]);
 
+    useEffect(() => {
+        const getFuelTypes = async () => {
+            setShowLoader(true);
+            const response = await getData(urls.FUEL_TYPES_URL + "?PageSize=10000");
+            setShowLoader(false);
+
+            if (response.status === 200) {
+                setAllFuelTypes(response.data.data.list);
+            } else if (response.status === 401) {
+                dispatch(editToken(""));
+                localStorage.clear();
+
+                navigate(paths.LOGIN)
+            }
+        };
+        getFuelTypes();
+    }, []);
+
+    const onCliCkReportingBtn = async () => {
+        setShowConnectionError(false);
+        try {
+            await downloadCSV(urls.DOWNLOAD_CSV_TRANSACTIONS_URL + queryString, "Transactions");
+        } catch (err) {
+            setShowConnectionError(true);
+        }
+    };
+
+    const onCliCkSummaryReportingBtn = async () => {
+        setShowConnectionError(false);
+        try {
+            await downloadCSV(urls.DOWNLOAD_SUMMARY_URL + `?StartDate=${queryFields.StartDate}&EndDate=${queryFields.EndDate}`, "Summary_report");
+        } catch (err) {
+            setShowConnectionError(true);
+        }
+    };
+
     return (
         <div className="transactions-page">
+            <SearchSection allFuelTypes={allFuelTypes}
+                           searchParams={searchParams}
+                           setSearchParams={setSearchParams}
+                           isSearchClicked={isSearchClicked}
+                           setIsSearchClicked={setIsSearchClicked}
+                           onCliCkReportingBtn={onCliCkReportingBtn}
+                           onCliCkSummaryReportingBtn={onCliCkSummaryReportingBtn}
+                           showConnectionError={showConnectionError} />
             <Table whichTable={"transactions"}
                    size="small"
                    datas={transactions}

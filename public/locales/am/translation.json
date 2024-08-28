@@ -115,12 +115,20 @@
         "transactionAmount": "Գործարքի գումար",
         "yandexStatus": "Յանդեքս կարգավիճակ",
         "ecrStatus": "ECR կարգավիճակ",
-        "receiptId": "Անդորրագրի ID"
+        "receiptId": "Անդորրագրի ID",
+        "transactionsSearch": {
+            "chooseTransactionType": "Ընտրել գործարքի տեսակը",
+            "chooseFuelType": "Ընտրել վառելիքի տեսակը",
+            "start": "Սկիզբ",
+            "end": "Ավարտ"
+        }
     },
     "operations": {
         "save": "Պահպանել",
         "cancel": "Չեղարկել",
         "export": "Արտահանել",
+        "reporting": "Հաշվետվություն",
+        "stationsSummaryReporting": "Լցակայանների ամփոփ հաաշվետվություն",
         "search": "Որոնում",
         "delete": "Ջնջել"
     },

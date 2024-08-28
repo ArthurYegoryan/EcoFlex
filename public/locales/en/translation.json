@@ -115,12 +115,20 @@
         "transactionAmount": "Transaction amount",
         "yandexStatus": "Yandex status",
         "ecrStatus": "ECR status",
-        "receiptId": "Receipt ID"
+        "receiptId": "Receipt ID",
+        "transactionsSearch": {
+            "chooseTransactionType": "Choose transaction type",
+            "chooseFuelType": "Choose fuel type",
+            "start": "Start",
+            "end": "End"
+        }
     },
     "operations": {
         "save": "Save",
         "cancel": "Cancel",
         "export": "Export",
+        "reporting": "Reporting",
+        "stationsSummaryReporting": "Stations summary reporting",
         "search": "Search",
         "delete": "Delete"
     },

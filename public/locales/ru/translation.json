@@ -115,12 +115,20 @@
         "transactionAmount": "Сумма транзакции",
         "yandexStatus": "Статус Яндекса",
         "ecrStatus": "Статус ECR",
-        "receiptId": "Идентификатор квитанции"
+        "receiptId": "Идентификатор квитанции",
+        "transactionsSearch": {
+            "chooseTransactionType": "Выберите тип транзакции",
+            "chooseFuelType": "Выберите тип топлива",
+            "start": "Начало",
+            "end": "Конец"
+        }
     },
     "operations": {
         "save": "Сохранить",
         "cancel": "Отменить",
         "export": "Экспорт",
+        "reporting": "Отчет",
+        "stationsSummaryReporting": "Сводный отчет заправочных станций",
         "search": "Поиск",
         "delete": "Удалить"
     },
