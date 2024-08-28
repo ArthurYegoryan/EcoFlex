@@ -13,6 +13,7 @@ import { getData } from "../../../../api/getData";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
+import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
 import { editToken } from "../../../../redux/slices/authSlice";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -197,7 +198,7 @@ const AddStation = ({
                                     emptyDispenserIdError ? t("errors.emptyFieldError") :
                                     invalidDispenserIdError ? t("errors.onlyNumbersError") : null
                                 }
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewDispenserData({
                                     ...newDispenserData,
                                     yandexDispenserId: evt.target.value
@@ -206,7 +207,7 @@ const AddStation = ({
                                 existsError={emptySerialNumberError}
                                 errorText={t("errors.emptyFieldError")}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewDispenserData({
                                     ...newDispenserData,
                                     serialNumber: evt.target.value
@@ -216,7 +217,7 @@ const AddStation = ({
                                 existsError={emptyStationGroupNameError}
                                 errorText={t("errors.emptyFieldError")}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChooseHandler={(evt) => {
                                     setNewDispenserData({
                                         ...newDispenserData,
@@ -230,7 +231,7 @@ const AddStation = ({
                                 existsError={emptyStationNameError}
                                 errorText={t("errors.emptyFieldError")}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChooseHandler={(evt) => {
                                     setNewDispenserData({
                                         ...newDispenserData,
@@ -244,7 +245,7 @@ const AddStation = ({
             {showFuelTypes && 
                 <MultipleSelect label={t("dispensers.addChangeDispenser.chooseFuelTypes")}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 dataForMultiSelecting={currentStationFuelTypes}
                                 resetValue={resetMultiSelectValues}
                                 existsError={emptyFuelTypesError}

@@ -10,6 +10,7 @@ import { addData } from "../../../../api/addData";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
+import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
 import { editToken } from "../../../../redux/slices/authSlice";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -200,7 +201,7 @@ const AddUser = ({
             <TextInput label={t("users.addChangeUser.name")}
                         existsError={emptyFirstNameError}
                         errorText={t("errors.emptyFieldError")}
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         onChangeHandler={(evt) => setNewUserData({
                             ...newUserData,
                             firstName: evt.target.value
@@ -208,14 +209,14 @@ const AddUser = ({
             <TextInput label={t("users.addChangeUser.surname")}
                         existsError={emptyLastNameError}
                         errorText={t("errors.emptyFieldError")}
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         marginTop={"25px"}
                         onChangeHandler={(evt) => setNewUserData({
                             ...newUserData,
                             lastName: evt.target.value
                         })} />
             <TextInput label={t("users.addChangeUser.phone")}
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         marginTop={"25px"}
                         onChangeHandler={(evt) => setNewUserData({
                             ...newUserData,
@@ -227,7 +228,7 @@ const AddUser = ({
                             emptyEmailError ? t("errors.emptyFieldError") :
                             invalidEmailError ? t("errors.invalidEmailError") : null
                         }
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         marginTop={"25px"}
                         onChangeHandler={(evt) => setNewUserData({
                             ...newUserData,
@@ -236,7 +237,7 @@ const AddUser = ({
             <SelectComponent label={t("users.addChangeUser.role")}
                             defaultValue={"Admin"}
                             chooseData={["Admin", "Fuel Supervisor"]}
-                            width="473px"
+                            width={fieldsWidths.modalFields}
                             marginTop={"25px"}
                             onChooseHandler={(evt) => setNewUserData({
                                 ...newUserData,
@@ -248,20 +249,20 @@ const AddUser = ({
                                      chooseData={stationsGroupsList}
                                      existsError={emptyStationsGroupError}
                                      errorText={t("errors.emptyFieldError")}
-                                     width={"473px"}
+                                     width={fieldsWidths.modalFields}
                                      marginTop={"25px"}
                                      onChooseHandler={(evt) => getGroupIdSetStations(evt.target.value)} />
                     {isStationsGroupSelected &&
                         <>
                             <TextInput label={t("users.addChangeUser.searchStations")}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 marginTop={"25px"}
                                 onChangeHandler={(evt) => {
                                     searchAvailableStations(evt.target.value);
                                 }} />
                             <div 
                                 style={{ 
-                                    width: "473px",
+                                    width: fieldsWidths.modalFields,
                                     marginTop: "10px",
                                     border: emptyStationsError ? "1px solid #d32f2f" : "none",
                                     borderRadius: "5px"

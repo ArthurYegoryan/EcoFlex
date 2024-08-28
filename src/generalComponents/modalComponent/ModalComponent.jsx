@@ -3,6 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { fontSizes } from "../../assets/styles/fontSizes";
 
 const ModalComponent = ({ 
     onCloseHandler, 
@@ -41,7 +42,7 @@ const ModalComponent = ({
                     {title &&
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                             <div className="modal-modal-title-div">
-                                <div className="modal-modal-title-text">
+                                <div style={{ fontSize: fontSizes.modalTitle }} className="modal-modal-title-text">
                                     <span>{title}</span>
                                 </div>                            
                             </div>

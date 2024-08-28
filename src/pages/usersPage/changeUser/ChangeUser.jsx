@@ -8,6 +8,7 @@ import Loader from "../../../generalComponents/loaders/Loader";
 import { emailValidation } from "../../../utils/fieldsValidations/emailValidation";
 import { changeData } from "../../../api/changeData";
 import { colors } from "../../../assets/styles/colors";
+import { fieldsWidths } from "../../../assets/styles/fieldsWidths";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { editToken } from "../../../redux/slices/authSlice";
@@ -242,7 +243,7 @@ const ChangeUser = ({
                         defaultValue={userData.firstName}
                         existsError={emptyFirstNameError}
                         errorText={t("errors.emptyFieldError")}
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         onChangeHandler={(evt) => setChangedUserData({
                             ...changedUserData,
                             firstName: evt.target.value
@@ -251,7 +252,7 @@ const ChangeUser = ({
                         defaultValue={userData.lastName}
                         existsError={emptyLastNameError}
                         errorText={t("errors.emptyFieldError")}
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         marginTop={"25px"}
                         onChangeHandler={(evt) => setChangedUserData({
                             ...changedUserData,
@@ -259,7 +260,7 @@ const ChangeUser = ({
                         })} />
             <TextInput label={t("users.addChangeUser.phone")}
                         defaultValue={userData.phoneNumber}
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         marginTop={"25px"}
                         onChangeHandler={(evt) => setChangedUserData({
                             ...changedUserData,
@@ -272,7 +273,7 @@ const ChangeUser = ({
                             emptyEmailError ? t("errors.emptyFieldError") :
                             invalidEmailError ? t("errors.invalidEmailError") : null
                         }
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         marginTop={"25px"}
                         onChangeHandler={(evt) => setChangedUserData({
                             ...changedUserData,
@@ -281,25 +282,25 @@ const ChangeUser = ({
             <TextInput label={t("users.addChangeUser.role")}
                         defaultValue={userData.role === "FuelSupervisor" ? "Fuel Supervisor" : userData.role}
                         disabled={true}
-                        width="473px"
+                        width={fieldsWidths.modalFields}
                         marginTop={"25px"} />
             {userData.role === "FuelSupervisor" &&
                 <>
                     <SelectComponent label={t("users.addChangeUser.chooseStationsGroup")}
                                      defaultValue={userData.stations[0]?.stationGroup.name}
                                      chooseData={stationsGroupsList}
-                                     width={"473px"}
+                                     width={fieldsWidths.modalFields}
                                      marginTop={"25px"}
                                      onChooseHandler={(evt) => getGroupIdSetStations(evt.target.value)} />
                     <TextInput label={t("users.addChangeUser.searchStations")}
-                               width="473px"
+                               width={fieldsWidths.modalFields}
                                marginTop={"25px"}
                                onChangeHandler={(evt) => {
                                    searchAvailableStations(evt.target.value);
                                }} />
                     <div 
                         style={{ 
-                            width: "473px",
+                            width: fieldsWidths.modalFields,
                             marginTop: "10px",
                             border: emptyStationsError ? "1px solid #d32f2f" : "none",
                             borderRadius: "5px"

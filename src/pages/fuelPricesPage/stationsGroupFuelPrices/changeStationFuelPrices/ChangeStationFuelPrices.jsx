@@ -7,6 +7,7 @@ import SuccessAnimation from "../../../../generalComponents/successAnimation/Suc
 import Loader from "../../../../generalComponents/loaders/Loader";
 import { changeData } from "../../../../api/changeData";
 import { colors } from "../../../../assets/styles/colors";
+import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
 import { paths } from "../../../../constants/paths/paths";
 import { urls } from "../../../../constants/urls/urls";
 import { editToken } from "../../../../redux/slices/authSlice";

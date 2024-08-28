@@ -8,6 +8,7 @@ import { changeData } from "../../../api/changeData";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { colors } from "../../../assets/styles/colors";
+import { fieldsWidths } from "../../../assets/styles/fieldsWidths";
 import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
 import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
 import { onlyNumbersValidation } from "../../../utils/fieldsValidations/onlyNumbersValidation";
@@ -99,7 +100,7 @@ const ChangeFueltype = ({
         <div className="change-fuel-type-fields">
             <TextInputComponent label={t("fuelTypes.fuelName")}
                                 defaultValue={fuelTypeData.name}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
                                     ...changedFuelTypeData,
                                     name: evt.target.value
@@ -107,7 +108,7 @@ const ChangeFueltype = ({
             <TextInputComponent label={t("fuelTypes.adgCode")}
                                 defaultValue={fuelTypeData.adgCode}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 existsError={invalidAdgCodeError}
                                 errorText={t("errors.onlyNumbersError")}
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
@@ -117,7 +118,7 @@ const ChangeFueltype = ({
             <TextInputComponent label={t("fuelTypes.departmentId")}
                                 defaultValue={fuelTypeData.departmentId}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
                                     ...changedFuelTypeData,
                                     departmentId: Number(evt.target.value)
@@ -125,7 +126,7 @@ const ChangeFueltype = ({
             <TextInputComponent label={t("fuelTypes.yandexId")}
                                 defaultValue={fuelTypeData.yandexFuelTypeId}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
                                     ...changedFuelTypeData,
                                     yandexFuelTypeId: evt.target.value
@@ -133,6 +134,7 @@ const ChangeFueltype = ({
             <SelectComponent label={t("fuelTypes.addChangeFuelType.chooseCountType")}
                              chooseData={["Kg", "Ltr"]}
                              defaultValue={fuelTypeData.countType === "L" ? "Ltr" : fuelTypeData.countType}
+                             width={fieldsWidths.modalFields}
                              marginTop={"25px"}
                              onChooseHandler={(evt) => {setChangedFuelTypeData({
                                 ...changedFuelTypeData,

@@ -8,6 +8,7 @@ import { addData } from "../../../../api/addData";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
+import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
 import { onlyNumbersValidation } from "../../../../utils/fieldsValidations/onlyNumbersValidation";
 import { editToken } from "../../../../redux/slices/authSlice";
 import { useState } from "react";
@@ -126,7 +127,7 @@ const AddNewFueltype = ({
     return (
         <div className="add-new-fuel-type-fields">
             <TextInputComponent label={t("fuelTypes.fuelName")}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 existsError={emptyFuelNameError}
                                 errorText={t("errors.emptyFieldError")}
                                 onChangeHandler={(evt) => {setNewFuelTypeData({
@@ -135,7 +136,7 @@ const AddNewFueltype = ({
                                 })}} />
             <TextInputComponent label={t("fuelTypes.adgCode")}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 existsError={emptyAdgCodeError || invalidAdgCodeError}
                                 errorText={
                                     emptyAdgCodeError ? t("errors.emptyFieldError") :
@@ -147,7 +148,7 @@ const AddNewFueltype = ({
                                 })}} />
             <TextInputComponent label={t("fuelTypes.departmentId")}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 existsError={emptyDepartmentIdError || invalidDepartmentIdError}
                                 errorText={
                                     emptyDepartmentIdError ? t("errors.emptyFieldError") :
@@ -159,7 +160,7 @@ const AddNewFueltype = ({
                                 })}} />
             <TextInputComponent label={t("fuelTypes.yandexId")}
                                 marginTop={"25px"}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 existsError={emptyYandexFuelTypeIdError}
                                 errorText={t("errors.emptyFieldError")}
                                 onChangeHandler={(evt) => {setNewFuelTypeData({
@@ -169,6 +170,7 @@ const AddNewFueltype = ({
             <SelectComponent label={t("fuelTypes.addChangeFuelType.chooseCountType")}
                              chooseData={["Kg", "Ltr"]}
                              marginTop={"25px"}
+                             width={fieldsWidths.modalFields}
                              existsError={emptyCountTypeError}
                              errorText={t("errors.emptyFieldError")}
                              onChooseHandler={(evt) => {setNewFuelTypeData({
