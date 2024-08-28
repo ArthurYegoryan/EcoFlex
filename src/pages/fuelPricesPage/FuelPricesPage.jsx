@@ -45,8 +45,21 @@ const FuelPricesPage = () => {
     }, []);
 
     return (
-        <div className="fuel-prices-page">
-            <div className="fuel-prices-cards-area">
+        <div style={{
+                 justifyContent: stationsGroupsList.length <= 3 ? "none" : "center",
+                 alignItems: stationsGroupsList.length <= 3 ? "none" : "center",
+                 height: stationsGroupsList.length <= 3 ? "none" : "100%",
+             }}
+             className="fuel-prices-page"
+        >
+            <div style={{
+                     display: stationsGroupsList.length <= 3 ? "flex" : "grid",
+                     gap: "50px 100px",
+                     gridTemplateRows: "auto",
+                     gridTemplateColumns: "250px 250px 250px",
+                 }}
+                 className="fuel-prices-cards-area"
+            >
                 {
                     stationsGroupsList.map((stationsGroup) => {
                         return <Card label={stationsGroup.name}
