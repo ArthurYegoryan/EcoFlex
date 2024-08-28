@@ -153,7 +153,7 @@ const TransactionsPage = () => {
                         `&OrderDir=${queryFields.OrderDir}&SearchText=${queryFields.SearchText}`;
 
     useEffect(() => {
-        const fuelTypeId = "";
+        let fuelTypeId = "";
         allFuelTypes.map((fuelType) => {
             if (fuelType.name === searchParams.fuelTypeName) {
                 fuelTypeId = fuelType.id;

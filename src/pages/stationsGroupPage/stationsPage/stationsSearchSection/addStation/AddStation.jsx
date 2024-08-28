@@ -46,10 +46,6 @@ const AddStation = ({
     const [ emptyStationAddressError, setEmptyStationAddressError ] = useState(false);
     const [ emptyStationTinError, setEmptyStationTinError ] = useState(false);
     const [ invalidStationTinError, setInvalidStationTinError ] = useState(false);
-    const [ emptyLatError, setEmptyLatError ] = useState(false);
-    const [ invalidLatError, setInvalidLatError ] = useState(false);
-    const [ emptyLongError, setEmptyLongError ] = useState(false);
-    const [ invalidLongError, setInvalidLongError ] = useState(false);
     const [ emptyFuelTypesError, setEmptyFuelTypesError ] = useState(false);
 
     const dispatch = useDispatch();
@@ -65,14 +61,10 @@ const AddStation = ({
         setEmptyStationAddressError(false);
         setEmptyStationTinError(false);
         setInvalidStationTinError(false);
-        setEmptyLatError(false);
-        setInvalidLatError(false);
-        setEmptyLongError(false);
-        setInvalidLongError(false);
         setEmptyFuelTypesError(false);
     };
 
-    const checkFieldsValidations = ({ name, yandexStationId, address, tin, lat, long, fuelTypes }) => {
+    const checkFieldsValidations = ({ name, yandexStationId, address, tin, fuelTypes }) => {
         let existsError = false;
 
         if (!name.length) {
@@ -95,25 +87,7 @@ const AddStation = ({
                 existsError = true;
                 setInvalidStationTinError(true);
             }
-        }
-        if (!lat.length) {
-            existsError = true;
-            setEmptyLatError(true);
-        } else {
-            if (!onlyNumbersPointValidation(lat)) {
-                existsError = true;
-                setInvalidLatError(true);
-            }
-        }
-        if (!long.length) {
-            existsError = true;
-            setEmptyLongError(true);
-        } else {
-            if (!onlyNumbersPointValidation(long)) {
-                existsError = true;
-                setInvalidLongError(true);
-            }
-        }
+        }       
         if (!fuelTypes.length) {
             existsError = true;
             setEmptyFuelTypesError(true);
@@ -207,11 +181,6 @@ const AddStation = ({
                                     phoneNumber: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.addChangeStation.coordinateWidth")}
-                                existsError={emptyLatError || invalidLatError}
-                                errorText={
-                                    emptyLatError ? t("errors.emptyFieldError") :
-                                    invalidLatError ? t("errors.onlyNumbersPointError") : null
-                                }
                                 marginTop={"25px"}
                                 width="473px"
                                 onChangeHandler={(evt) => {setNewStationData({
@@ -219,11 +188,6 @@ const AddStation = ({
                                     lat: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.addChangeStation.coordinateLength")}
-                                existsError={emptyLongError || invalidLongError}
-                                errorText={
-                                    emptyLongError ? t("errors.emptyFieldError") :
-                                    invalidLongError ? t("errors.onlyNumbersPointError") : null
-                                }
                                 marginTop={"25px"}
                                 width="473px"
                                 onChangeHandler={(evt) => {setNewStationData({
