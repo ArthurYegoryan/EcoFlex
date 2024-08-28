@@ -20,7 +20,9 @@ const TableComponent = ({
     stationsFilterHandlers,
     windowHeight,
     minWidth,
-    scroll = false,
+    scrollBoth = false,
+    scrollX = false,
+    scrollY = false,
 }) => {
     const { t } = useTranslation();
 
@@ -576,7 +578,7 @@ const TableComponent = ({
             title: 'Count type',
             dataIndex: 'countType',
             key: 'countType',
-            width: "5px",
+            width: "10px",
         },
         {
             title: 'Price',
@@ -1143,13 +1145,24 @@ const TableComponent = ({
             pagination={false}
             size={size}
             sticky={{
-                offsetHeader: 64,
+                offsetHeader: 0,
+                // offsetHeader: 64,
             }}
-            scroll={scroll && {
-                scrollToFirstRowOnChange: true,
-                y: (windowHeight < 950) ? 450 : 650,
-                x: minWidth
-            }}
+            scroll={
+                scrollBoth ? {
+                    scrollToFirstRowOnChange: true,
+                    y: (windowHeight < 950) ? 450 : 650,
+                    x: minWidth
+                } :
+                scrollX ? {
+                    scrollToFirstRowOnChange: true,
+                    x: minWidth
+                } : 
+                scrollY ? {
+                    scrollToFirstRowOnChange: true,
+                    y: (windowHeight < 950) ? 450 : 650,
+                } : null
+            }
         />
     );
 };

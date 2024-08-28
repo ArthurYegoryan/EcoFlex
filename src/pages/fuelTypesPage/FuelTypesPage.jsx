@@ -100,14 +100,16 @@ const FuelTypesPage = () => {
     }, [queryFields, currentPage, isFuelTypeChanged]);
 
     return (
-        <div style={{ minWidth: "900px" }} className="fuel-types-page">
+        <div style={{ minWidth: "450px" }} className="fuel-types-page">
             <SearchSection isFuelTypeChanged={isFuelTypeChanged}
                            setIsFuelTypeChanged={setIsFuelTypeChanged} />
             <Table whichTable="fuelTypes"
                    datas={fuelTypes}
                    setCurrentData={setChoosedFuelType}
                    onClickEditButton={() => setIsOpenChangeModal(true)}
-                   fuelTypesfilterHandlers={filterHandlers} />
+                   fuelTypesfilterHandlers={filterHandlers}
+                   scrollX={true}
+                   minWidth={"1500px"} />
             <div className="fuel-types-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}

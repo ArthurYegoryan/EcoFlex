@@ -151,7 +151,7 @@ const StationPage = () => {
     }, []);
 
     return (
-        <div style={{ minWidth: "900px" }} className="stations-page">
+        <div style={{ minWidth: "800px" }} className="stations-page">
             <SearchSection stationGroupId={stationGroupId}
                            allFuelTypes={allFuelTypes}
                            isStationAdded={isStationAdded}
@@ -173,10 +173,11 @@ const StationPage = () => {
             <Table whichTable={"stations"}
                     size="small"
                     datas={stations}
-                    setCurrentData={setChoosedStation}
-                    
+                    setCurrentData={setChoosedStation}                    
                     onClickEditButton={() => setIsOpenChangeModal(true)}
-                    stationsFilterHandlers={filterHandlers} />
+                    stationsFilterHandlers={filterHandlers}
+                    scrollBoth={true}
+                    minWidth={"1500px"} />
             <div className="stations-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}

@@ -186,7 +186,7 @@ const StationsGroupFuelPrices = () => {
     };
 
     return (
-        <div style={{ minWidth: "900px" }} className="stations-group-fuel-prices-page">
+        <div style={{ minWidth: "1280px" }} className="stations-group-fuel-prices-page">
             <SearchSection stationGroupId={stationGroupId}
                            allFuelTypes={allFuelTypes}
                            setIsStationsGroupFuelPricesChanged={setIsGroupFuelPricesChanged}
@@ -215,7 +215,9 @@ const StationsGroupFuelPrices = () => {
                                       datas={makeDatasForTable(value)} />
                     }}
                     onClickEditButton={() => setIsOpenChangeModal(true)}
-                    filterHandlers={filterHandlers} />
+                    filterHandlers={filterHandlers}
+                    scrollBoth={true}
+                    minWidth={"1500px"} />
             <div className="stations-group-fuel-prices-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}

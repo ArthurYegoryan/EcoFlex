@@ -147,7 +147,7 @@ const DispensersPage = () => {
     }, []);
 
     return (
-        <div className="dispensers-page">
+        <div style={{ minWidth: "750px" }} className="dispensers-page">
             <SearchSection stationsGroups={stationsGroups}
                            stations={stations}
                            allFuelTypes={allFuelTypes}
@@ -161,7 +161,9 @@ const DispensersPage = () => {
                    setCurrentData={setChoosedDispenser}
                    size="small"
                    onClickEditButton={() => setIsOpenChangeModal(true)}
-                   filterHandlers={filterHandlers} />
+                   filterHandlers={filterHandlers}
+                   scrollX={true}
+                   minWidth={"1500px"} />
             <div className="dispensers-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}

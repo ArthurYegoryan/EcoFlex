@@ -121,7 +121,7 @@ const StationsGroupPage = () => {
     };
 
     return (
-        <div style={{ minWidth: "900px" }} className="stations-group-page">
+        <div style={{ minWidth: "800px" }} className="stations-group-page">
             <SearchSection isStationsGroupAdded={isStationsGroupAdded}
                            setIsStationsGroupAdded={setIsStationsGroupAdded}
                            setSearchText={setSearchText}
@@ -132,7 +132,9 @@ const StationsGroupPage = () => {
                     setCurrentData={setChoosedStationsGroup}
                     onClickHref={onClickHrefHandler}
                     onClickEditButton={() => setIsOpenChangeModal(true)}
-                    stationsGroupFilterHandlers={filterHandlers} />
+                    stationsGroupFilterHandlers={filterHandlers}
+                    scrollX={true}
+                    minWidth={"1000px"} />
             <div className="stations-group-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}

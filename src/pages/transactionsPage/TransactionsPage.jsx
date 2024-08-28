@@ -227,7 +227,7 @@ const TransactionsPage = () => {
     };
 
     return (
-        <div className="transactions-page">
+        <div style={{ minWidth: "1400px" }} className="transactions-page">
             <SearchSection allFuelTypes={allFuelTypes}
                            searchParams={searchParams}
                            setSearchParams={setSearchParams}
@@ -240,7 +240,7 @@ const TransactionsPage = () => {
                    size="small"
                    datas={transactions}
                    filterHandlers={filterHandlers}
-                   scroll={true}
+                   scrollBoth={true}
                    windowHeight={windowHeight}
                    minWidth={"1600px"} />
             <div className="transactions-page-pagination">

@@ -159,7 +159,7 @@ const UsersPage = () => {
     }, []);
 
     return (
-        <div style={{ minWidth: "900px" }} className="users-page">
+        <div style={{ minWidth: "600px" }} className="users-page">
             <SearchSection stationsGroups={stationsGroups}
                            stations={stations}
                            isUserAdded={isUserAdded}
@@ -172,7 +172,9 @@ const UsersPage = () => {
                     setCurrentData={setChoosedUser}
                     onClickEditButton={() => setIsOpenChangeModal(true)}
                     onClickDeleteButton={() => setIsOpenDeleteModal(true)}
-                    filterHandlers={filterHandlers} />
+                    filterHandlers={filterHandlers}
+                    scrollX={true}
+                    minWidth={"1000px"} />
             <div className="users-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}
