@@ -164,6 +164,7 @@ const TransactionsPage = () => {
             FuelTypeId: fuelTypeId,
             StartDate: searchParams.startDate.toISOString(),
             EndDate: searchParams.endDate.toISOString(),
+            SearchText: searchParams.searchText,
         });
     }, [isSearchClicked]);
 
