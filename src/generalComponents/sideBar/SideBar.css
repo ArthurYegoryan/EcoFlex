@@ -1,5 +1,6 @@
 .ant-menu-item-selected {
-    background-color: #40CBE1 !important;
+    background-color: black !important;
+    /* background-color: #40CBE1 !important; */
 }
 
 .ant-layout-sider {

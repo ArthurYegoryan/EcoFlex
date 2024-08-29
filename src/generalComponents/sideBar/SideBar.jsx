@@ -14,14 +14,19 @@ import { useTranslation } from "react-i18next";
 const { Header, Sider, Content } = Layout;
 
 const SideBar = () => {
-    const [collapsed, setCollapsed] = useState(false);
+    const role = useSelector((state) => state.auth.role) ?? localStorage.getItem("role");
+    
+    const [ collapsed, setCollapsed ] = useState(false);
+    const [ selected, setSelected ] = useState(
+        role === "Admin" ? "fuelTypes" :
+        role === "FuelSupervisor" ? "stationsGroups" : null
+    );
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
     const navigate = useNavigate();
     const { t } = useTranslation();
-    const role = useSelector((state) => state.auth.role) ?? localStorage.getItem("role");
 
     return (
         <Layout>
@@ -45,61 +50,98 @@ const SideBar = () => {
                                 key: '1',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/fuelTypes.svg'} alt="Fuel types" />
+                                        {selected === "fuelTypes" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/fuelTypesSelected.svg'} alt="Fuel types" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/fuelTypes.svg'} alt="Fuel types" />
+                                        }
+                                        
                                     </span>
                                 ),
                                 label: t("nav.fuelTypes"),
-                                onClick: () => {navigate(paths.FUEL_TYPES)}
+                                onClick: () => {
+                                    setSelected("fuelTypes");
+                                    navigate(paths.FUEL_TYPES);
+                                }
                             },
                             {
                                 key: '2',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/stationsGroups.svg'} alt="Stations groups" />
+                                        {selected === "stationsGroups" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroupsSelected.svg'} alt="Stations groups" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroups.svg'} alt="Stations groups" />
+                                        }
                                     </span>
                                 ),
                                 label: t("nav.stationGroups"),
-                                onClick: () => {navigate(paths.STATIONS_GROUPS)}
+                                onClick: () => {
+                                    setSelected("stationsGroups");
+                                    navigate(paths.STATIONS_GROUPS);
+                                }
                             },
                             {
                                 key: '3',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/prices.svg'} alt="Prices" />
+                                        {selected === "prices" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/pricesSelected.svg'} alt="Prices" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/prices.svg'} alt="Prices" />
+                                        }
                                     </span>
                                 ),
                                 label: t("nav.fuelPrices"),
-                                onClick: () => {navigate(paths.FUEL_PRICES)}
+                                onClick: () => {
+                                    setSelected("prices");
+                                    navigate(paths.FUEL_PRICES);
+                                }
                             },
                             {
                                 key: '4',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/dispensers.svg'} alt="Dispensers" />
+                                        {selected === "dispensers" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/dispensersSelected.svg'} alt="Dispensers" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/dispensers.svg'} alt="Dispensers" />
+                                        }
                                     </span>
                                 ),
                                 label: t("nav.dispensers"),
-                                onClick: () => {navigate(paths.DISPENSERS)}
+                                onClick: () => {
+                                    setSelected("dispensers");
+                                    navigate(paths.DISPENSERS);
+                                }
                             },
                             {
                                 key: '5',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/users.svg'} alt="Users" />
+                                        {selected === "users" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/usersSelected.svg'} alt="Users" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/users.svg'} alt="Users" />
+                                        }                                        
                                     </span>
                                 ),
                                 label: t("nav.users"),
-                                onClick: () => {navigate(paths.USERS)}
+                                onClick: () => {
+                                    setSelected("users");
+                                    navigate(paths.USERS);
+                                }
                             },
                             {
                                 key: '6',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/transactions.svg'} alt="Transactions" />
+                                        {selected === "transactions" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/transactionsSelected.svg'} alt="Transactions" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/transactions.svg'} alt="Transactions" />
+                                        }                                        
                                     </span>
                                 ),
                                 label: t("nav.transactions"),
-                                onClick: () => {navigate(paths.TRANSACTIONS)}
+                                onClick: () => {
+                                    setSelected("transactions");
+                                    navigate(paths.TRANSACTIONS);
+                                }
                             },
                         ]
                         : role === "FuelSupervisor" ? 
@@ -108,31 +150,49 @@ const SideBar = () => {
                                 key: '1',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/stationsGroups.svg'} alt="Stations groups" />
+                                        {selected === "stationsGroups" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroupsSelected.svg'} alt="Stations groups" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroups.svg'} alt="Stations groups" />
+                                        }
                                     </span>
                                 ),
                                 label: t("nav.stationGroups"),
-                                onClick: () => {navigate(paths.STATIONS_GROUPS)}
+                                onClick: () => {
+                                    setSelected("stationsGroups");
+                                    navigate(paths.STATIONS_GROUPS);
+                                }
                             },
-{
+                            {
                                 key: '2',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/prices.svg'} alt="Prices" />
+                                        {selected === "prices" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/pricesSelected.svg'} alt="Prices" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/prices.svg'} alt="Prices" />
+                                        }
                                     </span>
                                 ),
                                 label: t("nav.fuelPrices"),
-                                onClick: () => {navigate(paths.FUEL_PRICES)}
+                                onClick: () => {
+                                    setSelected("prices");
+                                    navigate(paths.FUEL_PRICES);
+                                }
                             },
-{
+                            {
                                 key: '3',
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
-                                        <img src={process.env.PUBLIC_URL + 'img/transactions.svg'} alt="Transactions" />
+                                        {selected === "transactions" ?
+                                            <img src={process.env.PUBLIC_URL + 'img/transactionsSelected.svg'} alt="Transactions" /> :
+                                            <img src={process.env.PUBLIC_URL + 'img/transactions.svg'} alt="Transactions" />
+                                        }                                        
                                     </span>
                                 ),
                                 label: t("nav.transactions"),
-                                onClick: () => {navigate(paths.TRANSACTIONS)}
+                                onClick: () => {
+                                    setSelected("transactions");
+                                    navigate(paths.TRANSACTIONS);
+                                }
                             },
                         ]
                         : null
