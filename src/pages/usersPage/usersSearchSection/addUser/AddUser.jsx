@@ -4,7 +4,7 @@ import SelectComponent from "../../../../generalComponents/inputFields/selectCom
 import CheckBox from "../../../../generalComponents/inputFields/checkbox/CheckBoxComponent";
 import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
-import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import { emailValidation } from "../../../../utils/fieldsValidations/emailValidation";
 import { addData } from "../../../../api/addData";
 import { urls } from "../../../../constants/urls/urls";
@@ -13,7 +13,8 @@ import { colors } from "../../../../assets/styles/colors";
 import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
 import { fieldsMargins } from "../../../../assets/styles/fieldsMargins";
 import { editToken } from "../../../../redux/slices/authSlice";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+// import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -46,18 +47,18 @@ const AddUser = ({
     const [ emptyStationsGroupError, setEmptyStationsGroupError ] = useState(false);
     const [ emptyStationsError, setEmptyStationsError ] = useState(false);
     const [ showLoading, setShowLoading ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
-    const [ goToBottom, setGoToBottom ] = useState(false);
-    const bottomOfModalRef = useRef(null);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ goToBottom, setGoToBottom ] = useState(false);
+    // const bottomOfModalRef = useRef(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
 
-    useEffect(() => {
-        if (goToBottom) {
-            bottomOfModalRef.current.scrollIntoView();
-        }
-    }, [goToBottom]);
+    // useEffect(() => {
+    //     if (goToBottom) {
+    //         bottomOfModalRef.current.scrollIntoView();
+    //     }
+    // }, [goToBottom]);
 
     const stationsGroupsList = [];
     stationsGroups.map((stationsGroup) => stationsGroupsList.push(stationsGroup.name));
@@ -194,11 +195,12 @@ const AddUser = ({
 
                 if (response.status === 200) {
                     setIsUserAdded(!isUserAdded);
-                    setGoToBottom(true);
-                    setShowSuccessAnimation(true);
-                    setTimeout(() => {
-                        onCloseHandler();
-                    }, 2500);
+                    onCloseHandler();
+                    // setGoToBottom(true);
+                    // setShowSuccessAnimation(true);
+                    // setTimeout(() => {
+                    //     onCloseHandler();
+                    // }, 2500);
                 } else if (response.status === 401) {
                     localStorage.clear();
                     dispatch(editToken(""));
@@ -328,9 +330,9 @@ const AddUser = ({
                     }
                 </>
             }
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             <div 
                 style={{ display: "flex", marginTop: "25px" }} 
                 className="add-user-buttons"
@@ -347,7 +349,7 @@ const AddUser = ({
                         color={colors.successCancelColor}
                         onClickHandler={onCloseHandler} />
             </div>
-            <div ref={bottomOfModalRef}></div>
+            {/* <div ref={bottomOfModalRef}></div> */}
             {showLoading &&
                 <Loader />
             }

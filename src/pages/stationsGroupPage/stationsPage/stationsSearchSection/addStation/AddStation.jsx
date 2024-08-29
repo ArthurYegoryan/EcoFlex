@@ -3,7 +3,7 @@ import TextInputComponent from "../../../../../generalComponents/inputFields/tex
 import MultipleSelect from "../../../../../generalComponents/inputFields/multiSelectComponent/MultiSelectComponent";
 import Button from "../../../../../generalComponents/buttons/Button";
 import Loader from "../../../../../generalComponents/loaders/Loader";
-import SuccessAnimation from "../../../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../../../generalComponents/successAnimation/SuccessAnimation";
 import { addData } from "../../../../../api/addData";
 import { makeFuelTypesList } from "../../../../../utils/helpers/makeFuelTypesList";
 import { makeFuelTypesListWithIds } from "../../../../../utils/helpers/makeFuelTypesListWithIds";
@@ -38,7 +38,7 @@ const AddStation = ({
         stationGroupId: stationGroupId
     });
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const [ showStationNameErrorLabel, setShowStationNameErrorLabel ] = useState(false);
     const [ showYandexStationIdErrorLabel, setShowYandexStationIdErrorLabel ] = useState(false);
 
@@ -123,10 +123,11 @@ const AddStation = ({
                     });
                 } else if (response.status === 200) {
                     setIsStationAdded(!isStationAdded);
-                    setShowSuccessAnimation(true);
-                    setTimeout(() => {
-                        onCloseHandler();
-                    }, 2500);
+                    onCloseHandler();
+                    // setShowSuccessAnimation(true);
+                    // setTimeout(() => {
+                    //     onCloseHandler();
+                    // }, 2500);
                 }
             } catch (err) {
                 console.log(err);
@@ -205,9 +206,9 @@ const AddStation = ({
                                 ...newStationData,
                                 fuelTypes: value
                             })} />
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             {showStationNameErrorLabel &&
                 <p className="change-station-error-text">{t("errors.stationExistsError")}</p>
             }

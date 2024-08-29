@@ -4,7 +4,7 @@ import SelectComponent from "../../../generalComponents/inputFields/selectCompon
 import MultipleSelect from "../../../generalComponents/inputFields/multiSelectComponent/MultiSelectComponent";
 import Button from "../../../generalComponents/buttons/Button";
 import Loader from "../../../generalComponents/loaders/Loader";
-import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
 import { makeFuelTypesList } from "../../../utils/helpers/makeFuelTypesList";
 import { makeFuelTypesListWithIds } from "../../../utils/helpers/makeFuelTypesListWithIds";
 import { changeData } from "../../../api/changeData";
@@ -43,7 +43,7 @@ const ChangeDispenser = ({
         
     });
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -109,10 +109,11 @@ const ChangeDispenser = ({
                     navigate(paths.LOGIN);
                 } else if (response.status === 200) {
                     setIsDispenserChanged(!isDispenserChanged);
-                    setShowSuccessAnimation(true);
-                    setTimeout(() => {
-                        onCloseHandler();
-                    }, 2500);
+                    onCloseHandler();
+                    // setShowSuccessAnimation(true);
+                    // setTimeout(() => {
+                    //     onCloseHandler();
+                    // }, 2500);
                 }
             } catch (err) {
                 console.log(err);
@@ -170,9 +171,9 @@ const ChangeDispenser = ({
                                 ...changedDispenserData,
                                 fuelTypes: value
                             })}} />
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             <div className="change-dispenser-buttons">
                 <Button label={t("operations.save")}
                         backgroundColor={colors.successBgColor}

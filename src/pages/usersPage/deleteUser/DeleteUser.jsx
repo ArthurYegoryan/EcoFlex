@@ -1,12 +1,12 @@
 import "./DeleteUser.css";
 import Button from "../../../generalComponents/buttons/Button";
-import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
 import { deleteData } from "../../../api/deleteData";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { colors } from "../../../assets/styles/colors";
 import { editToken } from "../../../redux/slices/authSlice";
-import { useState } from "react";
+// import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -17,9 +17,7 @@ const DeleteUser = ({
     isUserDeleted,
     onCloseHandler 
 }) => {
-    console.log("User: ", JSON.stringify(user, null, 3));
-
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { t } = useTranslation();
@@ -29,10 +27,11 @@ const DeleteUser = ({
 
         if (response.status === 200) {
             setIsUserDeleted(!isUserDeleted);
-            setShowSuccessAnimation(true);
-            setTimeout(() => {
-                onCloseHandler();
-            }, 2500);
+            onCloseHandler();
+            // setShowSuccessAnimation(true);
+            // setTimeout(() => {
+            //     onCloseHandler();
+            // }, 2500);
         } else if (response.status === 401) {
             localStorage.clear();
             dispatch(editToken(""));
@@ -57,9 +56,9 @@ const DeleteUser = ({
                         color={colors.cancelBgColor}
                         onClickHandler={() => onCloseHandler()} />
             </div>
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
         </div>
     )
 };

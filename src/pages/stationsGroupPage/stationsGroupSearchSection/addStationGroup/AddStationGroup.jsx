@@ -2,7 +2,7 @@ import "./AddStationGroup.css";
 import TextInputComponent from "../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
-import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import { addData } from "../../../../api/addData";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
@@ -26,7 +26,7 @@ const AddStation = ({
         phoneNumber: "",
     });
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const [ showStationsGroupNameErrorLabel, setShowStationsGroupNameErrorLabel ] = useState(false);
 
     const [ emptyStationsGroupNameError, setEmptyStationsGroupNameError ] = useState(false);
@@ -78,10 +78,11 @@ const AddStation = ({
                     });
                 } else if (response.status === 200) {
                     setIsStationsGroupAdded(!isStationsGroupAdded);
-                    setShowSuccessAnimation(true);
-                    setTimeout(() => {
-                        onCloseHandler();
-                    }, 2500);
+                    onCloseHandler();
+                    // setShowSuccessAnimation(true);
+                    // setTimeout(() => {
+                    //     onCloseHandler();
+                    // }, 2500);
                 }
             } catch (err) {
                 console.log(err);
@@ -115,9 +116,9 @@ const AddStation = ({
                                     ...newStationsGroupData,
                                     phoneNumber: evt.target.value
                                 })}} />
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             {showStationsGroupNameErrorLabel &&
                 <p className="add-stations-group-error-text">{t("errors.stationsGroupExistsError")}</p>
             }

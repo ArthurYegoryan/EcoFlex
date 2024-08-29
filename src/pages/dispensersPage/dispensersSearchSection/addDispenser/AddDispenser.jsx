@@ -4,7 +4,7 @@ import SelectComponent from "../../../../generalComponents/inputFields/selectCom
 import MultipleSelect from "../../../../generalComponents/inputFields/multiSelectComponent/MultiSelectComponent";
 import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
-import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import { makeFuelTypesList } from "../../../../utils/helpers/makeFuelTypesList";
 import { makeFuelTypesListWithIds } from "../../../../utils/helpers/makeFuelTypesListWithIds";
 import { onlyNumbersValidation } from "../../../../utils/fieldsValidations/onlyNumbersValidation";
@@ -43,7 +43,7 @@ const AddStation = ({
         fuelTypes: []
     });
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const [ showDispenserIdErrorLabel, setShowDispenserIdErrorLabel ] = useState(false);
 
     const [ emptyDispenserIdError, setEmptyDispenserIdError ] = useState(false);
@@ -178,10 +178,11 @@ const AddStation = ({
                     });
                 } else if (response.status === 200) {
                     setIsDispenserAdded(!isDispenserAdded);
-                    setShowSuccessAnimation(true);
-                    setTimeout(() => {
-                        onCloseHandler();
-                    }, 2500);
+                    onCloseHandler();
+                    // setShowSuccessAnimation(true);
+                    // setTimeout(() => {
+                    //     onCloseHandler();
+                    // }, 2500);
                 }
             } catch (err) {
                 console.log(err);
@@ -254,9 +255,9 @@ const AddStation = ({
                                     fuelTypes: value
                                 })}} />
             }
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             {showDispenserIdErrorLabel &&
                 <p className="add-dispenser-error-text">{t("errors.stationsGroupExistsError")}</p>
             }

@@ -3,14 +3,15 @@ import Button from "../../../../../generalComponents/buttons/Button";
 import TextInputSeparateLabel from "../../../../../generalComponents/inputFields/textInputSeparateLabel/TextInputSeparateLabel";
 import ModalComponent from "../../../../../generalComponents/modalComponent/ModalComponent";
 import WarningModalBody from "../../../../../generalComponents/modalComponent/warningModalBody/WarningModalBody";
-import SuccessAnimation from "../../../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../../../generalComponents/successAnimation/SuccessAnimation";
 import Loader from "../../../../../generalComponents/loaders/Loader";
 import { changeData } from "../../../../../api/changeData";
 import { colors } from "../../../../../assets/styles/colors";
 import { paths } from "../../../../../constants/paths/paths";
 import { urls } from "../../../../../constants/urls/urls";
 import { editToken } from "../../../../../redux/slices/authSlice";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+// import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -28,18 +29,18 @@ const ChangeStationsGroupFuelPrices = ({
     const [ fuelTypesIdsPrices, setFuelTypesIdsPrices ] = useState({});
     const [ isLoading, setIsLoading ] = useState(false);
     const [ isOpenWarningModalBody, setIsOpenWarningModalBody ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
-    const [ goToBottom, setGoToBottom ] = useState(false);
-    const bottomOfModalRef = useRef(null);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ goToBottom, setGoToBottom ] = useState(false);
+    // const bottomOfModalRef = useRef(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { t } = useTranslation();
 
-    useEffect(() => {
-        if (goToBottom) {
-            bottomOfModalRef.current.scrollIntoView();
-        }
-    }, [goToBottom]);
+    // useEffect(() => {
+    //     if (goToBottom) {
+    //         bottomOfModalRef.current.scrollIntoView();
+    //     }
+    // }, [goToBottom]);
 
     const onSaveHandler = async () => {
         groupFuelPricesBody.fuelTypeIdToPrice = fuelTypesIdsPrices;
@@ -50,11 +51,12 @@ const ChangeStationsGroupFuelPrices = ({
 
         if (response.status === 200) {
             setIsStationsGroupFuelPricesChanged(Math.random());
-            setGoToBottom(true);
-            setShowSuccessAnimation(true);
-            setTimeout(() => {
-                onCloseHandler();
-            }, 2500);
+            onCloseHandler();
+            // setGoToBottom(true);
+            // setShowSuccessAnimation(true);
+            // setTimeout(() => {
+            //     onCloseHandler();
+            // }, 2500);
         } else if (response.status === 401) {
             dispatch(editToken(""));
             localStorage.clear();
@@ -93,7 +95,7 @@ const ChangeStationsGroupFuelPrices = ({
                         color={colors.successCancelColor}
                         onClickHandler={onCloseHandler} />
             </div>
-            <div ref={bottomOfModalRef}></div>
+            {/* <div ref={bottomOfModalRef}></div> */}
             {isOpenWarningModalBody &&
                 <ModalComponent onCloseHandler={() => setIsOpenWarningModalBody(false)}
                                 isOpen={isOpenWarningModalBody}
@@ -106,9 +108,9 @@ const ChangeStationsGroupFuelPrices = ({
                                                         onCloseHandler={() => setIsOpenWarningModalBody(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             {isLoading &&
                 <Loader />
             }

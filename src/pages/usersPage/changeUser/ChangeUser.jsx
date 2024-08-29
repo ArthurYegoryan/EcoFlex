@@ -3,7 +3,7 @@ import TextInput from "../../../generalComponents/inputFields/textInputComponent
 import SelectComponent from "../../../generalComponents/inputFields/selectComponent/SelectComponent";
 import CheckBox from "../../../generalComponents/inputFields/checkbox/CheckBoxComponent";
 import Button from "../../../generalComponents/buttons/Button";
-import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../generalComponents/successAnimation/SuccessAnimation";
 import Loader from "../../../generalComponents/loaders/Loader";
 import { emailValidation } from "../../../utils/fieldsValidations/emailValidation";
 import { changeData } from "../../../api/changeData";
@@ -13,7 +13,8 @@ import { fieldsMargins } from "../../../assets/styles/fieldsMargins";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { editToken } from "../../../redux/slices/authSlice";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+// import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -57,18 +58,18 @@ const ChangeUser = ({
     const [ invalidEmailError, setInvalidEmailError ] = useState(false);
     const [ emptyStationsError, setEmptyStationsError ] = useState(false);
     const [ showLoading, setShowLoading ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
-    const [ goToBottom, setGoToBottom ] = useState(false);
-    const bottomOfModalRef = useRef(null);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ goToBottom, setGoToBottom ] = useState(false);
+    // const bottomOfModalRef = useRef(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
 
-    useEffect(() => {
-        if (goToBottom) {
-            bottomOfModalRef.current.scrollIntoView();
-        }
-    }, [goToBottom]);
+    // useEffect(() => {
+    //     if (goToBottom) {
+    //         bottomOfModalRef.current.scrollIntoView();
+    //     }
+    // }, [goToBottom]);
 
     const stationsGroupsList = [];
     stationsGroups.map((stationsGroup) => stationsGroupsList.push(stationsGroup.name));
@@ -218,11 +219,12 @@ const ChangeUser = ({
 
                     if (response.status === 200) {
                         setIsUserChanged(!isUserChanged);
-                        setGoToBottom(true);
-                        setShowSuccessAnimation(true);
-                        setTimeout(() => {
-                            onCloseHandler();
-                        }, 2500);
+                        onCloseHandler();
+                        // setGoToBottom(true);
+                        // setShowSuccessAnimation(true);
+                        // setTimeout(() => {
+                        //     onCloseHandler();
+                        // }, 2500);
                     } else if (response.status === 401) {
                         localStorage.clear();
                         dispatch(editToken(""));
@@ -329,9 +331,9 @@ const ChangeUser = ({
                     }
                 </>
             }
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             <div 
                 style={{ display: "flex", marginTop: "25px" }} 
                 className="change-user-buttons"
@@ -348,7 +350,7 @@ const ChangeUser = ({
                         color={colors.successCancelColor}
                         onClickHandler={onCloseHandler} />
             </div>
-            <div ref={bottomOfModalRef}></div>
+            {/* <div ref={bottomOfModalRef}></div> */}
             {showLoading &&
                 <Loader />
             }

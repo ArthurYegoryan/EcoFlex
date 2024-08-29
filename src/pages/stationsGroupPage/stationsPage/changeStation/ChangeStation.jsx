@@ -3,7 +3,7 @@ import TextInputComponent from "../../../../generalComponents/inputFields/textIn
 import MultipleSelect from "../../../../generalComponents/inputFields/multiSelectComponent/MultiSelectComponent";
 import Button from "../../../../generalComponents/buttons/Button";
 import Loader from "../../../../generalComponents/loaders/Loader";
-import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import { changeData } from "../../../../api/changeData";
 import { makeFuelTypesList } from "../../../../utils/helpers/makeFuelTypesList";
 import { makeFuelTypesListWithIds } from "../../../../utils/helpers/makeFuelTypesListWithIds";
@@ -42,7 +42,7 @@ const ChangeStation = ({
         stationGroupId: stationGroupId
     });
     const [ isLoading, setIsLoading ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const [ showStationNameErrorLabel, setShowStationNameErrorLabel ] = useState(false);
     const [ showYandexStationIdErrorLabel, setShowYandexStationIdErrorLabel ] = useState(false);
     const [ invalidTinError, setInvalidTinError ] = useState(false);
@@ -92,10 +92,11 @@ const ChangeStation = ({
                         });                    
                     } else if (response.status === 200) {
                         setIsStationChanged(!isStationChanged);
-                        setShowSuccessAnimation(true);
-                        setTimeout(() => {
-                            onCloseHandler();
-                        }, 2500);
+                        onCloseHandler();
+                        // setShowSuccessAnimation(true);
+                        // setTimeout(() => {
+                        //     onCloseHandler();
+                        // }, 2500);
                     }
                 } catch (err) {
                     console.log(err);
@@ -175,9 +176,9 @@ const ChangeStation = ({
                                 ...changedStationData,
                                 fuelTypes: value
                             })} />
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             {showStationNameErrorLabel &&
                 <p className="change-station-error-text">{t("errors.fuelTypeExistsError")}</p>
             }

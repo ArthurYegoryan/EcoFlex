@@ -3,11 +3,10 @@ import Button from "../../../../generalComponents/buttons/Button";
 import TextInputSeparateLabel from "../../../../generalComponents/inputFields/textInputSeparateLabel/TextInputSeparateLabel";
 import ModalComponent from "../../../../generalComponents/modalComponent/ModalComponent";
 import WarningModalBody from "../../../../generalComponents/modalComponent/warningModalBody/WarningModalBody";
-import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
+// import SuccessAnimation from "../../../../generalComponents/successAnimation/SuccessAnimation";
 import Loader from "../../../../generalComponents/loaders/Loader";
 import { changeData } from "../../../../api/changeData";
 import { colors } from "../../../../assets/styles/colors";
-import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
 import { paths } from "../../../../constants/paths/paths";
 import { urls } from "../../../../constants/urls/urls";
 import { editToken } from "../../../../redux/slices/authSlice";
@@ -32,7 +31,7 @@ const ChangeStation = ({
     const [ fuelTypesIdsPrices, setFuelTypesIdsPrices ] = useState({});
     const [ isLoading, setIsLoading ] = useState(false);
     const [ isOpenWarningModalBody, setIsOpenWarningModalBody ] = useState(false);
-    const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
+    // const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { t } = useTranslation();
@@ -46,10 +45,11 @@ const ChangeStation = ({
 
         if (response.status === 200) {
             setIsStationFuelPricesChanged(!isStationFuelPricesChanged);
-            setShowSuccessAnimation(true);
-            setTimeout(() => {
-                onCloseHandler();
-            }, 2500);
+            onCloseHandler();
+            // setShowSuccessAnimation(true);
+            // setTimeout(() => {
+            //     onCloseHandler();
+            // }, 2500);
         } else if (response.status === 401) {
             dispatch(editToken(""));
             localStorage.clear();
@@ -100,9 +100,9 @@ const ChangeStation = ({
                                                         onCloseHandler={() => setIsOpenWarningModalBody(false)} />}
                                 closeImageUrl="../img/x.svg" />
             }
-            {showSuccessAnimation &&
+            {/* {showSuccessAnimation &&
                 <SuccessAnimation />
-            }
+            } */}
             {isLoading &&
                 <Loader />
             }
