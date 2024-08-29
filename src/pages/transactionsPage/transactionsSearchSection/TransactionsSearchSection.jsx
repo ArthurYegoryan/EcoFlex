@@ -54,7 +54,7 @@ const TransactionsSearchSection = ({
                              firstRowLabel={"All"}
                              firstRowValue={"All"}
                              chooseData={fuelTypesList}
-                             width={"200px"}
+                             width={"280px"}
                              marginTop={"12px"}
                              marginLeft={"15px"}
                              onChooseHandler={(e) => setSearchParams({

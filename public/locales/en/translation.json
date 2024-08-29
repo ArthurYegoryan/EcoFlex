@@ -4,7 +4,8 @@
         "stationFuelTypesPricesWillBeChanged": "Station fuel types prices will be changed",
         "groupFuelTypesPricesWillBeChanged": "Group fuel types prices will be changed",
         "doYouWantDelete": "Do yow want to delete",
-        "newPassSendSuccess": "The new password has been successfully sent to your email address !!!"
+        "newPassSendSuccess": "The new password has been successfully sent to your email address !!!",
+        "dataNotFound": "Data not found"
     },
     "nav": {
         "fuelTypes": "Fuel types",

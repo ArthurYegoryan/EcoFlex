@@ -18,8 +18,6 @@ const TransactionsPage = () => {
     const windowHeight = window.screen.height;
     const pageSize = windowHeight < 950 ? 7 : 10;
 
-    // console.log(new Date(Date.now() - new Date().getHours() * 60 * 60 * 1000 - new Date().getMinutes() * 60 * 1000).toISOString());
-
     const [ allFuelTypes, setAllFuelTypes ] = useState([]);
     const [ transactions, setTransactions ] = useState([]);
     const [ searchParams, setSearchParams ] = useState({

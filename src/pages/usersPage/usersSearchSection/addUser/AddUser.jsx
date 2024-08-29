@@ -35,6 +35,9 @@ const AddUser = ({
         stations: []
     });
     const [ userAvailableStations, setUserAvailableStations ] = useState([]);
+    const [ searchedUserAvailableStations, setSearchedUserAvailableStations ] = useState([]);
+    const [ isStationsSearched, setIsStationsSearched ] = useState(false);
+    const [ showDataNotFound, setShowDataNotFound ] = useState(false);
     const [ isStationsGroupSelected, setIsStationsGroupSelected ] = useState(false);
     const [ emptyFirstNameError, setEmptyFirstNameError ] = useState(false);
     const [ emptyLastNameError, setEmptyLastNameError ] = useState(false);
@@ -93,15 +96,26 @@ const AddUser = ({
     };
 
     const searchAvailableStations = (value) => {
-        const searchedStations = [];
+        setShowDataNotFound(false);
 
-        userAvailableStations.map((station) => {
-            if (station.name.toLowerCase().includes(value)) {
-                searchedStations.push(station);
-            }
-        });
+        if (value) {
+            const searchedStations = [];
 
-        setUserAvailableStations(searchedStations);
+            userAvailableStations.map((station) => {
+                if (station.name.toLowerCase().includes(value)) {
+                    searchedStations.push(station);
+                }
+            });
+
+            if (searchedStations.length) {
+                setSearchedUserAvailableStations(searchedStations);
+            } else {
+                setSearchedUserAvailableStations([]);
+                setShowDataNotFound(true);
+            }            
+        } else {
+            setIsStationsSearched(false);
+        }        
     };
 
     const checkBoxHandler = (evt, item) => {
@@ -259,6 +273,7 @@ const AddUser = ({
                                 width={fieldsWidths.modalFields}
                                 marginTop={fieldsMargins.modalFieldMarginTop}
                                 onChangeHandler={(evt) => {
+                                    setIsStationsSearched(true);
                                     searchAvailableStations(evt.target.value);
                                 }} />
                             <div 
@@ -270,12 +285,32 @@ const AddUser = ({
                                 }} 
                                 className="change-user-page-checkbox-area"
                             >
-                                {
+                                {isStationsSearched ?
+                                    searchedUserAvailableStations.map((station) => {
+                                        return <CheckBox label={station.name}
+                                                        defaultChecked={userStationDetector(station.id)}
+                                                        onChangeHandler={(evt, item) => checkBoxHandler(evt, item)} />
+                                    }) :
                                     userAvailableStations.map((station) => {
                                         return <CheckBox label={station.name}
                                                         defaultChecked={userStationDetector(station.id)}
                                                         onChangeHandler={(evt, item) => checkBoxHandler(evt, item)} />
                                     })
+                                }
+                                {showDataNotFound &&
+                                    <div style={{
+                                             width: fieldsWidths.modalFields,
+                                             textAlign: "center"
+                                         }} 
+                                         className="add-user-data-not-found-area"
+                                    >
+                                        <img src={process.env.PUBLIC_URL + 'img/noData.svg'} 
+                                             alt="No data"
+                                             style={{
+                                                 width: "10%"
+                                             }} />
+                                        <p style={{ marginTop: "0px", color: "gray" }}>{t("generalQuestionsTexts.dataNotFound")}</p>
+                                    </div>
                                 }
                             </div>
                             {emptyStationsError &&

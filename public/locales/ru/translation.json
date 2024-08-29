@@ -4,7 +4,8 @@
         "stationFuelTypesPricesWillBeChanged": "Цены на виды топлива на заправочных станциях изменятся",
         "groupFuelTypesPricesWillBeChanged": "Цены на все виды топлива в сети изменятся",
         "doYouWantDelete": "Вы хотите удалить",
-        "newPassSendSuccess": "Новый пароль был успешно отправлен на Ваш электронный адрес !!!"
+        "newPassSendSuccess": "Новый пароль был успешно отправлен на Ваш электронный адрес !!!",
+        "dataNotFound": "Данные не найдены"
     },
     "nav": {
         "fuelTypes": "Виды топлива",

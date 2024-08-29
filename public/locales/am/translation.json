@@ -4,7 +4,8 @@
         "stationFuelTypesPricesWillBeChanged": "Լցակայանի վառելիքի տեսակների գները կփոփոխվեն",
         "groupFuelTypesPricesWillBeChanged": "Ցանցի բոլոր վառելիքի տեսակների գները կփոփոխվեն",
         "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել",
-        "newPassSendSuccess": "Նոր գաղտնաբառը հաջողությամբ ուղարկվել է Ձեր էլ. հասցեին !!!"
+        "newPassSendSuccess": "Նոր գաղտնաբառը հաջողությամբ ուղարկվել է Ձեր էլ. հասցեին !!!",
+        "dataNotFound": "Տվյալներ չեն գտնվել"
     },
     "nav": {
         "fuelTypes": "Վառելիքի տեսակներ",
