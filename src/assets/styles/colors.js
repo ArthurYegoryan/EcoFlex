@@ -1,6 +1,7 @@
 export const colors = {
     /* Buttons */
-    originalBgColor: "#E1E100",       // yellow
+    // originalBgColor: "#E1E100",       // yellow
+    originalBgColor: "#ffdb4d",       // yellow
     originalHoverColor: "#E1C700",    // orange
     originalColor: "#000000",         // black
     successBgColor: "#008000",        // green
