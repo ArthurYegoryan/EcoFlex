@@ -177,7 +177,6 @@ const TableComponent = ({
             render: (text) => {
                 return (
                     <a onClick={() => {
-                        // setCurrentDataName(text);
                         onClickHref(text);
                     }}>
                         {text}
@@ -237,6 +236,99 @@ const TableComponent = ({
                     }} />
                 </Space>
             )
+        },
+    ];
+
+    const stationsGroupFuelSupervisorColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byId()
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "30px",
+            render: (text) => {
+                return (
+                    <a onClick={() => {
+                        // setCurrentDataName(text);
+                        onClickHref(text);
+                    }}>
+                        {text}
+                    </a>
+                );
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "30px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "30px",
         },
     ];
 
@@ -342,13 +434,7 @@ const TableComponent = ({
                             stationsFilterHandlers.byStationPhoneNumber();
                         }}
                     />
-                    &nbsp;&nbsp;
-                    <img src={process.env.PUBLIC_URL + '../img/phone.svg'} 
-                        alt="Phone" 
-                        style={{
-                            width: "20px"
-                        }}
-                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
                 </span>
             ),
             dataIndex: 'phoneNumber',
@@ -407,6 +493,157 @@ const TableComponent = ({
                     }} />
                 </Space>
             )
+        },
+    ];
+
+    const stationsFuelSupervisorColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'}
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID {process.env.PUBLIC_URL}
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "8px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byYandexId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexStationId',
+            key: 'yandexStationId',
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "11px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationTin();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationTin")}
+                </span>
+            ),
+            dataIndex: 'tin',
+            key: 'tin',
+            width: "10px",
+        },
+        {
+            title: t("stations.fuelTypes"),
+            dataIndex: 'fuelTypes',
+            key: 'fuelTypes',
+            width: "20px",
+            render: (values) => {
+                return (
+                    <>
+                        {values.map((value, index) => (
+                            <React.Fragment key={index}>
+                                <Typography.Text>
+                                    {value}
+                                </Typography.Text>
+                                <br/>
+                            </React.Fragment>
+                        ))}
+                    </>
+                );
+            }
         },
     ];
 
@@ -512,13 +749,7 @@ const TableComponent = ({
                             filterHandlers.byStationPhoneNumber();
                         }}
                     />
-                    &nbsp;&nbsp;
-                    <img src={process.env.PUBLIC_URL + '../img/phone.svg'} 
-                        alt="Phone" 
-                        style={{
-                            width: "20px"
-                        }}
-                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
                 </span>
             ),
             dataIndex: 'phoneNumber',
@@ -569,19 +800,19 @@ const TableComponent = ({
 
     const fuelTypesWithPricesColumns = [
         {
-            title: 'Fuel name',
+            title: t("fuelTypes.fuelName"),
             dataIndex: 'name',
             key: 'name',
             width: "15px",
         },
         {
-            title: 'Count type',
+            title: t("fuelTypes.countType"),
             dataIndex: 'countType',
             key: 'countType',
             width: "10px",
         },
         {
-            title: 'Price',
+            title: t("fuelPrices.price"),
             dataIndex: 'price',
             key: 'price',
             width: "10px",
@@ -1131,7 +1362,9 @@ const TableComponent = ({
 
     if (whichTable === "fuelTypes") columns = fuelTypesColumns;
     else if (whichTable === "stationsGroup") columns = stationsGroupColumns;
+    else if (whichTable === "stationsGroupFuelSupervisor") columns = stationsGroupFuelSupervisorColumns;
     else if (whichTable === "stations") columns = stationsColumns;
+    else if (whichTable === "stationsFuelSupervisor") columns = stationsFuelSupervisorColumns;
     else if (whichTable === "stationsGroupFuelPrices") columns = stationsGroupFuelPricesColumns;
     else if (whichTable === "fuelTypesWithPrices") columns = fuelTypesWithPricesColumns;
     else if (whichTable === "dispensers") columns = dispensersColumns;

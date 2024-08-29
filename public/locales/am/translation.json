@@ -38,7 +38,7 @@
     "stationsGroup": {
         "stationsGroupName": "Լցակայանների ցանցի անուն",
         "stationsGroupAddress": "Հասցե",
-        "stationsGroupPhoneNumber": "Հեռախոսահամար",
+        "stationsGroupPhoneNumber": "Հեռ",
         "action": "Գործողություն",
         "addChangeStationsGroup": {
             "addNewStationsGroup": "Ավելացնել նոր լցակայանների ցանց",
@@ -66,7 +66,8 @@
     "fuelPrices": {
         "changeAllFuelPricesOfStationsGroup": "Փոփոխել ցանցի բոլոր վառելիքների գները",
         "addAllDiscountsOfStationsGroup": "Ավելացնել ցանցի բոլոր վառելիքների զեղչերը",
-        "changeStationFuelPrices": "Փոփոխել լցակայանի վառելիքի գները"
+        "changeStationFuelPrices": "Փոփոխել լցակայանի վառելիքի գները",
+        "price": "Գին"
     },
     "dispensers": {
         "dispenserId": "Դիսպենսերի ID",

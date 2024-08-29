@@ -43,6 +43,7 @@ const StationPage = () => {
     const [ showLoading, setShowLoading ] = useState();
 
     const { isMenuOpen } = useSelector((state) => state.menu);
+    const role = useSelector((state) => state.auth.role) ?? localStorage.getItem("role");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -169,15 +170,27 @@ const StationPage = () => {
             >
                 {t("stations.returnStationsGroupPage")}
             </p>
-
-            <Table whichTable={"stations"}
-                    size="small"
-                    datas={stations}
-                    setCurrentData={setChoosedStation}                    
-                    onClickEditButton={() => setIsOpenChangeModal(true)}
-                    stationsFilterHandlers={filterHandlers}
-                    scrollBoth={true}
-                    minWidth={"1500px"} />
+            {
+                role === "Admin" ?
+                    <Table whichTable={"stations"}
+                            size="small"
+                            datas={stations}
+                            setCurrentData={setChoosedStation}                    
+                            onClickEditButton={() => setIsOpenChangeModal(true)}
+                            stationsFilterHandlers={filterHandlers}
+                            scrollBoth={true}
+                            minWidth={"1500px"} />
+                : role === "FuelSupervisor" ?
+                    <Table whichTable={"stationsFuelSupervisor"}
+                            size="small"
+                            datas={stations}
+                            setCurrentData={setChoosedStation}                    
+                            stationsFilterHandlers={filterHandlers}
+                            scrollBoth={true}
+                            minWidth={"1500px"} />
+                : null
+            }
+            
             <div className="stations-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}

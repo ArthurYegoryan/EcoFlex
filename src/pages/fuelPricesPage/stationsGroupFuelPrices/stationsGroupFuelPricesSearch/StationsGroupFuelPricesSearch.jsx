@@ -66,7 +66,7 @@ const SearchSection = ({
                                 marginLeft={"15px"}
                                 onClickHandler={() => setIsOpenedChangeStationsGroupFuelPricesModal(true)} />
             }
-            {(role === "Admin" || role === "FuelSupervisor") &&
+            {(role === "Admin") &&
                 <ButtonComponent label={t("fuelPrices.addAllDiscountsOfStationsGroup")}
                                 startIcon={<Add />}
                                 height={"30px"}

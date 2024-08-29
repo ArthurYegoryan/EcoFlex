@@ -37,6 +37,7 @@ const StationsGroupPage = () => {
     const [ isOpenChangeModal, setIsOpenChangeModal ] = useState(false);
 
     const { isMenuOpen } = useSelector((state) => state.menu);
+    const role = useSelector((state) => state.auth.role) ?? localStorage.getItem("role");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -127,14 +128,26 @@ const StationsGroupPage = () => {
                            setSearchText={setSearchText}
                            isSearchClicked={isSearchClicked}
                            setIsSearchClicked={setIsSearchClicked} />
-            <Table whichTable={"stationsGroup"}
-                    datas={stationsGroups}
-                    setCurrentData={setChoosedStationsGroup}
-                    onClickHref={onClickHrefHandler}
-                    onClickEditButton={() => setIsOpenChangeModal(true)}
-                    stationsGroupFilterHandlers={filterHandlers}
-                    scrollX={true}
-                    minWidth={"1000px"} />
+            {
+                role === "Admin" ?
+                    <Table whichTable={"stationsGroup"}
+                            datas={stationsGroups}
+                            setCurrentData={setChoosedStationsGroup}
+                            onClickHref={onClickHrefHandler}
+                            onClickEditButton={() => setIsOpenChangeModal(true)}
+                            stationsGroupFilterHandlers={filterHandlers}
+                            scrollX={true}
+                            minWidth={"1000px"} />
+                : role === "FuelSupervisor" ?
+                    <Table whichTable={"stationsGroupFuelSupervisor"}
+                            datas={stationsGroups}
+                            setCurrentData={setChoosedStationsGroup}
+                            onClickHref={onClickHrefHandler}
+                            stationsGroupFilterHandlers={filterHandlers}
+                            scrollX={true}
+                            minWidth={"1000px"} />
+                : null
+            }
             <div className="stations-group-page-pagination">
                 <Pagination pageCount={pageCount}
                             setPage={setCurrentPage}
