@@ -7,6 +7,8 @@ import { addData } from "../../../../api/addData";
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
+import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../../assets/styles/fieldsMargins";
 import { editToken } from "../../../../redux/slices/authSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -92,7 +94,7 @@ const AddStation = ({
             <TextInputComponent label={t("stationsGroup.addChangeStationsGroup.name")}
                                 existsError={emptyStationsGroupNameError}
                                 errorText={t("errors.emptyFieldError")}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationsGroupData({
                                     ...newStationsGroupData,
                                     name: evt.target.value
@@ -100,15 +102,15 @@ const AddStation = ({
             <TextInputComponent label={t("stationsGroup.stationsGroupAddress")}
                                 existsError={emptyStationsGroupAddressError}
                                 errorText={t("errors.emptyFieldError")}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationsGroupData({
                                     ...newStationsGroupData,
                                     address: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stationsGroup.stationsGroupPhoneNumber")}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationsGroupData({
                                     ...newStationsGroupData,
                                     phoneNumber: evt.target.value

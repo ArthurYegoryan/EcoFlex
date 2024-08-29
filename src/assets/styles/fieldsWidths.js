@@ -1,3 +1,3 @@
 export const fieldsWidths = {
-    modalFields: "330px"
+    modalFields: "370px"
 };

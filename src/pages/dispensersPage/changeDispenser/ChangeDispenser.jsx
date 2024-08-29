@@ -13,6 +13,7 @@ import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { colors } from "../../../assets/styles/colors";
 import { fieldsWidths } from "../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../assets/styles/fieldsMargins";
 import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
 import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
 import { editToken } from "../../../redux/slices/authSlice";
@@ -133,7 +134,7 @@ const ChangeDispenser = ({
                                 })}} />
             <TextInputComponent label={t("dispensers.dispenserId")}
                                 defaultValue={dispenserData.yandexDispenserId}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedDispenserData({
                                     ...changedDispenserData,
@@ -142,7 +143,7 @@ const ChangeDispenser = ({
             <SelectComponent label={t("dispensers.addChangeDispenser.chooseStationGroup")}
                                 defaultValue={dispenserData.stationGroupName}
                                 chooseData={stationsGroupsNamesList}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChooseHandler={(evt) => {
                                     setChangedDispenserData({
@@ -154,14 +155,14 @@ const ChangeDispenser = ({
             <SelectComponent label={t("dispensers.addChangeDispenser.chooseStation")}
                                 defaultValue={dispenserData.stationName}
                                 chooseData={currentGroupStations}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChooseHandler={(evt) => {setChangedDispenserData({
                                     ...changedDispenserData,
                                     stationName: evt.target.value
                                 })}} />
             <MultipleSelect label={t("dispensers.addChangeDispenser.chooseFuelTypes")}
-                            marginTop={"25px"}
+                            marginTop={fieldsMargins.modalFieldMarginTop}
                             width={fieldsWidths.modalFields}
                             defaultValue={dispenserData.fuelTypes}
                             dataForMultiSelecting={makeFuelTypesList(dispenserData.station.fuelTypes, true)}

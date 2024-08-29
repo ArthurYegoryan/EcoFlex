@@ -11,6 +11,7 @@ import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
 import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../../assets/styles/fieldsMargins";
 import { editToken } from "../../../../redux/slices/authSlice";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -210,14 +211,14 @@ const AddUser = ({
                         existsError={emptyLastNameError}
                         errorText={t("errors.emptyFieldError")}
                         width={fieldsWidths.modalFields}
-                        marginTop={"25px"}
+                        marginTop={fieldsMargins.modalFieldMarginTop}
                         onChangeHandler={(evt) => setNewUserData({
                             ...newUserData,
                             lastName: evt.target.value
                         })} />
             <TextInput label={t("users.addChangeUser.phone")}
                         width={fieldsWidths.modalFields}
-                        marginTop={"25px"}
+                        marginTop={fieldsMargins.modalFieldMarginTop}
                         onChangeHandler={(evt) => setNewUserData({
                             ...newUserData,
                             phoneNumber: evt.target.value
@@ -229,7 +230,7 @@ const AddUser = ({
                             invalidEmailError ? t("errors.invalidEmailError") : null
                         }
                         width={fieldsWidths.modalFields}
-                        marginTop={"25px"}
+                        marginTop={fieldsMargins.modalFieldMarginTop}
                         onChangeHandler={(evt) => setNewUserData({
                             ...newUserData,
                             email: evt.target.value
@@ -238,7 +239,7 @@ const AddUser = ({
                             defaultValue={"Admin"}
                             chooseData={["Admin", "Fuel Supervisor"]}
                             width={fieldsWidths.modalFields}
-                            marginTop={"25px"}
+                            marginTop={fieldsMargins.modalFieldMarginTop}
                             onChooseHandler={(evt) => setNewUserData({
                                 ...newUserData,
                                 roleType: evt.target.value === "Fuel Supervisor" ? "FuelSupervisor" : "Admin"
@@ -250,13 +251,13 @@ const AddUser = ({
                                      existsError={emptyStationsGroupError}
                                      errorText={t("errors.emptyFieldError")}
                                      width={fieldsWidths.modalFields}
-                                     marginTop={"25px"}
+                                     marginTop={fieldsMargins.modalFieldMarginTop}
                                      onChooseHandler={(evt) => getGroupIdSetStations(evt.target.value)} />
                     {isStationsGroupSelected &&
                         <>
                             <TextInput label={t("users.addChangeUser.searchStations")}
                                 width={fieldsWidths.modalFields}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 onChangeHandler={(evt) => {
                                     searchAvailableStations(evt.target.value);
                                 }} />
@@ -264,7 +265,7 @@ const AddUser = ({
                                 style={{ 
                                     width: fieldsWidths.modalFields,
                                     marginTop: "10px",
-                                    border: emptyStationsError ? "1px solid #d32f2f" : "none",
+                                    border: emptyStationsError ? `1px solid ${colors.errorLabelColor}` : "none",
                                     borderRadius: "5px"
                                 }} 
                                 className="change-user-page-checkbox-area"
@@ -282,7 +283,7 @@ const AddUser = ({
                                         marginTop: "3px",
                                         marginLeft: "14px",
                                         fontSize: "12px",
-                                        color: "#d32f2f"
+                                        color: colors.errorLabelColor
                                     }}
                                 >
                                     {t("errors.emptyFieldError")}

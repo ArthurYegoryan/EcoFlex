@@ -10,6 +10,8 @@ import { makeFuelTypesListWithIds } from "../../../../utils/helpers/makeFuelType
 import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
+import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../../assets/styles/fieldsMargins";
 import { isChangedAnyData } from "../../../../utils/helpers/isChangedAnyData";
 import { autoFillWithDefaultData } from "../../../../utils/helpers/autoFillWithDefaultData";
 import { onlyNumbersValidation } from "../../../../utils/fieldsValidations/onlyNumbersValidation";
@@ -109,31 +111,31 @@ const ChangeStation = ({
         <div className="change-station-fields">
             <TextInputComponent label={t("stations.addChangeStation.name")}
                                 defaultValue={stationData.name}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationData({
                                     ...changedStationData,
                                     name: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.yandexId")}
                                 defaultValue={stationData.yandexStationId}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationData({
                                     ...changedStationData,
                                     yandexStationId: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.stationAddress")}
                                 defaultValue={stationData.address}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationData({
                                     ...changedStationData,
                                     address: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.stationTin")}
                                 defaultValue={stationData.tin}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 existsError={invalidTinError}
                                 errorText={t("errors.onlyNumbersError")}
                                 onChangeHandler={(evt) => {setChangedStationData({
@@ -142,24 +144,24 @@ const ChangeStation = ({
                                 })}} />
             <TextInputComponent label={t("stations.stationPhone")}
                                 defaultValue={stationData.phoneNumber}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationData({
                                     ...changedStationData,
                                     phoneNumber: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.addChangeStation.coordinateWidth")}
                                 defaultValue={stationData.lat}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationData({
                                     ...changedStationData,
                                     lat: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.addChangeStation.coordinateLength")}
                                 defaultValue={stationData.long}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationData({
                                     ...changedStationData,
                                     long: evt.target.value
@@ -167,8 +169,8 @@ const ChangeStation = ({
             <MultipleSelect label={t("stations.fuelTypes")}
                             dataForMultiSelecting={makeFuelTypesList(allFuelTypes, true)}
                             defaultValue={stationData.fuelTypes}
-                            width={"473px"}
-                            marginTop={"25px"}
+                            width={fieldsWidths.modalFields}
+                            marginTop={fieldsMargins.modalFieldMarginTop}
                             onChangeHandler={(value) => setChangedStationData({
                                 ...changedStationData,
                                 fuelTypes: value

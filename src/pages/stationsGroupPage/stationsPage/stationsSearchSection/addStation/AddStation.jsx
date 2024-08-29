@@ -10,8 +10,9 @@ import { makeFuelTypesListWithIds } from "../../../../../utils/helpers/makeFuelT
 import { urls } from "../../../../../constants/urls/urls";
 import { paths } from "../../../../../constants/paths/paths";
 import { colors } from "../../../../../assets/styles/colors";
+import { fieldsWidths } from "../../../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../../../assets/styles/fieldsMargins";
 import { tinValidation } from "../../../../../utils/fieldsValidations/tinValidation";
-import { onlyNumbersPointValidation } from "../../../../../utils/fieldsValidations/onlyNumbersPointValidation";
 import { editToken } from "../../../../../redux/slices/authSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -138,7 +139,7 @@ const AddStation = ({
             <TextInputComponent label={t("stations.addChangeStation.name")}
                                 existsError={emptyStationNameError}
                                 errorText={t("errors.emptyFieldError")}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationData({
                                     ...newStationData,
                                     name: evt.target.value
@@ -146,8 +147,8 @@ const AddStation = ({
             <TextInputComponent label={t("stations.yandexId")}
                                 existsError={emptyYandexStationIdError}
                                 errorText={t("errors.emptyFieldError")}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationData({
                                     ...newStationData,
                                     yandexStationId: evt.target.value
@@ -155,8 +156,8 @@ const AddStation = ({
             <TextInputComponent label={t("stations.stationAddress")}
                                 existsError={emptyStationAddressError}
                                 errorText={t("errors.emptyFieldError")}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationData({
                                     ...newStationData,
                                     address: evt.target.value
@@ -167,29 +168,29 @@ const AddStation = ({
                                     emptyStationTinError ? t("errors.emptyFieldError") :
                                     invalidStationTinError ? t("errors.onlyNumbersLengthEightError") : null
                                 }
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationData({
                                     ...newStationData,
                                     tin: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.stationPhone")}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationData({
                                     ...newStationData,
                                     phoneNumber: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.addChangeStation.coordinateWidth")}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationData({
                                     ...newStationData,
                                     lat: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stations.addChangeStation.coordinateLength")}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewStationData({
                                     ...newStationData,
                                     long: evt.target.value
@@ -198,8 +199,8 @@ const AddStation = ({
                             existsError={emptyFuelTypesError}
                             errorText={t("errors.emptyFieldError")}
                             dataForMultiSelecting={makeFuelTypesList(allFuelTypes, true)}
-                            width={"473px"}
-                            marginTop={"25px"}
+                            width={fieldsWidths.modalFields}
+                            marginTop={fieldsMargins.modalFieldMarginTop}
                             onChangeHandler={(value) => setNewStationData({
                                 ...newStationData,
                                 fuelTypes: value

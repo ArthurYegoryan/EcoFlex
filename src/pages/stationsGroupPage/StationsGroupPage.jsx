@@ -143,7 +143,7 @@ const StationsGroupPage = () => {
             {isOpenChangeModal &&
                 <ModalComponent onCloseHandler={() => setIsOpenChangeModal(false)}
                                 isOpen={isOpenChangeModal}
-                                title={t("stations.addChangeStation.changeStationData")}
+                                title={t("stationsGroup.addChangeStationsGroup.changeStationsGroupData")}
                                 body={<ChangeStationsGroup stationsGroupData={choosedStationsGroup}
                                                            isStationsGroupChanged={isStationsGroupChanged}
                                                            setIsStationsGroupChanged={setIsStationsGroupChanged}

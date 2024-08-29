@@ -14,6 +14,7 @@ import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
 import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../../assets/styles/fieldsMargins";
 import { editToken } from "../../../../redux/slices/authSlice";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -44,7 +45,6 @@ const AddStation = ({
     const [ isLoading, setIsLoading ] = useState(false);
     const [ showSuccessAnimation, setShowSuccessAnimation ] = useState(false);
     const [ showDispenserIdErrorLabel, setShowDispenserIdErrorLabel ] = useState(false);
-    const [ showSerialNumberErrorLabel, setShowSerialNumberErrorLabel ] = useState(false);
 
     const [ emptyDispenserIdError, setEmptyDispenserIdError ] = useState(false);
     const [ invalidDispenserIdError, setInvalidDispenserIdError ] = useState(false);
@@ -102,7 +102,6 @@ const AddStation = ({
 
     const resetPrevValidations = () => {
         setShowDispenserIdErrorLabel(false);
-        setShowSerialNumberErrorLabel(false);
 
         setEmptyDispenserIdError(false);
         setInvalidDispenserIdError(false);
@@ -206,7 +205,7 @@ const AddStation = ({
             <TextInputComponent label={t("dispensers.serialNumber")}
                                 existsError={emptySerialNumberError}
                                 errorText={t("errors.emptyFieldError")}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setNewDispenserData({
                                     ...newDispenserData,
@@ -216,7 +215,7 @@ const AddStation = ({
                                 chooseData={stationsGroupsNamesList}
                                 existsError={emptyStationGroupNameError}
                                 errorText={t("errors.emptyFieldError")}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChooseHandler={(evt) => {
                                     setNewDispenserData({
@@ -230,7 +229,7 @@ const AddStation = ({
                                 chooseData={currentGroupStations}
                                 existsError={emptyStationNameError}
                                 errorText={t("errors.emptyFieldError")}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChooseHandler={(evt) => {
                                     setNewDispenserData({
@@ -244,7 +243,7 @@ const AddStation = ({
                                 }} />
             {showFuelTypes && 
                 <MultipleSelect label={t("dispensers.addChangeDispenser.chooseFuelTypes")}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 dataForMultiSelecting={currentStationFuelTypes}
                                 resetValue={resetMultiSelectValues}

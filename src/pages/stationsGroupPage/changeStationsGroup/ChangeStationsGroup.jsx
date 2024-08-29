@@ -7,6 +7,8 @@ import { changeData } from "../../../api/changeData";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { colors } from "../../../assets/styles/colors";
+import { fieldsWidths } from "../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../assets/styles/fieldsMargins";
 import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
 import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
 import { editToken } from "../../../redux/slices/authSlice";
@@ -77,23 +79,23 @@ const ChangeStationsGroup = ({
         <div className="change-stations-group-fields">
             <TextInputComponent label={t("stationsGroup.addChangeStationsGroup.name")}
                                 defaultValue={stationsGroupData.name}
-                                width="473px"
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationsGroupData({
                                     ...changedStationsGroupData,
                                     name: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stationsGroup.stationsGroupAddress")}
                                 defaultValue={stationsGroupData.address}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationsGroupData({
                                     ...changedStationsGroupData,
                                     address: evt.target.value
                                 })}} />
             <TextInputComponent label={t("stationsGroup.stationsGroupPhoneNumber")}
                                 defaultValue={stationsGroupData.phoneNumber}
-                                marginTop={"25px"}
-                                width="473px"
+                                marginTop={fieldsMargins.modalFieldMarginTop}
+                                width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedStationsGroupData({
                                     ...changedStationsGroupData,
                                     phoneNumber: evt.target.value

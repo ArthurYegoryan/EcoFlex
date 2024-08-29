@@ -9,6 +9,7 @@ import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { colors } from "../../../assets/styles/colors";
 import { fieldsWidths } from "../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../assets/styles/fieldsMargins";
 import { isChangedAnyData } from "../../../utils/helpers/isChangedAnyData";
 import { autoFillWithDefaultData } from "../../../utils/helpers/autoFillWithDefaultData";
 import { onlyNumbersValidation } from "../../../utils/fieldsValidations/onlyNumbersValidation";
@@ -107,7 +108,7 @@ const ChangeFueltype = ({
                                 })}} />
             <TextInputComponent label={t("fuelTypes.adgCode")}
                                 defaultValue={fuelTypeData.adgCode}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 existsError={invalidAdgCodeError}
                                 errorText={t("errors.onlyNumbersError")}
@@ -117,7 +118,7 @@ const ChangeFueltype = ({
                                 })}} />
             <TextInputComponent label={t("fuelTypes.departmentId")}
                                 defaultValue={fuelTypeData.departmentId}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
                                     ...changedFuelTypeData,
@@ -125,7 +126,7 @@ const ChangeFueltype = ({
                                 })}} />
             <TextInputComponent label={t("fuelTypes.yandexId")}
                                 defaultValue={fuelTypeData.yandexFuelTypeId}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 onChangeHandler={(evt) => {setChangedFuelTypeData({
                                     ...changedFuelTypeData,
@@ -135,7 +136,7 @@ const ChangeFueltype = ({
                              chooseData={["Kg", "Ltr"]}
                              defaultValue={fuelTypeData.countType === "L" ? "Ltr" : fuelTypeData.countType}
                              width={fieldsWidths.modalFields}
-                             marginTop={"25px"}
+                             marginTop={fieldsMargins.modalFieldMarginTop}
                              onChooseHandler={(evt) => {setChangedFuelTypeData({
                                 ...changedFuelTypeData,
                                 countType: evt.target.value === "Ltr" ? "L" : evt.target.value

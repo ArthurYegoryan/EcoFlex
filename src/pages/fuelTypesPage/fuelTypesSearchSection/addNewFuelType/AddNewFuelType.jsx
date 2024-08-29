@@ -9,6 +9,7 @@ import { urls } from "../../../../constants/urls/urls";
 import { paths } from "../../../../constants/paths/paths";
 import { colors } from "../../../../assets/styles/colors";
 import { fieldsWidths } from "../../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../../assets/styles/fieldsMargins";
 import { onlyNumbersValidation } from "../../../../utils/fieldsValidations/onlyNumbersValidation";
 import { editToken } from "../../../../redux/slices/authSlice";
 import { useState } from "react";
@@ -135,7 +136,7 @@ const AddNewFueltype = ({
                                     name: evt.target.value
                                 })}} />
             <TextInputComponent label={t("fuelTypes.adgCode")}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 existsError={emptyAdgCodeError || invalidAdgCodeError}
                                 errorText={
@@ -147,7 +148,7 @@ const AddNewFueltype = ({
                                     adgCode: evt.target.value
                                 })}} />
             <TextInputComponent label={t("fuelTypes.departmentId")}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 existsError={emptyDepartmentIdError || invalidDepartmentIdError}
                                 errorText={
@@ -159,7 +160,7 @@ const AddNewFueltype = ({
                                     departmentId: evt.target.value
                                 })}} />
             <TextInputComponent label={t("fuelTypes.yandexId")}
-                                marginTop={"25px"}
+                                marginTop={fieldsMargins.modalFieldMarginTop}
                                 width={fieldsWidths.modalFields}
                                 existsError={emptyYandexFuelTypeIdError}
                                 errorText={t("errors.emptyFieldError")}
@@ -169,7 +170,7 @@ const AddNewFueltype = ({
                                 })}} />
             <SelectComponent label={t("fuelTypes.addChangeFuelType.chooseCountType")}
                              chooseData={["Kg", "Ltr"]}
-                             marginTop={"25px"}
+                             marginTop={fieldsMargins.modalFieldMarginTop}
                              width={fieldsWidths.modalFields}
                              existsError={emptyCountTypeError}
                              errorText={t("errors.emptyFieldError")}

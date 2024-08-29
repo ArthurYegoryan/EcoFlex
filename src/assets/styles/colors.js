@@ -8,6 +8,7 @@ export const colors = {
     cancelBgColor: "#FF0000",         // red
     cancelHoverColor: "#F1807E",      // light red
     successCancelColor: "#FFFFFF",    // white
+
     whiteColor: "#FFFFFF",         // white
     whiteHoverColor: "#16E1E1",    // sky blue
 
@@ -16,5 +17,8 @@ export const colors = {
     loginFailedColor: "#FF5757",      // 
 
     /* Links */
-    linkColor: "#1677ff"
+    linkColor: "#1677ff",
+
+    /* Labels */
+    errorLabelColor: "#d32f2f",
 };

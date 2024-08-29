@@ -9,6 +9,7 @@ import { emailValidation } from "../../../utils/fieldsValidations/emailValidatio
 import { changeData } from "../../../api/changeData";
 import { colors } from "../../../assets/styles/colors";
 import { fieldsWidths } from "../../../assets/styles/fieldsWidths";
+import { fieldsMargins } from "../../../assets/styles/fieldsMargins";
 import { urls } from "../../../constants/urls/urls";
 import { paths } from "../../../constants/paths/paths";
 import { editToken } from "../../../redux/slices/authSlice";
@@ -253,7 +254,7 @@ const ChangeUser = ({
                         existsError={emptyLastNameError}
                         errorText={t("errors.emptyFieldError")}
                         width={fieldsWidths.modalFields}
-                        marginTop={"25px"}
+                        marginTop={fieldsMargins.modalFieldMarginTop}
                         onChangeHandler={(evt) => setChangedUserData({
                             ...changedUserData,
                             lastName: evt.target.value
@@ -261,7 +262,7 @@ const ChangeUser = ({
             <TextInput label={t("users.addChangeUser.phone")}
                         defaultValue={userData.phoneNumber}
                         width={fieldsWidths.modalFields}
-                        marginTop={"25px"}
+                        marginTop={fieldsMargins.modalFieldMarginTop}
                         onChangeHandler={(evt) => setChangedUserData({
                             ...changedUserData,
                             phoneNumber: evt.target.value
@@ -274,7 +275,7 @@ const ChangeUser = ({
                             invalidEmailError ? t("errors.invalidEmailError") : null
                         }
                         width={fieldsWidths.modalFields}
-                        marginTop={"25px"}
+                        marginTop={fieldsMargins.modalFieldMarginTop}
                         onChangeHandler={(evt) => setChangedUserData({
                             ...changedUserData,
                             email: evt.target.value
@@ -283,18 +284,18 @@ const ChangeUser = ({
                         defaultValue={userData.role === "FuelSupervisor" ? "Fuel Supervisor" : userData.role}
                         disabled={true}
                         width={fieldsWidths.modalFields}
-                        marginTop={"25px"} />
+                        marginTop={fieldsMargins.modalFieldMarginTop} />
             {userData.role === "FuelSupervisor" &&
                 <>
                     <SelectComponent label={t("users.addChangeUser.chooseStationsGroup")}
                                      defaultValue={userData.stations[0]?.stationGroup.name}
                                      chooseData={stationsGroupsList}
                                      width={fieldsWidths.modalFields}
-                                     marginTop={"25px"}
+                                     marginTop={fieldsMargins.modalFieldMarginTop}
                                      onChooseHandler={(evt) => getGroupIdSetStations(evt.target.value)} />
                     <TextInput label={t("users.addChangeUser.searchStations")}
                                width={fieldsWidths.modalFields}
-                               marginTop={"25px"}
+                               marginTop={fieldsMargins.modalFieldMarginTop}
                                onChangeHandler={(evt) => {
                                    searchAvailableStations(evt.target.value);
                                }} />
@@ -302,7 +303,7 @@ const ChangeUser = ({
                         style={{ 
                             width: fieldsWidths.modalFields,
                             marginTop: "10px",
-                            border: emptyStationsError ? "1px solid #d32f2f" : "none",
+                            border: emptyStationsError ? `1px solid ${colors.errorLabelColor}` : "none",
                             borderRadius: "5px"
                         }} 
                         className="change-user-page-checkbox-area"
@@ -320,7 +321,7 @@ const ChangeUser = ({
                                 marginTop: "3px",
                                 marginLeft: "14px",
                                 fontSize: "12px",
-                                color: "#d32f2f"
+                                color: colors.errorLabelColor
                             }}
                         >
                             {t("errors.emptyFieldError")}
