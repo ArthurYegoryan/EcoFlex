@@ -12,15 +12,21 @@ import DispensersPage from "../pages/dispensersPage/DispensersPage";
 import UsersPage from "../pages/usersPage/UsersPage";
 import TransactionsPage from "../pages/transactionsPage/TransactionsPage";
 import Error404Page from "../pages/error404Page/Error404Page";
+import { useSelector } from "react-redux";
 
 const AppRoutes = () => {
+    const role = useSelector((state) => state.auth.role) ?? localStorage.getItem("role");
+
     return (
         <Routes>
             <Route path={paths.LOGIN} element={<LoginRouteWrapper />}>
                 <Route index element={<LoginContainer />} />
             </Route>
             <Route path={paths.MAIN} element={<ProtectedRoute />}>
-                <Route index element={<Navigate to={paths.FUEL_TYPES} />} />
+                {
+                    role === "Admin" ? <Route index element={<Navigate to={paths.FUEL_TYPES} />} /> :
+                    role === "FuelSupervisor" ? <Route index element={<Navigate to={paths.STATIONS_GROUPS} />} /> : null
+                }
                 <Route path={paths.FUEL_TYPES} element={<FuelTypesPage />} />
                 <Route path={paths.STATIONS_GROUPS} element={<StationsGroupPage />} />
                 <Route path={paths.STATION} element={<StationsPage />} />

@@ -4,9 +4,11 @@ import { paths } from "../constants/paths/paths";
 
 const LoginRouteWrapper = () => {
     const token = useSelector((state) => state.auth.token.payload) ?? localStorage.getItem("token");
+    const role = useSelector((state) => state.auth.role) ?? localStorage.getItem("role");
 
     if (token) {
-        return <Navigate to={paths.FUEL_TYPES} />
+        if (role === "Admin") return <Navigate to={paths.FUEL_TYPES} />
+        else if (role === "FuelSupervisor") return <Navigate to={paths.STATIONS_GROUPS} />
     }
 
     return <Outlet />;
