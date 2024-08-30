@@ -4,7 +4,7 @@
 }
 
 .ant-layout-sider {
-    background-color: #E1E100 !important;
+    background-color: #ffdb4d !important;
     min-height: 100vh;
     min-width: 220px !important;
 }
@@ -14,7 +14,7 @@
 }
 
 .ant-menu-dark {
-    background-color: #E1E100 ;
+    background-color: #ffdb4d ;
 }
 
 .logo-area-opened-menu {
