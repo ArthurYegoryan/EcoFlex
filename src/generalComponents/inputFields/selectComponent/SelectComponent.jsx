@@ -15,6 +15,7 @@ export default function SelectComponent({
     firstRowValue,
     chooseData,
     width,
+    height,
     marginTop,
     marginLeft,
     existsError,
@@ -38,6 +39,9 @@ export default function SelectComponent({
                     value={value}
                     label={label}
                     defaultValue={defaultValue}
+                    sx={{
+                        height: height
+                    }}
                     onChange={handleChange}
                 >
                     {hasFirstRow &&

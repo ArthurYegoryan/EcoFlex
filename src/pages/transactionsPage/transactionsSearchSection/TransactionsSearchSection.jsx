@@ -30,11 +30,13 @@ const TransactionsSearchSection = ({
     return (
         <div className="transactions-search-area">
             <TextInput label={t("searchSections.searchData")}
-                       marginTop={"12px"}
-                       onChangeHandler={(e) => setSearchParams({
-                           ...searchParams,
-                           searchText: e.target.value.trim()
-                       })} />
+                        marginTop={"22px"}
+                        height="30px"
+                        lineHeight="1em"
+                        onChangeHandler={(e) => setSearchParams({
+                            ...searchParams,
+                            searchText: e.target.value.trim()
+                        })} />
             <SelectComponent label={t("transactions.transactionsSearch.chooseTransactionType")}
                              defaultValue={"All"}
                              hasFirstRow={true}
@@ -42,7 +44,8 @@ const TransactionsSearchSection = ({
                              firstRowValue={"All"}
                              chooseData={transactionTypes}
                              width={"200px"}
-                             marginTop={"12px"}
+                             height={"30px"}
+                             marginTop={"22px"}
                              marginLeft={"15px"}
                              onChooseHandler={(e) => setSearchParams({
                                  ...searchParams,
@@ -55,7 +58,8 @@ const TransactionsSearchSection = ({
                              firstRowValue={"All"}
                              chooseData={fuelTypesList}
                              width={"280px"}
-                             marginTop={"12px"}
+                             height={"30px"}
+                             marginTop={"22px"}
                              marginLeft={"15px"}
                              onChooseHandler={(e) => setSearchParams({
                                 ...searchParams,
