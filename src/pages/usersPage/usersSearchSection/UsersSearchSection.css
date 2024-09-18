@@ -1,0 +1,13 @@
+.stations-groups-search-area {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.stations-groups-search-form {
+    display: flex;
+}
+
+.stations-connection-error-text {
+    color: red;
+    margin-top: 0;
+}

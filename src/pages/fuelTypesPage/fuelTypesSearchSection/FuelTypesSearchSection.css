@@ -1,0 +1,9 @@
+.fuel-types-search-area {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.fuel-types-connection-error-text {
+    color: red;
+    margin-top: 0;
+}

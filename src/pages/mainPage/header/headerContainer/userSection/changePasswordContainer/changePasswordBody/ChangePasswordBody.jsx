@@ -1,13 +1,13 @@
 import "./ChangePasswordBody.css";
 import TextInput from "../../../../../../../generalComponents/inputFields/textInputComponent/TextInputComponent";
 import Button from "../../../../../../../generalComponents/buttons/Button";
-import changePassword from "../../../../../../../api/changePassword";
+import changePassword from "../../../../../../../testApis/changePassword";
 import { urls } from "../../../../../../../constants/urls/urls";
-import { passwordValidation } from "../../../../../../../utils/fieldsValidations/passwordValidation";
+import { passwordValidations } from "../../../../../../../utils/fieldsValidations/userDataFieldsValidation";
 import SuccessModalBody from "../../../../../../../generalComponents/modalComponent/successModalBody/SuccessModalBody";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
-// import { editToken } from "../../../../../../../redux/slices/authSlice";
+import { editToken } from "../../../../../../../redux/slices/authorization/authSlice";
 import { Navigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
@@ -42,7 +42,7 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
                     setOldPassError(true);
                 } else if (response.message === "expired token") {
                     localStorage.clear();
-                    // dispatch(editToken(""));
+                    dispatch(editToken(""));
             
                     <Navigate to="/login" />;
                 } else {
@@ -59,7 +59,7 @@ const ChangePasswordBody = ({ onCloseHandler }) => {
         setOldPassError(false);
         setNewPassError(false);
 
-        passwordValidation(password) ? makeCallForChangePass() : setNewPassError(true);
+        passwordValidations(password) ? makeCallForChangePass() : setNewPassError(true);
     }
 
     return (

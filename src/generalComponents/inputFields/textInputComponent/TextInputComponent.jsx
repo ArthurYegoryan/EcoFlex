@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-// import Input from '@mui/material/Input';
-// import FilledInput from '@mui/material/FilledInput';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -16,6 +14,7 @@ export default function TextInput({
     label,
     size = "small",
     defaultValue,
+    disabled = false,
     isPassword = false,
     onChangeHandler,
     marginTop,
@@ -23,6 +22,7 @@ export default function TextInput({
     errorText,
     width = "25ch",
     height = "40px",
+    lineHeight = "1.4375em",
     passwordBgColor = "white"
 }) {
     const [showPassword, setShowPassword] = React.useState(false);
@@ -50,8 +50,18 @@ export default function TextInput({
                             variant="outlined"
                             size={size}
                             defaultValue={defaultValue}
+                            disabled={disabled}
                             error={existsError}
-                            helperText={existsError && errorText} />
+                            helperText={existsError && errorText}
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    height: size === "small" ? height : null
+                                },
+                                "& .MuiInputLabel-root": {
+                                    lineHeight: lineHeight,
+                                }
+                            }} 
+                            />
                 </Box> :
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', marginTop: marginTop }}>
                     <FormControl sx={{ width: {width} }} variant="outlined" size={size} onChange={onChangeHandler}>

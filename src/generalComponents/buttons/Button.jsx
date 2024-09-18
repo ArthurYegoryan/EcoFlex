@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { colors } from '../../assets/styles/colors';
 
 export default function ButtonComponent({
     type = "button",
@@ -8,8 +9,10 @@ export default function ButtonComponent({
     startIcon,
     endIcon,
     size = "small",
-    backgroundColor = "blue",
-    color = "white",
+    backgroundColor = colors.originalBgColor,
+    color = colors.originalColor,
+    hoverColor = colors.originalHoverColor,
+    activeColor,
     width,
     height,
     marginLeft,
@@ -17,6 +20,7 @@ export default function ButtonComponent({
     marginRight,
     marginBottom,
     borderRadius,
+    fontSize,
     onClickHandler,
     isDisabled = false
 }) {
@@ -41,7 +45,14 @@ export default function ButtonComponent({
                         height: height,
                         backgroundColor: backgroundColor,
                         color: color,
-                        borderRadius: borderRadius
+                        borderRadius: borderRadius,
+                        fontSize: fontSize,
+                        '&:hover': {
+                            backgroundColor: hoverColor,
+                        },
+                        '&:active': {
+                            backgroundColor: activeColor,
+                        }
                     }}
                     onClick={onClickHandler}
             >

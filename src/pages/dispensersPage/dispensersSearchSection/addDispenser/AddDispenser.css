@@ -1,0 +1,8 @@
+.add-dispenser-buttons {
+    display: flex;
+    margin-top: 25px;
+}
+
+.add-dispenser-error-text {
+    color: red;
+}

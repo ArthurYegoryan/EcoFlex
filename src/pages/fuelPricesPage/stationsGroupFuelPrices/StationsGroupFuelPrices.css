@@ -1,0 +1,13 @@
+.stations-group-fuel-prices-back-stations-groups-link {
+    margin-top: 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.stations-group-fuel-prices-back-stations-groups-link:hover {
+    opacity: 0.7;
+}
+
+.stations-group-fuel-prices-page-pagination {
+    display: flex;
+    justify-content: center;
+}

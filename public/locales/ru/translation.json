@@ -1,133 +1,158 @@
 {
+    "generalQuestionsTexts": {
+        "attention": "Внимание!",
+        "stationFuelTypesPricesWillBeChanged": "Цены на виды топлива на заправочных станциях изменятся",
+        "groupFuelTypesPricesWillBeChanged": "Цены на все виды топлива в сети изменятся",
+        "doYouWantDelete": "Вы хотите удалить",
+        "newPassSendSuccess": "Новый пароль был успешно отправлен на Ваш электронный адрес !!!",
+        "dataNotFound": "Данные не найдены"
+    },
+    "nav": {
+        "fuelTypes": "Виды топлива",
+        "stationGroups": "Группы станций",
+        "fuelPrices": "Цены на топливо",
+        "dispensers": "Дозаторы",
+        "users": "Пользователи",
+        "transactions": "Операции"
+    },
     "loginSection": {
         "username": "Имя пользователя",
         "password": "Пароль",
+        "login": "Входить",
         "forgotPassword": "Забыли пароль?",
-        "login": "Входить"
+        "recover": "Восстановить"
     },
-    "errors": {
-        "emptyUsernameError": "Введите имя пользователя",
-        "emptyPasswordError": "Введите пароль",
-        "wrongUsernamePassword": "Неверное имя пользователя или пароль"
+    "fuelTypes": {
+        "yandexId": "Яндекс ID",
+        "fuelName": "Название топлива",
+        "adgCode": "АДГ код",
+        "departmentId": "Отдела ID",
+        "countType": "Единица измерения",
+        "action": "Действие",
+        "addChangeFuelType": {
+            "addNewFuelType": "Добавить новый тип топлива",
+            "changeFuelTypeData": "Изменить данные о типе топлива",
+            "chooseCountType": "Выберите тип подсчета"
+        }
     },
-
-    "questions": {
-        "doYouWantDelete": "Вы хотите удалить"
+    "stationsGroup": {
+        "stationsGroupName": "Название сети заправочных станций",
+        "stationsGroupAddress": "Адрес",
+        "stationsGroupPhoneNumber": "Номер телефона",
+        "action": "Действие",
+        "addChangeStationsGroup": {
+            "addNewStationsGroup": "Добавить новую сеть заправочных станций",
+            "changeStationsGroupData": "Изменить данные сети заправочных станций",
+            "name": "Название"
+        }
+    },
+    "stations": {
+        "yandexId": "Яндекс ID",
+        "stationName": "Название станции",
+        "stationAddress": "Адрес",
+        "stationPhone": "Номер телефона",
+        "stationTin": "ИНН",
+        "fuelTypes":"Виды топлива",
+        "action": "Действие",
+        "returnStationsGroupPage": "Вернуться на страницу сети заправочных станций",
+        "addChangeStation": {
+            "addNewStation": "Добавить новую заправочную станцию",
+            "changeStationData": "Изменить данные заправочной станции",
+            "name": "Название",
+            "coordinateWidth": "Координатная ширина",
+            "coordinateLength": "Координатная длина"
+        }
+    },
+    "fuelPrices": {
+        "changeAllFuelPricesOfStationsGroup": "Изменить цены на все топливо в сети",
+        "addAllDiscountsOfStationsGroup": "Добавьте скидки на все топливо в сети",
+        "changeStationFuelPrices": "Изменить цены на топливо на заправочной станции",
+        "price": "Цена"
+    },
+    "dispensers": {
+        "dispenserId": "ID дозатора",
+        "serialNumber": "Серийный номер",
+        "stationName":"Название заправочной станции",
+        "stationGroupName": "Название сети заправочной станции",
+        "address": "Адрес",
+        "fuelTypes": "Виды топлива",
+        "action": "Действие",
+        "addChangeDispenser": {
+            "addNewDispenser": "Добавить новый дозатор",
+            "chooseStationGroup": "Выберите сеть заправочной станции",
+            "chooseStation": "Выберите заправочную станцию",
+            "chooseFuelTypes": "Выберите типы топлива",
+            "changeDispenser": "Изменить данные дозатора"
+        }
+    },
+    "users": {
+        "fullName": "Имя фамилия",
+        "role": "Роль",
+        "stations": "Станции",
+        "action": "Действие",
+        "addChangeUser": {
+            "addNewUser":"Добавить нового пользователя",
+            "changeUserData":"Изменить пользовательские данные",
+            "name": "Имя",
+            "surname": "Фамилия",
+            "phone": "Номер телефона",
+            "email": "Адрес электронной почты",
+            "role": "Статус",
+            "chooseStationsGroup": "Выберите сеть заправочных станций",
+            "searchStations": "Поиск заправочной станци(и)й"
+        },
+        "deleteUser": {
+            "deleteUserData":"Удалить данные пользователя",
+            "userData":"данные пользователя?"
+        }
+    },
+    "transactions": {
+        "yandexId":"Яндекс ID",
+        "transactionType": "Тип транзакции",
+        "transactionDate": "Дата транзакции",
+        "station": "Заправочная станция",
+        "tin": "ИНН",
+        "stationGroup": "Сеть заправочных станций",
+        "fuelType": "Тип топлива",
+        "fuelVolume": "Объем топлива",
+        "transactionAmount": "Сумма транзакции",
+        "yandexStatus": "Статус Яндекса",
+        "ecrStatus": "Статус ECR",
+        "receiptId": "Идентификатор квитанции",
+        "transactionsSearch": {
+            "chooseTransactionType": "Выберите тип транзакции",
+            "chooseFuelType": "Выберите тип топлива",
+            "start": "Начало",
+            "end": "Конец"
+        }
     },
     "operations": {
+        "save": "Сохранить",
+        "cancel": "Отменить",
+        "export": "Экспорт",
+        "reporting": "Отчет",
+        "stationsSummaryReporting": "Сводный отчет заправочных станций",
+        "search": "Поиск",
         "delete": "Удалить",
-        "cancel": "Отменить"
+        "recover": "Восстановить"
     },
-    "nav": {
-        "terminals": "Терминалы",
-        "transactions": "Транзакции",
-        "users": "Пользователи",
-        "banks": "Банки"
+    "searchSections": {
+        "searchData": "Данные для поиска"
     },
-    "terminalsSection": {
-        "serialNumber": "Серийный номер",
-        "tid": "Terminal ID",
-        "mid": "Merchant ID",
-        "posType": "Тип терминала",
-        "mcc": "MCC",
-        "tax": "ИНН",
-        "merchantName": "Название торговой точки (английском)",
-        "merchantNameAm": "Название торговой точки (армянском)",
-        "region": "Регион",
-        "merchantAddress": "Адрес торговой точки (английском)",
-        "merchantAddressAm": "Адрес торговой точки (армянском)",
-        "merchantCity": "Город торговой точки (английском)",
-        "merchantCityAm": "Город торговой точки (армянском)",
-        "merchantPhoneNumber": "Номер телефона торговой точки",
-        "merchantWebPage": "Веб-сайт торговой точки",
-        "merchantEmail": "Адрес эл. почты торговой точки",
-        "paymentSystem": "Платежная система",
-        "invalidSerial": "Неверный серийный номер",
-        "invalidTid": "Неверный Terminal ID",
-        "invalidMid": "Неверный Merchant ID"
-    },
-    "userSection": {
-        "userData": "данные пользователя?",
-        "forgotPassword": "Забыли пароль?",
-        "role": "Роль",
-        "email": "Эл. почта",
-        "username": "Имя пользователя",
-        "password": "Пароль",
-        "changePassword": "Сменить пароль",
-        "oldPassword": "Старый пароль",
-        "newPassword": "Новый пароль",
-        "confirmNewPassword": "Подтвердите новый пароль",
-        "wrongPassword": "Неверный пароль",
-        "passwordCritery": "Должно быть не менее 8 символов и содержать заглавные и строчные буквы, цифры и символы",
+    "errors": {
+        "connectionError": "Ошибка подключения, пожалуйста, повторите попытку!",
+        "emptyFieldError": "Заполните поле",
         "emptyUsernameError": "Введите имя пользователя",
         "emptyPasswordError": "Введите пароль",
-        "emptyEmailError": "Введите адрес электронной почты",
-        "invalidEmail": "Неверный адрес электронной почты",
-        "sendBtn": "Посылать",
-        "newPassSendSuccess": "Новый пароль был успешно отправлен на Ваш электронный адрес !!!",
+        "wrongUsername": "Неверное имя пользователя",
         "wrongUsernamePassword": "Неверное имя пользователя или пароль",
-        "wrongUsernameEmail": "Неверное имя пользователя или адрес электронной почты",
-        "usernameLengthError": "Имя пользователя должно содержать не менее 3 символов",
-        "logout": "Выходить"
-    },
-    "searchArea": {
-        "searchBy": "Поиск по",
-        "searchData": "Данные для поиска",
-        "chooseTrxType": "Выберите тип транзакции",
-        "startDate": "Дата начала",
-        "startTime": "Время начала",
-        "endDate": "Дата окончания",
-        "endTime": "Время окончания",
-        "searchBtn": "Поиск",
-        "emptyFieldError": "Заполните поле"
-    },
-    "export": {
-        "export": "Экспорт",
-        "reporting": "Отчет"
-    },
-    "addNewTerminal": {
-        "addNewTerminal": "Добавить новый терминал",
-        "addBtn": "Добавить",
-        "cancelBtn": "Отменить"
-    },
-    "changeTerminalData": {
-        "changeTerminalData": "Изменить данные терминала",
-        "saveBtn": "Сохранить"
-    },
-    "deleteTerminalData": {
-        "deleteTerminalData": "Удалить данные терминала"
-    },
-    "trxTypes": {
-        "all": "Все",
-        "sale": "Оплата",
-        "cancel": "Отмена"
-    },
-    "changeUserData": {
-        "changeUserData": "Изменить данные пользователя"
-    },
-    "deleteUserData": {
-        "deleteUserData": "Удалить данные пользователя"
-    },
-    "addNewUser": {
-        "addNewUser": "Добавить новый пользователь"
-    },
-    "banks": {
-        "bank": "Банк",
-        "banks": "Банки",
-        "bankDatas": "банковские данные",
-        "addNewBank": "Добавить новый банк",
-        "changeBankData": "Изменить банковские данные",
-        "deleteBankData": "Удалить банковские данные",
-        "shortName": "Краткое название",
-        "nameAm": "Армянское имя",
-        "nameRu": "Русское имя",
-        "nameEn": "Английское имя",
-        "secondEmail": "Вторая эл. почта",
-        "url": "Адрес для отмены",
-        "isActive": "Активен",
-        "isOwner": "Is owner",
-        "onlyArmenian": "Должно быть только на армянском языке",
-        "onlyRussian": "Должно быть только на русском языке",
-        "onlyEnglish": "Должно быть только на английском языке"
+        "invalidEmailError": "Неверный адрес электронной почты",
+        "onlyNumbersError": "Должен содержать только цифры",
+        "onlyNumbersLengthEightError": "Должен содержать только цифры и иметь длину ровно 8",
+        "onlyNumbersPointError": "Должен содержать только цифры и одну точку (но не в начале или конце)",
+        "fuelTypeExistsError": "Данный тип топлива существует!",
+        "stationExistsError": "Данная заправочная станция существует!",
+        "yandexIdExistsError": "Данный Yandex ID существует!",
+        "stationsGroupExistsError": "Сеть данных заправочных станций существует!"
     }
 }

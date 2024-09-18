@@ -1,102 +1,1086 @@
-import React, { useState } from 'react';
-import { Space, Table } from 'antd';
+import "./Table.css";
+import { colors } from '../../assets/styles/colors';
+import { Space, Table, Typography } from 'antd';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const TableComponent = ({ 
-    whichTable, 
+    whichTable,
+    size = "normal",
     datas,
     setCurrentData,
-    banks,
-    onClickEditButton, 
-    onClickDeleteButton 
+    onClickHref,
+    onClickEditButton,
+    onClickDeleteButton,
+    renderHandler,
+    filterHandlers,
+    fuelTypesfilterHandlers,
+    stationsGroupFilterHandlers,
+    stationsFilterHandlers,
+    windowHeight,
+    minWidth,
+    scrollBoth = false,
+    scrollX = false,
+    scrollY = false,
 }) => {
-    const role = useSelector((state) => state.auth.role.payload) ?? localStorage.getItem("role");
+    const { t } = useTranslation();
 
-    const terminalsColumns = [
+    const fuelTypesColumns = [
         {
-            title: 'ID',
-            width: 10,
-            dataIndex: 'id',
-            key: 'id',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byId()
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "10px",
         },
         {
-            title: 'Terminal ID',
-            width: 14,
-            dataIndex: 'tid',
-            key: 'tid',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byYandexId()
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("fuelTypes.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexFuelTypeId',
+            key: 'yandexFuelTypeId',
+            width: "20px",
         },
         {
-            title: 'Merchant ID',
-            dataIndex: 'mid',
-            key: 'mid',
-            width: 14,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byFuelName()
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("fuelTypes.fuelName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "20px",
         },
         {
-            title: 'S/N',
-            dataIndex: 'serial',
-            key: 'serial',
-            width: 14,
+            title: t("fuelTypes.adgCode"),
+            dataIndex: 'adgCode',
+            key: 'adgCode',
+            width: "10px",
         },
         {
-            title: 'MCC',
-            dataIndex: 'mcc',
-            key: 'mcc',
-            width: 10,
+            title: t("fuelTypes.departmentId"),
+            dataIndex: 'departmentId',
+            key: 'departmentId',
+            width: "10px",
         },
         {
-            title: 'Is Active',
-            dataIndex: 'active',
-            key: 'active',
-            width: 11,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            fuelTypesfilterHandlers.byCountType()
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("fuelTypes.countType")}
+                </span>
+            ),
+            dataIndex: 'countType',
+            key: 'countType',
+            width: "15px",
         },
         {
-            title: 'POS type',
-            dataIndex: 'pos_type',
-            key: 'pos_type',
-            width: 16,
-        },
-        {
-            title: 'Merchant name',
-            dataIndex: 'merchant_name_in_am',
-            key: 'merchant_name_in_am',
-            width: 25,
-        },
-        {
-            title: 'Merchant TAX number',
-            dataIndex: 'merchant_tax_number',
-            key: 'merchant_tax_number',
-            width: 15,
-        },
-        {
-            title: 'Merchant city',
-            dataIndex: 'merchant_city_in_am',
-            key: 'merchant_city_in_am',
-            width: 13,
-        },
-        {
-            title: 'Merchant address',
-            dataIndex: 'merchant_address_in_am',
-            key: 'merchant_address_in_am',
-            width: 25,
-        },
-        {
-            title: 'Bank',
-            dataIndex: 'bank',
-            key: 'bank',
-            width: 13,
-        },
-        {
-            title: 'Action',
+            title: t("fuelTypes.action"),
             key: 'operation',
-            width: 10,
+            width: "10px",
             render: (record) => (
                 <Space size="middle">
-                    <BsFillPencilFill style={{ color: "blue", cursor: "pointer" }} onClick={() => {
-                        (role === "admin" || role === "bank") && onClickEditButton(record);
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
                     }} />
-                    <BsFillTrashFill style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                        (role === "admin" || role === "bank") && onClickDeleteButton(record);
+                </Space>
+            )
+        },
+    ];
+
+    const stationsGroupColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byId()
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "30px",
+            render: (text) => {
+                return (
+                    <a onClick={() => {
+                        onClickHref(text);
+                    }}>
+                        {text}
+                    </a>
+                );
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "30px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "30px",
+        },
+        {
+            title: t("stationsGroup.action"),
+            key: 'operation',
+            width: "10px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                </Space>
+            )
+        },
+    ];
+
+    const stationsGroupFuelSupervisorColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byId()
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "10px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "30px",
+            render: (text) => {
+                return (
+                    <a onClick={() => {
+                        // setCurrentDataName(text);
+                        onClickHref(text);
+                    }}>
+                        {text}
+                    </a>
+                );
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "30px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsGroupFilterHandlers.byStationsGroupPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "30px",
+        },
+    ];
+
+    const stationsColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'}
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID {process.env.PUBLIC_URL}
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "8px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byYandexId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexStationId',
+            key: 'yandexStationId',
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "11px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationTin();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationTin")}
+                </span>
+            ),
+            dataIndex: 'tin',
+            key: 'tin',
+            width: "10px",
+        },
+        {
+            title: t("stations.fuelTypes"),
+            dataIndex: 'fuelTypes',
+            key: 'fuelTypes',
+            width: "20px",
+            render: (values) => {
+                return (
+                    <>
+                        {values.map((value, index) => (
+                            <React.Fragment key={index}>
+                                <Typography.Text>
+                                    {value}
+                                </Typography.Text>
+                                <br/>
+                            </React.Fragment>
+                        ))}
+                    </>
+                );
+            }
+        },
+        {
+            title: t("stations.action"),
+            key: 'operation',
+            width: "10px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                </Space>
+            )
+        },
+    ];
+
+    const stationsFuelSupervisorColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'}
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID {process.env.PUBLIC_URL}
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "8px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byYandexId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexStationId',
+            key: 'yandexStationId',
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "11px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            stationsFilterHandlers.byStationTin();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationTin")}
+                </span>
+            ),
+            dataIndex: 'tin',
+            key: 'tin',
+            width: "10px",
+        },
+        {
+            title: t("stations.fuelTypes"),
+            dataIndex: 'fuelTypes',
+            key: 'fuelTypes',
+            width: "20px",
+            render: (values) => {
+                return (
+                    <>
+                        {values.map((value, index) => (
+                            <React.Fragment key={index}>
+                                <Typography.Text>
+                                    {value}
+                                </Typography.Text>
+                                <br/>
+                            </React.Fragment>
+                        ))}
+                    </>
+                );
+            }
+        },
+    ];
+
+    const stationsGroupFuelPricesColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'}
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID {process.env.PUBLIC_URL}
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "8px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byYandexId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexStationId',
+            key: 'yandexStationId',
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationName")}
+                </span>
+            ),
+            dataIndex: 'name',
+            key: 'name',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationAddress();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationAddress")}
+                </span>
+            ),
+            dataIndex: 'address',
+            key: 'address',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stationsGroup.stationsGroupPhoneNumber")}
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "11px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationTin();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.stationTin")}
+                </span>
+            ),
+            dataIndex: 'tin',
+            key: 'tin',
+            width: "10px",
+        },
+        {
+            title: t("stations.fuelTypes"),
+            dataIndex: 'fuelTypes',
+            key: 'fuelTypes',
+            width: "30px",
+            render: (record) => renderHandler ? renderHandler(record) : null
+        },
+        {
+            title: t("stations.action"),
+            key: 'operation',
+            width: "10px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                </Space>
+            )
+        },
+    ];
+
+    const fuelTypesWithPricesColumns = [
+        {
+            title: t("fuelTypes.fuelName"),
+            dataIndex: 'name',
+            key: 'name',
+            width: "15px",
+        },
+        {
+            title: t("fuelTypes.countType"),
+            dataIndex: 'countType',
+            key: 'countType',
+            width: "10px",
+        },
+        {
+            title: t("fuelPrices.price"),
+            dataIndex: 'price',
+            key: 'price',
+            width: "10px",
+        },
+    ]
+
+    const dispensersColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "7px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byYandexDispenserId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.dispenserId")}
+                </span>
+            ),
+            dataIndex: 'yandexDispenserId',
+            key: 'yandexDispenserId',
+            width: "18px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.bySerialNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.serialNumber")}
+                </span>
+            ),
+            dataIndex: 'serialNumber',
+            key: 'serialNumber',
+            width: "18px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.stationName")}
+                </span>
+            ),
+            dataIndex: 'stationName',
+            key: 'stationName',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationGroupName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("dispensers.stationGroupName")}
+                </span>
+            ),
+            dataIndex: 'stationGroupName',
+            key: 'stationGroupName',
+            width: "23px",
+        },
+        {
+            title: t("dispensers.address"),
+            dataIndex: 'address',
+            key: 'address',
+            width: "30px",
+        },
+        {
+            title: t("dispensers.fuelTypes"),
+            dataIndex: 'fuelTypes',
+            key: 'fuelTypes',
+            width: "22px",
+            render: (values) => {
+                return (
+                    <>
+                        {values.map((value, index) => (
+                            <React.Fragment key={index}>
+                                <Typography.Text>
+                                    {value}
+                                </Typography.Text>
+                                <br/>
+                            </React.Fragment>
+                        ))}
+                    </>
+                );
+            }
+        },
+        {
+            title: t("stationsGroup.action"),
+            key: 'operation',
+            width: "13px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                </Space>
+            )
+        },
+    ];
+
+    const usersColumns = [
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "7px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byFullName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("users.fullName")}
+                </span>
+            ),
+            dataIndex: 'fullName',
+            key: 'fullName',
+            width: "13px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byRole();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("users.role")}
+                </span>
+            ),
+            dataIndex: 'role',
+            key: 'role',
+            width: "12px",
+        },        
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationName();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("users.stations")}
+                </span>
+            ),
+            dataIndex: 'stationsList',
+            key: 'stationsList',
+            width: "20px",
+        },
+        {
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byPhoneNumber();
+                        }}
+                    />
+                    &nbsp;&nbsp;
+                    <img src={process.env.PUBLIC_URL + 'img/phone.svg'} 
+                        alt="Phone" 
+                        style={{
+                            width: "15px",
+                        }}
+                    />
+                </span>
+            ),
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
+            width: "10px",
+        },
+        {
+            title: t("users.action"),
+            key: 'operation',
+            width: "10px",
+            render: (record) => (
+                <Space size="middle">
+                    <BsFillPencilFill style={{ color: colors.originalBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickEditButton(record);
+                    }} />
+                    <BsFillTrashFill style={{ color: colors.cancelBgColor, cursor: "pointer" }} onClick={() => {
+                        setCurrentData(record);
+                        onClickDeleteButton(record);
                     }} />
                 </Space>
             )
@@ -105,234 +1089,313 @@ const TableComponent = ({
 
     const transactionsColumns = [
         {
-            title: 'ID',
-            width: 10,
-            dataIndex: 'id',
-            key: 'id',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byId();
+                        }}
+                    />
+                    &nbsp;&nbsp;ID
+                </span>
+            ),
+            dataIndex: 'number',
+            key: 'number',
+            width: "7px",
         },
         {
-            title: 'RRN',
-            width: 10,
-            dataIndex: 'rrn',
-            key: 'rrn',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + '../img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byYandexId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("stations.yandexId")}
+                </span>
+            ),
+            dataIndex: 'yandexTransactionId',
+            key: 'yandexTransactionId',
+            width: "10px",
+            ellipsis: true,
+            render: (value) => {
+                return value.trim() && (
+                    <Typography.Text style={{ maxWidth: 80 }} ellipsis copyable>
+                        {value.trim()}
+                    </Typography.Text>
+                )
+            }
         },
         {
-            title: 'Terminal ID',
-            dataIndex: 'tid',
-            key: 'tid',
-            width: 10,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTransactionType();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.transactionType")}
+                </span>
+            ),
+            dataIndex: 'transactionType',
+            key: 'transactionType',
+            width: "10px",
         },
         {
-            title: 'Merchant ID',
-            dataIndex: 'mid',
-            key: 'mid',
-            width: 10,
-        },
-        
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTransactionDate();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.transactionDate")}
+                </span>
+            ),
+            dataIndex: 'transactionDate',
+            key: 'transactionDate',
+            width: "10px",
+        },        
         {
-            title: 'Amount',
-            dataIndex: 'amount',
-            key: 'amount',
-            width: 10,
-        },
-        {
-            title: 'Date',
-            dataIndex: 'date',
-            key: 'date',
-            width: 20,
-        },
-        {
-            title: 'Status',
-            dataIndex: 'status',
-            key: 'status',
-            width: 10,
-        },
-        {
-            title: 'Trx type',
-            dataIndex: 'trx_type',
-            key: 'trx_type',
-            width: 8,
-        },
-        {
-            title: 'Bank',
-            dataIndex: 'bank',
-            key: 'bank',
-            width: 10,
-        },
-        {
-            title: 'Pay sys',
-            dataIndex: 'payment_system',
-            key: 'payment_system',
-            width: 10,
-        }
-    ];
-
-    const usersColumns = [
-        {
-            title: 'ID',
-            width: 10,
-            dataIndex: 'id',
-            key: 'id',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStation();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.station")}
+                </span>
+            ),
+            dataIndex: 'stationName',
+            key: 'stationName',
+            width: "10px",
         },
         {
-            title: 'Username',
-            width: 20,
-            dataIndex: 'username',
-            key: 'username',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTin();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.tin")}
+                </span>
+            ),
+            dataIndex: 'tin',
+            key: 'tin',
+            width: "10px",
         },
         {
-            title: 'Bank',
-            dataIndex: 'bank',
-            key: 'bank',
-            width: 20,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byStationGroup();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.stationGroup")}
+                </span>
+            ),
+            dataIndex: 'stationGroupName',
+            key: 'stationGroupName',
+            width: "10px",
         },
         {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-            width: 35,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byFuelType();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.fuelType")}
+                </span>
+            ),
+            dataIndex: 'fuelTypeName',
+            key: 'fuelTypeName',
+            width: "10px",
         },
         {
-            title: 'Is active',
-            dataIndex: 'is_active',
-            key: 'is_active',
-            width: 11,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byFuelSize();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.fuelVolume")}
+                </span>
+            ),
+            dataIndex: 'fuelSizeCountType',
+            key: 'fuelSizeCountType',
+            width: "10px",
         },
         {
-            title: 'Role',
-            dataIndex: 'role',
-            key: 'role',
-            width: 20,
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byAmount();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.transactionAmount")}
+                </span>
+            ),
+            dataIndex: 'amountCurrency',
+            key: 'amountCurrency',
+            width: "10px",
         },
         {
-            title: 'Action',
-            key: 'operation',
-            width: 15,
-            render: (record) => (
-                <Space size="middle">
-                    <BsFillPencilFill style={{ color: "blue", cursor: "pointer" }} onClick={() => {
-                        setCurrentData(record);
-                        onClickEditButton(record);
-                    }} />
-                    <BsFillTrashFill style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                        setCurrentData(record);
-                        onClickDeleteButton(record);
-                    }} />
-                </Space>
-            )
-        },
-    ];
-
-    const banksColumns = [
-        {
-            title: 'ID',
-            width: 10,
-            dataIndex: 'id',
-            key: 'id',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byTransactionStatus();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.yandexStatus")}
+                </span>
+            ),
+            dataIndex: 'currentTransactionStatus',
+            key: 'currentTransactionStatus',
+            width: "10px",
         },
         {
-            title: 'Short name',
-            width: 14,
-            dataIndex: 'short_name',
-            key: 'short_name',
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byEcrStatus();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.yandexStatus")}
+                </span>
+            ),
+            dataIndex: 'ecrStatus',
+            key: 'ecrStatus',
+            width: "10px",
         },
         {
-            title: 'Name AM',
-            width: 14,
-            dataIndex: 'name_am',
-            key: 'name_am',
-        },
-        {
-            title: 'Name RU',
-            width: 14,
-            dataIndex: 'name_ru',
-            key: 'name_ru',
-        },
-        {
-            title: 'Name EN',
-            width: 14,
-            dataIndex: 'name_en',
-            key: 'name_en',
-        },
-        {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-            width: 25,
-        },
-        {
-            title: 'Second email',
-            dataIndex: 'secondEmail',
-            key: 'secondEmail',
-            width: 25,
-        },
-        {
-            title: 'Is active',
-            dataIndex: 'is_active',
-            key: 'is_active',
-            width: 11,
-        },
-        {
-            title: 'URL',
-            dataIndex: 'url',
-            key: 'url',
-            width: 30,
-        },
-        {
-            title: 'Is owner',
-            dataIndex: 'is_owner',
-            key: 'is_owner',
-            width: 11,
-        },
-        {
-            title: 'Action',
-            key: 'operation',
-            width: 15,
-            render: (record) => (
-                <Space size="middle">
-                    <BsFillPencilFill style={{ color: "blue", cursor: "pointer" }} onClick={() => {
-                        setCurrentData(record);
-                        onClickEditButton(record);
-                    }} />
-                    <BsFillTrashFill style={{ color: "red", cursor: "pointer" }} onClick={() => {
-                        setCurrentData(record);
-                        onClickDeleteButton(record);
-                    }} />
-                </Space>
-            )
+            title: (
+                <span>
+                    <img src={process.env.PUBLIC_URL + 'img/sort.svg'} 
+                        alt="Sort" 
+                        style={{
+                            width: "15px",
+                            cursor: "pointer",
+                        }}
+                        onClick={() => {
+                            filterHandlers.byReceiptId();
+                        }}
+                    />
+                    &nbsp;&nbsp;{t("transactions.receiptId")}
+                </span>
+            ),
+            dataIndex: 'receiptId',
+            key: 'receiptId',
+            width: "11px",
         },
     ]
 
-    const data = [];
-
     let columns = [];
 
-    if (whichTable === "users") {
-        columns = usersColumns;
-
-        for (let i = 0; i < datas.length; i++) {
-            data.push({
-                id: datas[i].id,
-                username: datas[i].username,
-                bank: datas[i].bank ? banks[datas[i].bank] : "FPS",
-                email: datas[i].email,
-                is_active: datas[i].is_active,
-                role: datas[i].role
-            });
-        }
-    }
-    else if (whichTable === "terminals") columns = terminalsColumns;
+    if (whichTable === "fuelTypes") columns = fuelTypesColumns;
+    else if (whichTable === "stationsGroup") columns = stationsGroupColumns;
+    else if (whichTable === "stationsGroupFuelSupervisor") columns = stationsGroupFuelSupervisorColumns;
+    else if (whichTable === "stations") columns = stationsColumns;
+    else if (whichTable === "stationsFuelSupervisor") columns = stationsFuelSupervisorColumns;
+    else if (whichTable === "stationsGroupFuelPrices") columns = stationsGroupFuelPricesColumns;
+    else if (whichTable === "fuelTypesWithPrices") columns = fuelTypesWithPricesColumns;
+    else if (whichTable === "dispensers") columns = dispensersColumns;
+    else if (whichTable === "users") columns = usersColumns;
     else if (whichTable === "transactions") columns = transactionsColumns;
-    else if (whichTable === "banks") columns = banksColumns;
 
     return (
         <Table
             columns={columns}            
-            dataSource={whichTable === "users" ? data : datas}
+            dataSource={datas}
             pagination={false}
+            size={size}
             sticky={{
-                offsetHeader: 64,
+                offsetHeader: 0,
+                // offsetHeader: 64,
             }}
+            scroll={
+                scrollBoth ? {
+                    scrollToFirstRowOnChange: true,
+                    y: (windowHeight < 950) ? 450 : 650,
+                    x: minWidth
+                } :
+                scrollX ? {
+                    scrollToFirstRowOnChange: true,
+                    x: minWidth
+                } : 
+                scrollY ? {
+                    scrollToFirstRowOnChange: true,
+                    y: (windowHeight < 950) ? 450 : 650,
+                } : null
+            }
         />
     );
 };

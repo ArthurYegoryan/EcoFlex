@@ -1,0 +1,16 @@
+.pagination-open-menu {
+    position: fixed;
+    bottom: 3px;
+    min-width: 510px;
+}
+ 
+.pagination-close-menu {
+    position: fixed;
+    bottom: 3px;
+    min-width: 510px;
+}
+
+.pagination-content {
+    display: flex;
+    justify-content: center;
+}

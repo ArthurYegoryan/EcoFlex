@@ -1,8 +1,9 @@
 import axios from "axios";
-import { HeaderTokenConfig } from "../constants/configs/configs";
 
-const forgotPassword = async (url, email) => {
-    return await axios.post(url, email, HeaderTokenConfig);
+export const forgotPassword = async (url, params) => {
+    try {
+        return await axios.post(url, params);
+    } catch (err) {
+        return err;
+    }
 };
-
-export default forgotPassword;

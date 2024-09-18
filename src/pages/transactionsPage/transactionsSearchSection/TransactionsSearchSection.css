@@ -1,0 +1,18 @@
+.transactions-search-area {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.transactions-search-date {
+    margin-left: 15px;
+}
+
+.transactions-search-date > span {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.react-datepicker-popper {
+    z-index: 10 !important;
+}

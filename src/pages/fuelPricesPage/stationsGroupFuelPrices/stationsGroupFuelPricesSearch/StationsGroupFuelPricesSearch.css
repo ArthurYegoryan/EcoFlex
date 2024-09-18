@@ -1,0 +1,9 @@
+.stations-search-area {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.stations-connection-error-text {
+    color: red;
+    margin-top: 0;
+}

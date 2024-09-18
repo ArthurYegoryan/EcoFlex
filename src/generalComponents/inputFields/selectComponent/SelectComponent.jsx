@@ -1,3 +1,4 @@
+import "./SelectComponent.css";
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,12 +13,9 @@ export default function SelectComponent({
     hasFirstRow,
     firstRowLabel,
     firstRowValue,
-    chooseData, 
-    // chooseDataValue,
-    fields, 
-    changeFieldName, 
-    setField, 
+    chooseData,
     width,
+    height,
     marginTop,
     marginLeft,
     existsError,
@@ -27,10 +25,8 @@ export default function SelectComponent({
     const [ value, setValue ] = React.useState(defaultValue ?? "");
     
     const handleChange = (event) => {
-        onChooseHandler && onChooseHandler(event.target.value);
+        onChooseHandler && onChooseHandler(event);
         setValue(event.target.value);
-        fields ? setField({ ...fields, [changeFieldName]: event.target.value }) 
-               : setField(value);
     };
 
     return (
@@ -43,6 +39,9 @@ export default function SelectComponent({
                     value={value}
                     label={label}
                     defaultValue={defaultValue}
+                    sx={{
+                        height: height
+                    }}
                     onChange={handleChange}
                 >
                     {hasFirstRow &&
@@ -54,17 +53,6 @@ export default function SelectComponent({
                                 <MenuItem key={data} value={data}>{data}</MenuItem>
                             );                            
                         })
-                        // chooseData.map((data) => {
-                        //     if (typeof data === "string") {
-                        //         return (
-                        //             <MenuItem value={data.toLowerCase()}>{data}</MenuItem>
-                        //         );
-                        //     } else {
-                        //         return (
-                        //             <MenuItem value={data[chooseDataValue]}>{data[chooseDataValue] === "Sale" ? t("trxTypes.sale") : t("trxTypes.cancel")}</MenuItem>
-                        //         );
-                        //     }                            
-                        // })
                     }
                 </Select>
                 {existsError &&

@@ -1,0 +1,8 @@
+.add-new-fuel-type-buttons {
+    display: flex;
+    margin-top: 25px;
+}
+
+.add-new-fuel-type-error-text {
+    color: red;
+}

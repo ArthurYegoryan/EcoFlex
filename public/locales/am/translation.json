@@ -1,134 +1,158 @@
 {
+    "generalQuestionsTexts": {
+        "attention": "Ուշադրություն!",
+        "stationFuelTypesPricesWillBeChanged": "Լցակայանի վառելիքի տեսակների գները կփոփոխվեն",
+        "groupFuelTypesPricesWillBeChanged": "Ցանցի բոլոր վառելիքի տեսակների գները կփոփոխվեն",
+        "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել",
+        "newPassSendSuccess": "Նոր գաղտնաբառը հաջողությամբ ուղարկվել է Ձեր էլ. հասցեին !!!",
+        "dataNotFound": "Տվյալներ չեն գտնվել"
+    },
+    "nav": {
+        "fuelTypes": "Վառելիքի տեսակներ",
+        "stationGroups": "Լցակայանների ցանց",
+        "fuelPrices": "Վառելիքի գներ",
+        "dispensers": "Դիսպենսերներ",
+        "users": "Օգտագործողներ",
+        "transactions": "Գործարքներ"
+    },
     "loginSection": {
         "username": "Մուտքանուն",
         "password": "Գաղտնաբառ",
+        "login": "Մուտք գործել",
         "forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
-        "login": "Մուտք գործել"
+        "recover": "Վերականգնել"
     },
-    "errors": {
-        "emptyUsernameError": "Մուտքագրեք մուտքանունը",
-        "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
-        "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ"
+    "fuelTypes": {
+        "yandexId": "Յանդեքս ID",
+        "fuelName": "Վառելիքի անվանում",
+        "adgCode": "ԱԴԳ կոդ",
+        "departmentId": "Բաժանմունքի ID",
+        "countType": "Չափման միավոր",
+        "action": "Գործողություն",
+        "addChangeFuelType": {
+            "addNewFuelType": "Ավելացնել նոր վառելիքի տեսակ",
+            "changeFuelTypeData": "Փոփոխել վառելիքի տեսակի տվյալները",
+            "chooseCountType": "Ընտրեք չափման միավորը"
+        }
     },
-    
-
-    "questions": {
-        "doYouWantDelete": "Դուք ցանկանու՞մ եք ջնջել"
+    "stationsGroup": {
+        "stationsGroupName": "Լցակայանների ցանցի անուն",
+        "stationsGroupAddress": "Հասցե",
+        "stationsGroupPhoneNumber": "Հեռ",
+        "action": "Գործողություն",
+        "addChangeStationsGroup": {
+            "addNewStationsGroup": "Ավելացնել նոր լցակայանների ցանց",
+            "changeStationsGroupData": "Փոփոխել լցակայանների ցանցի տվյալները",
+            "name": "Անվանում"
+        }
+    },
+    "stations": {
+        "yandexId": "Յանդեքս ID",
+        "stationName": "Լցակայանի անուն",
+        "stationAddress": "Հասցե",
+        "stationPhone": "Հեռախոսահամար",
+        "stationTin": "ՀՎՀՀ",
+        "fuelTypes":"Վառելիքի տեսակներ",
+        "action": "Գործողություն",
+        "returnStationsGroupPage": "Վերադառնալ լցակայանների ցանց էջ",
+        "addChangeStation": {
+            "addNewStation": "Ավելացնել նոր լցակայան",
+            "changeStationData": "Փոփոխել լցակայանի տվյալները",
+            "name": "Անվանում",
+            "coordinateWidth": "Կոորդինատային լայնություն",
+            "coordinateLength": "Կոորդինատային երկարություն"
+        }
+    },
+    "fuelPrices": {
+        "changeAllFuelPricesOfStationsGroup": "Փոփոխել ցանցի բոլոր վառելիքների գները",
+        "addAllDiscountsOfStationsGroup": "Ավելացնել ցանցի բոլոր վառելիքների զեղչերը",
+        "changeStationFuelPrices": "Փոփոխել լցակայանի վառելիքի գները",
+        "price": "Գին"
+    },
+    "dispensers": {
+        "dispenserId": "Դիսպենսերի ID",
+        "serialNumber": "Սերիալ համար",
+        "stationName":"Լցակայանի անուն",
+        "stationGroupName": "Լցակայանի ցանցի անուն",
+        "address": "Հասցե",
+        "fuelTypes": "Վառելիքի տեսակներ",
+        "action": "Գործողություն",
+        "addChangeDispenser": {
+            "addNewDispenser": "Ավելացնել նոր դիսպենսեր",
+            "chooseStationGroup": "Ընտրել լցակայանի ցանցը",
+            "chooseStation": "Ընտրել լցակայանը",
+            "chooseFuelTypes": "Ընտրել վառելիքի տեսակները",
+            "changeDispenser": "Փոփոխել դիսպենսերի տվյալները"
+        }
+    },
+    "users": {
+        "fullName": "Անուն ազգանուն",
+        "role": "Կարգավիճակ",
+        "stations": "Լցակայաններ",
+        "action": "Գործողություն",
+        "addChangeUser": {
+            "addNewUser":"Ավելացնել նոր օգտատեր",
+            "changeUserData":"Փոփոխել օգտատիրոջ տվյալները",
+            "name": "Անուն",
+            "surname": "Ազգանուն",
+            "phone": "Հեռախոսահամար",
+            "email": "Էլեկտրոնային հասցե",
+            "role": "Կարգավիճակ",
+            "chooseStationsGroup": "Ընտրել լցակայանների ցանցը",
+            "searchStations": "Փնտրել լցակայան(ներ)ը"
+        },
+        "deleteUser": {
+            "deleteUserData":"Ջնջել օգտատիրոջ տվյալները",
+            "userData":"օգտատիրոջ տվյալները"
+        }
+    },
+    "transactions": {
+        "yandexId":"Յանդեքս ID",
+        "transactionType": "Գործարքի տեսակ",
+        "transactionDate": "Գործարքի ամսաթիվ",
+        "station": "Լցակայան",
+        "tin": "ՀՎՀՀ",
+        "stationGroup": "Լցակայանի ցանց",
+        "fuelType": "Վառելիքի տեսակ",
+        "fuelVolume": "Վառելիքի ծավալ",
+        "transactionAmount": "Գործարքի գումար",
+        "yandexStatus": "Յանդեքս կարգավիճակ",
+        "ecrStatus": "ECR կարգավիճակ",
+        "receiptId": "Անդորրագրի ID",
+        "transactionsSearch": {
+            "chooseTransactionType": "Ընտրել գործարքի տեսակը",
+            "chooseFuelType": "Ընտրել վառելիքի տեսակը",
+            "start": "Սկիզբ",
+            "end": "Ավարտ"
+        }
     },
     "operations": {
+        "save": "Պահպանել",
+        "cancel": "Չեղարկել",
+        "export": "Արտահանել",
+        "reporting": "Հաշվետվություն",
+        "stationsSummaryReporting": "Լցակայանների ամփոփ հաաշվետվություն",
+        "search": "Որոնում",
         "delete": "Ջնջել",
-        "cancel": "Չեղարկել"
+        "recover": "Վերականգնել"
     },
-    "nav": {
-        "terminals": "Տերմինալներ",
-        "transactions": "Գործարքներ",
-        "users": "Օգտագործողներ",
-        "banks": "Բանկեր"
+    "searchSections": {
+        "searchData": "Որոնման տվյալ"
     },
-    "terminalsSection": {
-        "serialNumber": "Սերիական համար",
-        "tid": "Terminal ID",
-        "mid": "Merchant ID",
-        "posType": "Տերմինալի տիպ",
-        "mcc": "MCC",
-        "tax": "ՀՎՀՀ",
-        "merchantName": "Վաճառակետի անվանում (լատինատառ)",
-        "merchantNameAm": "Վաճառակետի անվանում (հայատառ)",
-        "region": "Մարզ",
-        "merchantAddress": "Վաճառակետի հասցե (լատինատառ)",
-        "merchantAddressAm": "Վաճառակետի հասցե (հայատառ)",
-        "merchantCity": "Վաճառակետի քաղաք (լատինատառ)",
-        "merchantCityAm": "Վաճառակետի քաղաք (հայատառ)",
-        "merchantPhoneNumber": "Վաճառակետի հեռախոսահամար",
-        "merchantWebPage": "Վաճառակետի վեբ կայք",
-        "merchantEmail": "Վաճառակետի էլ. հասցե",
-        "paymentSystem": "Վճարային համակարգ",
-        "invalidSerial": "Անվավեր սերիական համար",
-        "invalidTid": "Անվավեր Terminal ID",
-        "invalidMid": "Անվավեր Merchant ID"
-    },
-    "userSection": {
-        "userData": "օգտատիրոջ տվյալները",
-        "forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
-        "role": "Կարգավիճակ",
-        "email": "Էլ. հասցե",
-        "username": "Մուտքանուն",
-        "password": "Գաղտնաբառ",
-        "changePassword": "Փոխել գաղտնաբառը",
-        "oldPassword": "Հին գաղտնաբառ",
-        "newPassword": "Նոր գաղտնաբառ",
-        "confirmNewPassword": "Հաստատել նոր գաղտնաբառը",
-        "wrongPassword": "Սխալ գաղտնաբառ",
-        "passwordCritery": "Պետք է պարունակի նվազագույնը 8 նիշ և ունենա մեծատառ, փոքրատառ, թիվ և սիմվոլ",
+    "errors": {
+        "connectionError": "Կապի խնդիր, կրկին փորձեք!",
+        "emptyFieldError": "Լրացրեք դաշտը",
         "emptyUsernameError": "Մուտքագրեք մուտքանունը",
         "emptyPasswordError": "Մուտքագրեք գաղտնաբառը",
-        "emptyEmailError": "Մուտքագրեք Էլեկտրոնային հասցեն",
-        "invalidEmail": "Սխալ Էլեկտրոնային հասցե",
-        "sendBtn": "Ուղարկել",
-        "newPassSendSuccess": "Նոր գաղտնաբառը հաջողությամբ ուղարկվել է Ձեր էլ. հասցեին !!!",
+        "wrongUsername": "Սխալ մուտքանուն",
         "wrongUsernamePassword": "Սխալ մուտքանուն կամ գաղտնաբառ",
-        "wrongUsernameEmail": "Սխալ մուտքանուն կամ էլ. հասցե",
-        "usernameLengthError": "Մուտքանունը պետք է պարունակի նվազագույնը 3 նիշ",
-        "logout": "Դուրս գալ"
-    },
-    "searchArea": {
-        "searchBy": "Որոնում ըստ",
-        "searchData": "Որոնման տվյալ",
-        "chooseTrxType": "Ընտրել գործարքի տեսակը",
-        "startDate": "Սկզբի ամսաթիվ",
-        "startTime": "Սկզբի ժամանակ",
-        "endDate": "Ավարտի ամսաթիվ",
-        "endTime": "Ավարտի ժամանակ",
-        "searchBtn": "Որոնել",
-        "emptyFieldError": "Լրացրեք դաշտը"
-    },
-    "export": {
-        "export": "Արտահանել",
-        "reporting": "Հաշվետվություն"
-    },
-    "addNewTerminal": {
-        "addNewTerminal": "Ավելացնել նոր տերմինալ",
-        "addBtn": "Ավելացնել",
-        "cancelBtn": "Չեղարկել"
-    },
-    "changeTerminalData": {
-        "changeTerminalData": "Փոփոխել տերմինալի տվյալները",
-        "saveBtn": "Պահպանել"
-    },
-    "deleteTerminalData": {
-        "deleteTerminalData": "Ջնջել տերմինալի տվյալները"
-    },
-    "trxTypes": {
-        "all": "Ամբողջը",
-        "sale": "Վաճառք",
-        "cancel": "Չեղարկում"
-    },
-    "changeUserData": {
-        "changeUserData": "Փոփոխել օգտատիրոջ տվյալները"
-    },
-    "deleteUserData": {
-        "deleteUserData": "Ջնջել օգտատիրոջ տվյալները"
-    },
-    "addNewUser": {
-        "addNewUser": "Ավելացնել նոր օգտատեր"
-    },
-    "banks": {
-        "bank": "Բանկ",
-        "banks": "Բանկեր",
-        "bankDatas": "բանկի տվյալները",
-        "addNewBank": "Ավելացնել նոր բանկ",
-        "changeBankData": "Փոփոխել բանկի տվյալները",
-        "deleteBankData": "Ջնջել բանկի տվյալները",
-        "shortName": "Կարճ անվանում",
-        "nameAm": "Հայերեն անվանում",
-        "nameRu": "Ռուսերեն անվանում",
-        "nameEn": "Անգլերեն անվանում",
-        "secondEmail": "Երկրորդ էլ. հասցե",
-        "url": "Չեղարկման համար հղում",
-        "isActive": "Ակտիվ է",
-        "isOwner": "Is owner",
-        "onlyArmenian": "Պետք է լինի միայն հայերեն",
-        "onlyRussian": "Պետք է լինի միայն ռուսերեն",
-        "onlyEnglish": "Պետք է լինի միայն անգլերեն"
+        "invalidEmailError": "Անվավեր էլեկտրոնային հասցե",
+        "onlyNumbersError": "Պետք է պարունակի միայն թվանշաններ",
+        "onlyNumbersLengthEightError": "Պետք է պարունակի միայն թվանշաններ և ունենա ճիշտ 8 երկարություն",
+        "onlyNumbersPointError": "Պետք է պարունակի միայն թվանշաններ և մեկ կետ (բայց ոչ սկզբում կամ վերջում)",
+        "fuelTypeExistsError": "Տվյալ վառելիքի տեսակը գոյություն ունի!",
+        "stationExistsError": "Տվյալ լցակայանը գոյություն ունի!",
+        "yandexIdExistsError": "Տվյալ Yandex ID-ն գոյություն ունի!",
+        "stationsGroupExistsError": "Տվյալ լցակայանների ցանցը գոյություն ունի!"
     }
 }
