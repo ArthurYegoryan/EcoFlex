@@ -1,4 +1,17 @@
 import "./SideBar.css";
+import fuelTypesImg from "../../assets/img/fuelTypes.svg";
+import fuelTypesSelectedImg from "../../assets/img/fuelTypesSelected.svg";
+import stationGroupsImg from "../../assets/img/stationsGroups.svg";
+import stationGroupsSelectedImg from "../../assets/img/stationsGroupsSelected.svg";
+import pricesImg from "../../assets/img/prices.svg";
+import pricesSelectedImg from "../../assets/img/pricesSelected.svg";
+import dispensersImg from "../../assets/img/dispensers.svg";
+import dispensersSelectedImg from "../../assets/img/dispensersSelected.svg";
+import usersImg from "../../assets/img/users.svg";
+import usersSelectedImg from "../../assets/img/usersSelected.svg";
+import transactionsImg from "../../assets/img/transactions.svg";
+import transactionsSelectedImg from "../../assets/img/transactionsSelected.svg";
+
 import React, { useState } from 'react';
 import {
     MenuFoldOutlined,
@@ -51,8 +64,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "fuelTypes" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/fuelTypesSelected.svg'} alt="Fuel types" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/fuelTypes.svg'} alt="Fuel types" />
+                                            <img src={fuelTypesSelectedImg} alt="Fuel types" /> :
+                                            <img src={fuelTypesImg} alt="Fuel types" />
                                         }
                                         
                                     </span>
@@ -68,8 +81,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "stationsGroups" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroupsSelected.svg'} alt="Stations groups" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroups.svg'} alt="Stations groups" />
+                                            <img src={stationGroupsSelectedImg} alt="Stations groups" /> :
+                                            <img src={stationGroupsImg} alt="Stations groups" />
                                         }
                                     </span>
                                 ),
@@ -84,8 +97,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "prices" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/pricesSelected.svg'} alt="Prices" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/prices.svg'} alt="Prices" />
+                                            <img src={pricesSelectedImg} alt="Prices" /> :
+                                            <img src={pricesImg} alt="Prices" />
                                         }
                                     </span>
                                 ),
@@ -100,8 +113,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "dispensers" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/dispensersSelected.svg'} alt="Dispensers" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/dispensers.svg'} alt="Dispensers" />
+                                            <img src={dispensersSelectedImg} alt="Dispensers" /> :
+                                            <img src={dispensersImg} alt="Dispensers" />
                                         }
                                     </span>
                                 ),
@@ -116,8 +129,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "users" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/usersSelected.svg'} alt="Users" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/users.svg'} alt="Users" />
+                                            <img src={usersSelectedImg} alt="Users" /> :
+                                            <img src={usersImg} alt="Users" />
                                         }                                        
                                     </span>
                                 ),
@@ -132,8 +145,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "transactions" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/transactionsSelected.svg'} alt="Transactions" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/transactions.svg'} alt="Transactions" />
+                                            <img src={transactionsSelectedImg} alt="Transactions" /> :
+                                            <img src={transactionsImg} alt="Transactions" />
                                         }                                        
                                     </span>
                                 ),
@@ -151,8 +164,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "stationsGroups" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroupsSelected.svg'} alt="Stations groups" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/stationsGroups.svg'} alt="Stations groups" />
+                                            <img src={stationGroupsSelectedImg} alt="Stations groups" /> :
+                                            <img src={stationGroupsImg} alt="Stations groups" />
                                         }
                                     </span>
                                 ),
@@ -167,8 +180,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "prices" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/pricesSelected.svg'} alt="Prices" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/prices.svg'} alt="Prices" />
+                                            <img src={pricesSelectedImg} alt="Prices" /> :
+                                            <img src={pricesImg} alt="Prices" />
                                         }
                                     </span>
                                 ),
@@ -183,8 +196,8 @@ const SideBar = () => {
                                 icon: (
                                     <span className={`menu-icon-area-${!collapsed ? "opened-menu" : "closed-menu"}`}>
                                         {selected === "transactions" ?
-                                            <img src={process.env.PUBLIC_URL + 'img/transactionsSelected.svg'} alt="Transactions" /> :
-                                            <img src={process.env.PUBLIC_URL + 'img/transactions.svg'} alt="Transactions" />
+                                            <img src={transactionsSelectedImg} alt="Transactions" /> :
+                                            <img src={transactionsImg} alt="Transactions" />
                                         }                                        
                                     </span>
                                 ),
